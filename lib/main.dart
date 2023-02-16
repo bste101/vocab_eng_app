@@ -1,32 +1,23 @@
-import 'package:flame/flame.dart';
+import 'dart:math' as math;
+import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
+import 'package:flame/game.dart';
+import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //Flame.util.fullScreen();
-  runApp(const MainApp());
+  runApp(
+    GameWidget(game: MyGame(),),
+  );
+}
+class MyGame extends FlameGame with HasTappableComponents {
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello WInny Pooh!'),
-        ),
-      ),
-    );
-  }
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
+class Space extends SpriteComponent with HasGameRef {
+      @override
+      Future<void> onLoad() async {
+        super.onLoad();
+        sprite = await gameRef.loadSprite('background.png');
+        size = sprite!.originalSize;
+      }
+    }
