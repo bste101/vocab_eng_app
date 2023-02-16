@@ -1,8 +1,9 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  //FLame.util.fullScreen();
+  //Flame.util.fullScreen();
   runApp(const MainApp());
 }
 
@@ -18,5 +19,14 @@ class MainApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
