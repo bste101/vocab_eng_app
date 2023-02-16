@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //FLame.util.fullScreen();
   runApp(const MainApp());
 }
 
