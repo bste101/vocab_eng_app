@@ -19,7 +19,7 @@ class Background extends BaseWidget{
   }
 
   @override
-  void resiza(Size size) {
+  void resize(Size size) {
     _bgsprite.width = size.width;
     _bgsprite.height = size.height;
   }
