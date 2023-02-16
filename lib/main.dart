@@ -1,4 +1,3 @@
-import 'dart:math' as math;
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
@@ -10,14 +9,15 @@ void main() {
     GameWidget(game: MyGame(),),
   );
 }
-class MyGame extends FlameGame with HasTappableComponents {
+class MyGame extends FlameGame {
+   @override
+    Future<void> onLoad() async {
+      print('loading assets');
+      SpriteComponent background = SpriteComponent()
+        ..sprite = await loadSprite('home_background.png')
+        ..size = size;
+      add(background);
+    }
 }
 
-class Space extends SpriteComponent with HasGameRef {
-      @override
-      Future<void> onLoad() async {
-        super.onLoad();
-        sprite = await gameRef.loadSprite('background.png');
-        size = sprite!.originalSize;
-      }
-    }
+
