@@ -18,7 +18,7 @@ class MyGame extends FlameGame {
   Future<void> onLoad() async {
     super.onLoad();
     rocket
-      ..sprite = await loadSprite('rocket.png')
+      ..sprite = await loadSprite('icon/rocket.png')
       ..size = Vector2(100,100);
     add(rocket);
   }
