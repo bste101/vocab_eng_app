@@ -25,6 +25,6 @@ flutter_icons:
 flutter:
   uses-material-design: true
 
-assets:
-  - assets/images/
-  - assets/audio/
+  assets:
+    - assets/images/
+    - assets/audio/
