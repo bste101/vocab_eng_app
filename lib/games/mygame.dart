@@ -13,7 +13,8 @@ class MyGame extends FlameGame {
     await super.onLoad();
 
     add(BackgroundComponent());
-    //add(RocketComponent());
+    add(RocketComponent());
+    //add(RocketComponent()); 
     // SpriteComponent _spacebg = SpriteComponent();
     // _spacebg
     //   ..sprite = await loadSprite('background/backgroundInGame.png')

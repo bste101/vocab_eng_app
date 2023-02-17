@@ -6,7 +6,7 @@ class RocketComponent extends SpriteComponent with HasGameRef<MyGame> {
   final double _spriteHeight = 200;
 
   @override
-  Future<void> onload() async {
+  Future<void> onLoad() async {
     await super.onLoad();
 
     sprite = await gameRef.loadSprite(Globals.iconrocketSprite);
