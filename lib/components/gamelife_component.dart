@@ -14,7 +14,7 @@ class GameLifeComponent extends SpriteComponent with HasGameRef<MyGame> {
 
     sprite = await gameRef.loadSprite(Globals.icongamelifeSprite);
     position = startPosition;
-    widht = height = _spriteHeight;
+    width = height = _spriteHeight;
     anchor = Anchor.center;
   }
 }
