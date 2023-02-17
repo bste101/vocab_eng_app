@@ -7,7 +7,8 @@ import 'package:vocab_eng_app/screens/main_menu.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(MaterialApp(
+  runApp(
+    const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: GamePlay(),
     ),
