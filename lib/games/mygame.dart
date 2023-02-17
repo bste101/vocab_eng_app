@@ -14,7 +14,7 @@ class MyGame extends FlameGame {
 
     add(BackgroundComponent());
     add(RocketComponent());
-    //add(RocketComponent()); 
+    add(UkkabartComponent());
     // SpriteComponent _spacebg = SpriteComponent();
     // _spacebg
     //   ..sprite = await loadSprite('background/backgroundInGame.png')
