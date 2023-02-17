@@ -26,7 +26,10 @@ class MyGame extends FlameGame {
     add(LChoiceComponent());
     add(RChoiceComponent());
     add(PauseComponent());
-    add(GameLifeComponent());
+    add(GameLifeComponent(startPosition: Vector2(60, 25)));
+    add(GameLifeComponent(startPosition: Vector2(80, 25)));
+    add(GameLifeComponent(startPosition: Vector2(100, 25)));
+
     add(ScoreComponent());
     // SpriteComponent _spacebg = SpriteComponent();
     // _spacebg
