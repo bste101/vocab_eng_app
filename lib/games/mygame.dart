@@ -13,6 +13,7 @@ import 'package:vocab_eng_app/components/gamelife_component.dart';
 import 'package:vocab_eng_app/components/score_component.dart';
 import 'package:vocab_eng_app/components/lchoice_component.dart';
 import 'package:vocab_eng_app/components/rchoice_component.dart';
+import 'package:vocab_eng_app/components/time_component.dart';
 
 class MyGame extends FlameGame {
   @override
@@ -26,11 +27,12 @@ class MyGame extends FlameGame {
     add(LChoiceComponent());
     add(RChoiceComponent());
     add(PauseComponent());
-    add(GameLifeComponent(startPosition: Vector2(60, 25)));
-    add(GameLifeComponent(startPosition: Vector2(80, 25)));
-    add(GameLifeComponent(startPosition: Vector2(100, 25)));
-
+    // add and set game life
+    add(GameLifeComponent(startPosition: Vector2(6, 1.6)));
+    add(GameLifeComponent(startPosition: Vector2(39, 1.6)));
+    add(GameLifeComponent(startPosition: Vector2(72, 1.6)));
     add(ScoreComponent());
+    add(TimeComponent());
     // SpriteComponent _spacebg = SpriteComponent();
     // _spacebg
     //   ..sprite = await loadSprite('background/backgroundInGame.png')

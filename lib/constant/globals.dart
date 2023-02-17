@@ -10,4 +10,5 @@ class Globals {
   static const String icongamelifeSprite = 'icon/iconGameLife.png';
   static const String iconscoreSprite = 'icon/iconScore.png';
   static const String backgroundSprite = 'background/backgroundInGame.png';
+  static const String icontimeSprite = 'icon/iconTime.png';
 }
