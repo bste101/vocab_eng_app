@@ -7,6 +7,9 @@ import 'package:flame/sprite.dart';
 import 'package:vocab_eng_app/components/background_component.dart';
 import 'package:vocab_eng_app/components/rocket_component.dart';
 import 'package:vocab_eng_app/components/ukkabart_component.dart';
+import 'package:vocab_eng_app/components/mainword_component.dart';
+import 'package:vocab_eng_app/components/lchoiceword_component.dart';
+import 'package:vocab_eng_app/components/rchoiceword_component.dart';
 
 class MyGame extends FlameGame {
   @override
@@ -16,6 +19,9 @@ class MyGame extends FlameGame {
     add(BackgroundComponent());
     add(RocketComponent());
     add(UkkabartComponent());
+    add(WordComponent());
+    add(LChoiceComponent());
+    add(RChoiceComponent());
     // SpriteComponent _spacebg = SpriteComponent();
     // _spacebg
     //   ..sprite = await loadSprite('background/backgroundInGame.png')
