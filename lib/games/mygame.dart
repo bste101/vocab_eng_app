@@ -11,8 +11,8 @@ import 'package:vocab_eng_app/components/mainword_component.dart';
 import 'package:vocab_eng_app/components/pause_component.dart';
 import 'package:vocab_eng_app/components/gamelife_component.dart';
 import 'package:vocab_eng_app/components/score_component.dart';
-import 'package:vocab_eng_app/components/lchoice_component.dart';
-import 'package:vocab_eng_app/components/rchoice_component.dart';
+import 'package:vocab_eng_app/components/leftchoice_component.dart';
+import 'package:vocab_eng_app/components/rightchoice_component.dart';
 import 'package:vocab_eng_app/components/time_component.dart';
 
 class MyGame extends FlameGame {
@@ -24,8 +24,8 @@ class MyGame extends FlameGame {
     add(RocketComponent());
     add(UkkabartComponent());
     add(WordComponent());
-    add(LChoiceComponent());
-    add(RChoiceComponent());
+    add(LeftChoiceComponent());
+    add(RightChoiceComponent());
     add(PauseComponent());
     // add and set game life
     add(GameLifeComponent(startPosition: Vector2(6, 1.6)));
