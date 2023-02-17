@@ -13,11 +13,11 @@ void main() {
 }
 
 class MyGame extends FlameGame {
-  SpriteComponent rocket = SpriteComponent();
+  SpriteComponent _spacebg = SpriteComponent();
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    rocket
+    _spacebg
       ..sprite = await loadSprite('icon/rocket.png')
       ..size = Vector2(100,100);
     add(rocket);
