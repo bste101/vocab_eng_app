@@ -4,6 +4,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame/sprite.dart';
+import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/components/background_component.dart';
 import 'package:vocab_eng_app/components/rocket_component.dart';
 import 'package:vocab_eng_app/components/ukkabart_component.dart';
@@ -13,11 +14,34 @@ import 'package:vocab_eng_app/components/gamelife_component.dart';
 import 'package:vocab_eng_app/components/score_component.dart';
 import 'package:vocab_eng_app/components/lchoice_component.dart';
 import 'package:vocab_eng_app/components/rchoice_component.dart';
+import 'package:vocab_eng_app/constant/globals.dart';
 
 class MyGame extends FlameGame {
+  int score = 0;
+
+  late Timer _timer;
+
+  int _remainingTime = 30;
+
+  late TextComponent _scoreText;
+
+  late TextComponent _timerText;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    _timer = Timer(
+      1, 
+      repeat: true,
+      onTick: (){
+        if(_remainingTime == 0) {
+          pauseEngine();
+        } else {
+          _remainingTime -= 1;
+        }
+      }
+    );
 
     add(BackgroundComponent());
     add(RocketComponent());
@@ -31,27 +55,46 @@ class MyGame extends FlameGame {
     add(GameLifeComponent(startPosition: Vector2(100, 25)));
 
     add(ScoreComponent());
-    // SpriteComponent _spacebg = SpriteComponent();
-    // _spacebg
-    //   ..sprite = await loadSprite('background/backgroundInGame.png')
-    //   ..size = size;
-    // add(_spacebg);
-    // SpriteComponent _meteoicon = SpriteComponent();
-    // _meteoicon
-    //   ..sprite = await loadSprite('icon/iconUkkabart.png')
-    //   ..size = Vector2(size.x,size.y)
-    //   ..anchor = Anchor.center;
-    // _meteoicon.x = _spacebg.x + _spacebg.width / 2;
-    // _meteoicon.y = _spacebg.y -50 + _spacebg.height / 2;
-    // add(_meteoicon);
 
-    // SpriteComponent _rocketicon = SpriteComponent();
-    // _rocketicon
-    //   ..sprite = await loadSprite('icon/iconRocket.png')
-    //   ..size = Vector2(300,400)
-    //   ..anchor = Anchor.center;
-    // _rocketicon.x = _spacebg.x + _spacebg.width / 2;
-    // _rocketicon.y = _spacebg.y + 200 + _spacebg.height / 2;
-    // add(_rocketicon);
+    _scoreText = TextComponent(
+      text: 'Score: $score',
+      position: Vector2(40,50),
+      anchor: Anchor.topRight,
+      textRenderer: TextPaint(style: TextStyle(color: BasicPalette.white.color))
+    );
+    
+    add(_scoreText);
+     
+    _timerText = TextComponent(
+      text: 'Time: $score',
+      position: Vector2(size.x - 500, 50),
+      anchor: Anchor.topRight,
+      textRenderer: TextPaint(
+        style: TextStyle(
+          color: BasicPalette.white.color,
+          fontSize: 50 ,
+        ),
+      ),
+    );
+
+    add(_timerText);
+
+    _timer.start();
+    
   }
+ 
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    // Update timer.
+    _timer.update(dt);
+
+    // Update score on the screen.
+    _scoreText.text = 'Score: $score';
+
+    // Update timer text to remaining seconds.
+    _timerText.text = 'Time: $_remainingTime secs';
+  }
+
 }
