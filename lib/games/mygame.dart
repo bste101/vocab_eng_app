@@ -6,6 +6,7 @@ import 'package:flame/palette.dart';
 import 'package:flame/sprite.dart';
 import 'package:vocab_eng_app/components/background_component.dart';
 import 'package:vocab_eng_app/components/rocket_component.dart';
+import 'package:vocab_eng_app/components/ukkabart_component.dart';
 
 class MyGame extends FlameGame {
   @override
