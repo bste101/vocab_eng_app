@@ -8,8 +8,8 @@ import 'package:vocab_eng_app/components/background_component.dart';
 import 'package:vocab_eng_app/components/rocket_component.dart';
 import 'package:vocab_eng_app/components/ukkabart_component.dart';
 import 'package:vocab_eng_app/components/mainword_component.dart';
-import 'package:vocab_eng_app/components/lchoiceword_component.dart';
-import 'package:vocab_eng_app/components/rchoiceword_component.dart';
+import 'package:vocab_eng_app/components/lchoice_component.dart';
+import 'package:vocab_eng_app/components/rchoice_component.dart';
 
 class MyGame extends FlameGame {
   @override
