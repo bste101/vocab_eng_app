@@ -10,6 +10,9 @@ import 'package:vocab_eng_app/components/ukkabart_component.dart';
 import 'package:vocab_eng_app/components/mainword_component.dart';
 import 'package:vocab_eng_app/components/lchoiceword_component.dart';
 import 'package:vocab_eng_app/components/rchoiceword_component.dart';
+import 'package:vocab_eng_app/components/pause_component.dart';
+import 'package:vocab_eng_app/components/gamelife_component.dart';
+import 'package:vocab_eng_app/components/score_component.dart';
 
 class MyGame extends FlameGame {
   @override
@@ -22,6 +25,9 @@ class MyGame extends FlameGame {
     add(WordComponent());
     add(LChoiceComponent());
     add(RChoiceComponent());
+    add(PauseComponent());
+    add(GameLifeComponent());
+    add(ScoreComponent());
     // SpriteComponent _spacebg = SpriteComponent();
     // _spacebg
     //   ..sprite = await loadSprite('background/backgroundInGame.png')
