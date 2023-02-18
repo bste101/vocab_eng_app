@@ -19,66 +19,72 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/${Globals.backgroundSprite}"),
-          fit: BoxFit.fill,
-          ),
-        ), 
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-               Container(
-                width: 800,
-                height: 500,
-                decoration: const BoxDecoration(
-                image: DecorationImage(
-                image: AssetImage("assets/images/${Globals.labelNameSprite}"),
-                fit: BoxFit.cover,
-                )
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/${Globals.backgroundSprite}"),
+                fit: BoxFit.fill,
+              ),
+            ), 
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 800,
+                    height: 500,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/${Globals.labelNameSprite}"),
+                        fit: BoxFit.cover,
+                      )
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      gameRef.startGamePlay();
+                      gameRef.overlays.remove(MainMenu.id);
+                      gameRef.overlays.add(Hud.id);
+                    },
+                    child: Container(
+                      width: 300,
+                      height: 300,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/${Globals.buttonstartSprite}"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-              GestureDetector(
-                onTap: () {
-                  gameRef.startGamePlay();
-                  gameRef.overlays.remove(MainMenu.id);
-                  gameRef.overlays.add(Hud.id);
-                },
-                child: Container(
-                  width: 300,
-                  height: 300,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/${Globals.buttonstartSprite}"),
-                      fit: BoxFit.cover,
-                    ),
+          ),
+          Positioned(
+            top: -50,
+            right: -50,
+            child: GestureDetector(
+              onTap: () {
+                gameRef.overlays.remove(MainMenu.id);
+                gameRef.overlays.add(SettingsMenu.id);
+              },
+              child: Container(
+                width: 500,
+                height: 800,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/${Globals.iconsettingSprite}"),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              // const SizedBox(height: 20),
-              // GestureDetector(
-              //   onTap: () {
-              //     gameRef.overlays.remove(MainMenu.id);
-              //     gameRef.overlays.add(SettingsMenu.id);
-              //   },
-              //   child: Container(
-              //     width: 200,
-              //     height: 100,
-              //     decoration: const BoxDecoration(
-              //       image: DecorationImage(
-              //         image: AssetImage("assets/images/${Globals.iconukkabartSprite}"),
-              //         fit: BoxFit.fill,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
-
 }
