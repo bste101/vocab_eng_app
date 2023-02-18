@@ -22,8 +22,7 @@ import 'package:vocab_eng_app/model/settings.dart';
 import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
 import 'package:vocab_eng_app/screens/utils/hud.dart';
 
-class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
-
+class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
   static const id = 'MyGame';
 
   late Settings settings;
@@ -31,7 +30,6 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
   late Timer _timer;
 
   int score = 0;
-
 
   int _remainingTime = 30;
 
@@ -46,6 +44,7 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
     playerData = await _readPlayerData();
     settings = await _readSetting();
 
+    add(StartComponent());
     add(BackgroundComponent());
     //add(RocketComponent());
     // add(UkkabartComponent());
@@ -59,16 +58,15 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
 
     // add(ScoreComponent());
 
-
     // _scoreText = TextComponent(
     //   text: 'Score: $score',
     //   position: Vector2(40,50),
     //   anchor: Anchor.topRight,
     //   textRenderer: TextPaint(style: TextStyle(color: BasicPalette.white.color))
     // );
-    
+
     // add(_scoreText);
-     
+
     // _timerText = TextComponent(
     //   text: 'Time: $score',
     //   position: Vector2(size.x - 500, 50),
@@ -84,13 +82,11 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
     // add(_timerText);
 
     // _timer.start();
-    
   }
 
   void startGamePlay() {
-    
     // _timer = Timer(
-    //   1, 
+    //   1,
     //   repeat: true,
     //   onTick: (){
     //     if(_remainingTime == 0) {
@@ -111,16 +107,16 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
     add(GameLifeComponent(startPosition: Vector2(80, 25)));
     add(GameLifeComponent(startPosition: Vector2(100, 25)));
     add(ScoreComponent());
-    
+
     // _scoreText = TextComponent(
     //   text: 'Score: $score',
     //   position: Vector2(40,50),
     //   anchor: Anchor.topRight,
     //   textRenderer: TextPaint(style: TextStyle(color: BasicPalette.white.color))
     // );
-    
+
     // add(_scoreText);
-     
+
     // _timerText = TextComponent(
     //   text: 'Time: $score',
     //   position: Vector2(size.x - 500, 50),
@@ -137,7 +133,7 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
 
     // _timer.start();
   }
- 
+
 //   @override
 //   void update(double dt) {
 //     super.update(dt);
@@ -175,9 +171,11 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
     // Now it is safe to return the stored value.
     return settingsBox.get('MyGame.Settings')!;
   }
+
   Future<PlayerData> _readPlayerData() async {
-    final PlayerDataBox  = await Hive.openBox<PlayerData>('MyGame.PlayerDataBox');
-    final playerData  = PlayerDataBox.get('MyGame.PlayerData');
+    final PlayerDataBox =
+        await Hive.openBox<PlayerData>('MyGame.PlayerDataBox');
+    final playerData = PlayerDataBox.get('MyGame.PlayerData');
 
     // If data is null, this is probably a fresh launch of the game.
     if (playerData == null) {
@@ -191,7 +189,8 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection{
     // Now it is safe to return the stored value.
     return PlayerDataBox.get('MyGame.playerData')!;
   }
-   @override
+
+  @override
   void lifecycleStateChange(AppLifecycleState state) {
     // switch (state) {
     //   case AppLifecycleState.resumed:
