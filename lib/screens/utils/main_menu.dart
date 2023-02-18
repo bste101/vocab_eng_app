@@ -5,6 +5,8 @@ import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/screens/game_play.dart';
 import 'package:vocab_eng_app/screens/utils/setting_menu.dart';
 
+import 'hud.dart';
+
 class MainMenu extends StatelessWidget {
   
   static const id = 'MainMenu';
@@ -23,9 +25,9 @@ class MainMenu extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/${Globals.backgroundSprite}"),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           ),
-        ),
+        ), 
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -40,45 +42,44 @@ class MainMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width:  200,
-                height: 100,
-                child: ElevatedButton(
-                  onPressed: () {
-                    gameRef.startGamePlay();
-                    gameRef.overlays.remove(MainMenu.id);
-                    //gameRef.overlays.add(Hud.id);
+              GestureDetector(
+                onTap: () {
+                  gameRef.startGamePlay();
+                  gameRef.overlays.remove(MainMenu.id);
+                  gameRef.overlays.add(Hud.id);
                 },
-                child: const Text(
-                  'Play',
-                  style: TextStyle(
-                    fontSize: 50,
+                child: Container(
+                  width: 200,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/${Globals.iconrocketSprite}"),
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
               ),
-              SizedBox(
-                width:  200,
-                height: 100,
-                child: ElevatedButton(
-                  onPressed: () {
-                    gameRef.overlays.remove(MainMenu.id);
-                    gameRef.overlays.add(SettingsMenu.id);
-                    //gameRef.overlays.add(Hud.id);
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  gameRef.overlays.remove(MainMenu.id);
+                  gameRef.overlays.add(SettingsMenu.id);
                 },
-                child: const Text(
-                  'Setting',
-                  style: TextStyle(
-                    fontSize: 50,
+                child: Container(
+                  width: 200,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/${Globals.iconukkabartSprite}"),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
-            ),
             ],
           ),
         ),
-      )
+      ),
     );
-      
   }
 }
