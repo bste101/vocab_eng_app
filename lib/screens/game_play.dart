@@ -6,6 +6,8 @@ import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
 final MyGame _myGame = MyGame();
 
 class GamePlay extends StatelessWidget {
+
+  static const id = 'GamePlay';
   const GamePlay({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +15,7 @@ class GamePlay extends StatelessWidget {
     return GameWidget(
       game: _myGame,
       overlayBuilderMap: {
-        GameOverMenu.ID: (BuildContext context, MyGame gameRef) =>
+        GameOverMenu.id: (BuildContext context, MyGame gameRef) =>
             GameOverMenu(gameRef: gameRef),
       },
     );
