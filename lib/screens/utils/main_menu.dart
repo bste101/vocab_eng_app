@@ -32,14 +32,16 @@ class MainMenu extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 120),
-                child: Text(
-                  'Eng Vocab',
-                    style: TextStyle(
-                    fontSize: 60,
-                    color: Colors.white,
-                  ),
+               Container(
+                width: 300,
+                height: 150,
+                decoration: BoxDecoration(
+                image: DecorationImage(
+                image: AssetImage("assets/images/${Globals.labelNameGame}"),
+                fit: BoxFit.fill),
+                ),
+                
+              ),
                 ),
               ),
               GestureDetector(
@@ -50,11 +52,11 @@ class MainMenu extends StatelessWidget {
                 },
                 child: Container(
                   width: 200,
-                  height: 100,
+                  height: 1000,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/${Globals.iconrocketSprite}"),
-                      fit: BoxFit.contain,
+                      image: AssetImage("assets/images/${Globals.buttonstartSprite}"),
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
