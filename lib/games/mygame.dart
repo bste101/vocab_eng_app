@@ -44,6 +44,9 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
     playerData = await _readPlayerData();
     settings = await _readSetting();
 
+<<<<<<< HEAD
+=======
+>>>>>>> f3ee213fa3e64565e0b669d2857c80fa0deb4d0a
     add(BackgroundComponent());
     //add(RocketComponent());
     // add(UkkabartComponent());
