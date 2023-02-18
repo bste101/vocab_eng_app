@@ -1,10 +1,5 @@
-import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
-import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
-import 'package:flame/palette.dart';
-import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:vocab_eng_app/components/background_component.dart';
@@ -16,26 +11,22 @@ import 'package:vocab_eng_app/components/mainword_component.dart';
 import 'package:vocab_eng_app/components/pause_component.dart';
 import 'package:vocab_eng_app/components/gamelife_component.dart';
 import 'package:vocab_eng_app/components/score_component.dart';
-import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/model/player_data.dart';
 import 'package:vocab_eng_app/model/settings.dart';
-import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
-import 'package:vocab_eng_app/screens/utils/hud.dart';
 
 class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
   static const id = 'MyGame';
 
   late Settings settings;
   late PlayerData playerData;
-  late Timer _timer;
 
   int score = 0;
 
-  int _remainingTime = 30;
+  // int _remainingTime = 30;
 
-  late TextComponent _scoreText;
+  // late TextComponent _scoreText;
 
-  late TextComponent _timerText;
+  // late TextComponent _timerText;
 
   @override
   Future<void> onLoad() async {
@@ -44,9 +35,6 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
     playerData = await _readPlayerData();
     settings = await _readSetting();
 
-<<<<<<< HEAD
-=======
->>>>>>> f3ee213fa3e64565e0b669d2857c80fa0deb4d0a
     add(BackgroundComponent());
     //add(RocketComponent());
     // add(UkkabartComponent());

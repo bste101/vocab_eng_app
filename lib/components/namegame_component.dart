@@ -7,7 +7,7 @@ class NameComponent extends SpriteComponent with HasGameRef<MyGame> {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    sprite = await gameRef.loadSprite(Globals.labelnameSprite);
+    sprite = await gameRef.loadSprite(Globals.labelNameSprite);
     size = gameRef.size;
   }
 }
