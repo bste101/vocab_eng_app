@@ -40,7 +40,7 @@ class PauseMenu extends StatelessWidget {
               fit: BoxFit.scaleDown,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
+                    const EdgeInsets.symmetric(vertical: 40, horizontal: 100),
                 child: Wrap(
                   direction: Axis.vertical,
                   crossAxisAlignment: WrapCrossAlignment.center,
@@ -68,22 +68,7 @@ class PauseMenu extends StatelessWidget {
                       child: const Text(
                         'Resume',
                         style: TextStyle(
-                          fontSize: 30,
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        gameRef.overlays.remove(PauseMenu.id);
-                        gameRef.overlays.add(Hud.id);
-                        gameRef.resumeEngine();
-                        //gameRef.reset();
-                        gameRef.startGamePlay();
-                      },
-                      child: const Text(
-                        'Restart',
-                        style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
                         ),
                       ),
                     ),
@@ -97,7 +82,7 @@ class PauseMenu extends StatelessWidget {
                       child: const Text(
                         'Exit',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
                         ),
                       ),
                     ),
