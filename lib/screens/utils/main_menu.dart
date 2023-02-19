@@ -66,7 +66,7 @@ class MainMenu extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 0,
+              top: 10,
               right: 20,
               child: IconButton(
                 padding: EdgeInsets.zero,
