@@ -6,9 +6,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
+import 'package:vocab_eng_app/screens/utils/pause_menu.dart';
+import 'package:vocab_eng_app/screens/utils/select_menu.dart';
 
 import 'model/player_data.dart';
 import 'model/settings.dart';
+import 'screens/utils/game_over_menu.dart';
 import 'screens/utils/hud.dart';
 import 'screens/utils/setting_menu.dart';
 
@@ -70,9 +73,10 @@ class GameRunApp extends StatelessWidget {
           // Register all the overlays that will be used by this game.
           overlayBuilderMap: {
             MainMenu.id: (_, MyGame gameRef) => MainMenu(gameRef: gameRef),
-            // PauseMenu.id: (_, MyGame gameRef) => PauseMenu(gameRef),
+            SelectMenu.id: (_, MyGame gameRef) => SelectMenu(gameRef: gameRef),
+            PauseMenu.id: (_, MyGame gameRef) => PauseMenu(gameRef),
             Hud.id: (_, MyGame gameRef) => Hud(gameRef),
-            // GameOverMenu.id: (_, DinoRun gameRef) => GameOverMenu(gameRef),
+            GameOverMenu.id: (_, MyGame gameRef) => GameOverMenu(gameRef: gameRef,),
             SettingsMenu.id: (_, MyGame gameRef) => SettingsMenu(gameRef),
           },
           // By default MainMenu overlay will be active.

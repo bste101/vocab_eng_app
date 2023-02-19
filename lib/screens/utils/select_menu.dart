@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
-import 'package:vocab_eng_app/screens/utils/select_menu.dart';
-import 'package:vocab_eng_app/screens/utils/setting_menu.dart';
 
-class MainMenu extends StatelessWidget {
-  static const id = 'MainMenu';
+import 'hud.dart';
 
+class SelectMenu extends StatelessWidget {
+  
+  static const id = 'SelectMenu';
+  
   final MyGame gameRef;
-
-  const MainMenu({
+  
+  const SelectMenu({
     Key? key,
     required this.gameRef,
   }) : super(key: key);
@@ -31,59 +32,66 @@ class MainMenu extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Positioned(
-                    child: Container(
-                      width: 800,
-                      height: 700,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                        image: AssetImage(
-                            "assets/images/${Globals.labelNameSprite}"),
-                        fit: BoxFit.cover,
-                      )),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Easy button
             Positioned(
               left: 0,
-              bottom: 200,
+              bottom: 330,
               child: GestureDetector(
                 onTap: () {
-                  gameRef.overlays.remove(MainMenu.id);
-                  gameRef.overlays.add(SelectMenu.id);
+                  gameRef.startGamePlay();
+                  gameRef.overlays.remove(SelectMenu.id);
+                  gameRef.overlays.add(Hud.id);
                 },
                 child: Container(
                   width: 400,
-                  height: 400,
+                  height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/${Globals.buttonstartSprite}"),
+                      image: AssetImage("assets/images/${Globals.buttonEasySprite}"),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
             ),
-
+            // Normal button
             Positioned(
-              left: 30,
+              left: 0,
+              bottom: 320,
               child: GestureDetector(
                 onTap: () {
-                  gameRef.overlays.remove(MainMenu.id);
-                  gameRef.overlays.add(SettingsMenu.id);
+                  gameRef.startGamePlay();
+                  gameRef.overlays.remove(SelectMenu.id);
+                  gameRef.overlays.add(Hud.id);
                 },
                 child: Container(
                   width: 400,
-                  height: 600,
+                  height: 300,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/${Globals.iconsettingSprite}"),
+                      image: AssetImage("assets/images/${Globals.buttonNormalSprite}"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            // Hard button
+            Positioned(
+              left: 0,
+              bottom: 310,
+              child: GestureDetector(
+                onTap: () {
+                  gameRef.startGamePlay();
+                  gameRef.overlays.remove(SelectMenu.id);
+                  gameRef.overlays.add(Hud.id);
+                },
+                child: Container(
+                  width: 400,
+                  height: 300,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/${Globals.buttonHardSprite}"),
                       fit: BoxFit.cover,
                     ),
                   ),
