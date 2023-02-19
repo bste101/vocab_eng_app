@@ -5,6 +5,7 @@ import 'package:vocab_eng_app/screens/utils/select_menu.dart';
 import 'package:vocab_eng_app/screens/utils/setting_menu.dart';
 
 class MainMenu extends StatelessWidget {
+  
   static const id = 'MainMenu';
 
   final MyGame gameRef;
@@ -25,8 +26,9 @@ class MainMenu extends StatelessWidget {
               child: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/${Globals.backgroundSprite}"),
-                    fit: BoxFit.cover,
+                    image:
+                        AssetImage("assets/images/${Globals.backgroundStartSprite}"),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -50,44 +52,30 @@ class MainMenu extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-              left: 0,
-              bottom: 200,
-              child: GestureDetector(
-                onTap: () {
+             Positioned(
+              top: 450,
+              left: 100,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
                   gameRef.overlays.remove(MainMenu.id);
                   gameRef.overlays.add(SelectMenu.id);
                 },
-                child: Container(
-                  width: 400,
-                  height: 400,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/${Globals.buttonstartSprite}"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                icon: Image.asset("assets/images/${Globals.buttonstartSprite}"),
+                iconSize: 200,
               ),
             ),
-
             Positioned(
-              left: 30,
-              child: GestureDetector(
-                onTap: () {
+              top: 0,
+              right: 20,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
                   gameRef.overlays.remove(MainMenu.id);
                   gameRef.overlays.add(SettingsMenu.id);
                 },
-                child: Container(
-                  width: 400,
-                  height: 600,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/${Globals.iconsettingSprite}"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                icon: Image.asset("assets/images/${Globals.iconsettingSprite}"),
+                iconSize: 30,
               ),
             ),
           ],

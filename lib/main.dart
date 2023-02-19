@@ -29,7 +29,6 @@ Future<void> main() async {
 }
 
 Future<void> initHive() async {
-  // For web hive does not need to be initialized.
   if (!kIsWeb) {
     final dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
@@ -62,7 +61,7 @@ class GameRunApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: GameWidget(
-          // This will dislpay a loading bar until [DinoRun] completes
+          // This will display a loading bar until [MyGame] completes
           // its onLoad method.
           loadingBuilder: (conetxt) => const Center(
             child: SizedBox(

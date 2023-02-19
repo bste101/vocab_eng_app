@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/model/player_data.dart';
+import 'package:vocab_eng_app/screens/utils/pause_menu.dart';
+
+import '../../constant/globals.dart';
 
 class Hud extends StatelessWidget {
-
   static const id = 'Hud';
 
   final MyGame gameRef;
- 
- const Hud(this.gameRef, {Key? key}) : super(key: key);
+
+  const Hud(this.gameRef, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,25 +27,19 @@ class Hud extends StatelessWidget {
               children: [
                 Selector<PlayerData, int>(
                   selector: (_, playerData) => playerData.currentScore,
-                  builder:(_, score, __) {
+                  builder: (_, score, __) {
                     return Text(
                       'Score : $score',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white
-                      ),
+                      style: const TextStyle(fontSize: 30, color: Colors.white),
                     );
                   },
                 ),
                 Selector<PlayerData, int>(
                   selector: (_, playerData) => playerData.highScore,
-                  builder: (_, highScore, __){
+                  builder: (_, highScore, __) {
                     return Text(
-                      'High: $highScore',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color:  Colors.white
-                      ),
+                      'High : $highScore',
+                      style: const TextStyle(fontSize: 30, color: Colors.white),
                     );
                   },
                 ),
@@ -52,34 +48,42 @@ class Hud extends StatelessWidget {
             TextButton(
               onPressed: () {
                 gameRef.overlays.remove(Hud.id);
-                //gameRef.overlays.add(PauseMenu.id);
+                gameRef.overlays.add(PauseMenu.id);
                 gameRef.pauseEngine();
-              }, 
-              child: const Icon(Icons.pause, color: Colors.white),
+              },
+              child: const Icon(
+                Icons.pause,
+                color: Colors.white,
+                size: 50,
+              ),
             ),
             Selector<PlayerData, int>(
               selector: (_, playerData) => playerData.lives,
-              builder: (_, lives, __){
+              builder: (_, lives, __) {
                 return Row(
-                  children: List.generate(5, (index) {
+                  children: List.generate(3, (index) {
                     if (index < lives) {
-                      return const Icon(
-                        Icons.favorite,
-                        color: Colors.red
-                        );
-                    }else {
-                      return const Icon(
-                        Icons.favorite_border,
-                        color: Colors.red,
+                      return SizedBox(
+                        width: 25,
+                        height: 30,
+                        child: Image.asset(
+                            'assets/images/${Globals.lifeSprite}'),
+                      );
+                    } else {
+                      return SizedBox(
+                        width: 25,
+                        height: 30,
+                        child: Image.asset(
+                            'assets/images/${Globals.lifeLoseSprite}'),
                       );
                     }
                   }),
                 );
               },
             )
-          ], 
+          ],
         ),
-      ), 
+      ),
     );
   }
 }

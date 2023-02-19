@@ -18,4 +18,7 @@ class Globals {
   static const String buttonEasySprite = 'button/buttonEasyMode.png';
   static const String buttonNormalSprite = 'button/buttonNormalMode.png';
   static const String buttonHardSprite = 'button/buttonHardMode.png';
+  static const String backgroundStartSprite = 'background/backgroundstartgame.png';
+  static const String lifeSprite = 'icon/iconGameLife.png';
+  static const String lifeLoseSprite = 'icon/iconLoseGameLife.png';
 }
