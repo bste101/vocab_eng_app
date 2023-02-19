@@ -45,20 +45,7 @@ class GameRunApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Vocab Eng',
-      theme: ThemeData(
-        fontFamily: 'Audiowide',
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        // Settings up some default theme for elevated buttons.
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            fixedSize: const Size(100, 60),
-          ),
-        ),
-      ),
+      debugShowCheckedModeBanner: true,
       home: Scaffold(
         body: GameWidget(
           // This will display a loading bar until [MyGame] completes
