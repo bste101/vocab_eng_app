@@ -1,0 +1,68 @@
+[
+    {
+        "1": "SPACE",
+        "2": "RACE",
+        "3": "Which of the following keyword is used to define a function in Python ? 3",
+        "4": "Which of the following is a print Function in Python ? 4",
+        "5": "Which function finds out the Variable type in Python ? 5",
+        "6": "Which of the following keyword is used to define a function in Python ? 6",
+        "7": "Which function finds out the Variable type in Python ? 7",
+        "8": "Which of the following keyword is used to define a function in Python ?  8",
+        "9": "Which function finds out the Variable type in Python ? 9",
+        "10": "Which of the following keyword is used to define a function in Python ? 10"
+    },
+    {
+        "1": {
+            "a": "อุกกาบาต",
+            "b": "อวกาศ"
+        },
+        "2": {
+            "a": "สีแดง",
+            "b": "ถนน"
+        },
+        "3": {
+            "a": "func",
+            "b": "def"
+        },
+        "4": {
+            "a": "cout",
+            "b": "print"
+        },
+        "5": {
+            "a": "typedef",
+            "b": "typeof"
+        },
+        "6": {
+            "a": "func",
+            "b": "def"
+        },
+        "7": {
+            "a": "typedef",
+            "b": "typeof"
+        },
+        "8": {
+            "a": "func",
+            "b": "def"
+        },
+        "9": {
+            "a": "typedef",
+            "b": "typeof"
+        },
+        "10": {
+            "a": "func",
+            "b": "def"
+        }
+    },
+    {
+        "1": "อวกาศ",
+        "2": "ถนน",
+        "3": "def",
+        "4": "print",
+        "5": "type",
+        "6": "def",
+        "7": "type",
+        "8": "def",
+        "9": "type",
+        "10": "def"
+    }
+]

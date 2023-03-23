@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
+import 'package:vocab_eng_app/games/quizgame.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 import 'package:vocab_eng_app/screens/utils/pause_menu.dart';
 import 'package:vocab_eng_app/screens/utils/select_menu.dart';
@@ -64,6 +65,7 @@ class GameRunApp extends StatelessWidget {
             Hud.id: (_, MyGame gameRef) => Hud(gameRef),
             GameOverMenu.id: (_, MyGame gameRef) => GameOverMenu(gameRef: gameRef,),
             SettingsMenu.id: (_, MyGame gameRef) => SettingsMenu(gameRef),
+            QuizGame.id: (_, MyGame gameRef) => QuizGame(gameRef: gameRef),
           },
           // By default MainMenu overlay will be active.
           initialActiveOverlays: const [MainMenu.id],

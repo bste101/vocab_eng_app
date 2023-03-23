@@ -7,6 +7,7 @@ didn't finished Normal and Hard Mode
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
+import 'package:vocab_eng_app/games/quizgame.dart';
 
 import 'hud.dart';
 
@@ -58,9 +59,9 @@ class SelectMenu extends StatelessWidget {
               bottom: 400,
               child: IconButton(
                 onPressed: () {
-                  gameRef.startGamePlay();
+                  gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
-                  gameRef.overlays.add(Hud.id);
+                  gameRef.overlays.add(Hud.id);   
                 },
                 icon: Image.asset("assets/images/${Globals.buttonEasySprite}"),
                 iconSize: 180,
@@ -72,7 +73,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 300,
               child: IconButton(
                 onPressed: () {
-                  gameRef.startGamePlay();
+                  gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
                 },
@@ -87,7 +88,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 200,
               child: IconButton(
                 onPressed: () {
-                  gameRef.startGamePlay();
+                  gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
                 },

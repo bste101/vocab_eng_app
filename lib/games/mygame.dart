@@ -43,7 +43,6 @@ class MyGame extends FlameGame with TapDetector, HasCollisionDetection {
     add(WordComponent());
     add(LeftChoiceComponent());
     add(RightChoiceComponent());
-
   }
 
 
