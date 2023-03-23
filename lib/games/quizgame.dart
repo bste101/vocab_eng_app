@@ -33,14 +33,14 @@ class _QuizGameState extends State<QuizGame> {
         color: Colors.white,
         splashColor: Colors.indigo[700],
         highlightColor: Colors.indigo[700],
-        minWidth: 50.0,
-        height: 45.0,
+        minWidth: 30.0, // Adjust to fit within background dimensions
+        height: 40.0, // Adjust to fit within background dimensions
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: const Text(
           'mydata[1][i.toString()][k]',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontFamily: "Alike",
             fontSize: 16.0,
           ),
@@ -87,7 +87,7 @@ class _QuizGameState extends State<QuizGame> {
             left: 95,
             child: Container(
               width: 200,
-              height: 230,
+              height: 200,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                 image: AssetImage("assets/images/${Globals.iconrocketSprite}"),
@@ -97,20 +97,37 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
             bottom: 0,
-            left: 0,
+            left: -10,
             right: 0,
             child: SizedBox(
               height: 80,
               width: 1,
-              child: Center(
-                child: ListView(
-                  shrinkWrap: true,
+              child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    choicebutton('a'),
-                    choicebutton('b'),
-                  ],
-                ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      choicebutton('a'),
+                    ],
+                  )
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 160,
+            right: 0,
+            child: SizedBox(
+              height: 80,
+              width: 1,
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      choicebutton('b'),
+                    ],
+                  )
               ),
             ),
           ),
