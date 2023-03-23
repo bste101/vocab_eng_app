@@ -1,6 +1,6 @@
 [
     {
-        "1": "What Will Be The Output Of the Following Code ?\nif(1 + 1 + 1 + 1 + 1 == 5){\n\tSystem.out.print(\"TRUE\");\n}\n\telse{\n\tSystem.out.print(\"FALSE\");\n};",
+        "1": "",
         "2": "Which function finds out the Variable type in Python ? 2",
         "3": "Which of the following keyword is used to define a function in Python ? 3",
         "4": "Which of the following is a print Function in Python ? 4",
@@ -14,63 +14,43 @@
     {
         "1": {
             "a": "TRUE",
-            "b": "BOTH",
-            "c": "ERROR",
-            "d": "FALSE"
+            "b": "BOTH"
         },
         "2": {
             "a": "typedef",
-            "b": "typeof",
-            "c": "type",
-            "d": "find"
+            "b": "typeof"
         },
         "3": {
             "a": "func",
-            "b": "def",
-            "c": "void",
-            "d": "function"
+            "b": "def"
         },
         "4": {
             "a": "cout",
-            "b": "print",
-            "c": "println",
-            "d": "stderr"
+            "b": "print"
         },
         "5": {
             "a": "typedef",
-            "b": "typeof",
-            "c": "type",
-            "d": "find"
+            "b": "typeof"
         },
         "6": {
             "a": "func",
-            "b": "def",
-            "c": "void",
-            "d": "function"
+            "b": "def"
         },
         "7": {
             "a": "typedef",
-            "b": "typeof",
-            "c": "type",
-            "d": "find"
+            "b": "typeof"
         },
         "8": {
             "a": "func",
-            "b": "def",
-            "c": "void",
-            "d": "function"
+            "b": "def"
         },
         "9": {
             "a": "typedef",
-            "b": "typeof",
-            "c": "type",
-            "d": "find"
+            "b": "typeof"
         },
         "10": {
             "a": "func",
-            "b": "def",
-            "c": "void",
-            "d": "function"
+            "b": "def"
         }
     },
     {

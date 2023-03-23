@@ -46,7 +46,7 @@ class GameRunApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: GameWidget(
           // This will display a loading bar until [MyGame] completes
