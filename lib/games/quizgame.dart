@@ -5,12 +5,11 @@ import 'package:vocab_eng_app/games/mygame.dart';
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
 
-  final List myVocabdata;
   final MyGame gameRef;
 
   const QuizGame({
     Key? key,
-    required this.gameRef, required this.myVocabdata,
+    required this.gameRef,
   }) : super(key: key);
 
   @override
@@ -121,13 +120,10 @@ class _QuizGameState extends State<QuizGame> {
   }
 }
 
-class GetJson extends StatelessWidget {
+class getjson extends StatelessWidget {
   
   String langname;
-  GetJson({
-    super.key,
-    required this.langname, 
-  });
+  getjson(this.langname, {super.key});
   String assettoload;
   setasset() {
     if (langname == "Python") {
