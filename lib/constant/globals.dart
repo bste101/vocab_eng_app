@@ -21,4 +21,5 @@ class Globals {
   static const String backgroundStartSprite = 'background/backgroundstartgame.png';
   static const String lifeSprite = 'icon/iconGameLife.png';
   static const String lifeLoseSprite = 'icon/iconLoseGameLife.png';
+  static const String onewordjson = 'json/oneword.json';
 }

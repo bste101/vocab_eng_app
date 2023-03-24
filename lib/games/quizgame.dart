@@ -5,11 +5,12 @@ import 'package:vocab_eng_app/games/mygame.dart';
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
 
+  final List myVocabdata;
   final MyGame gameRef;
 
   const QuizGame({
     Key? key,
-    required this.gameRef,
+    required this.gameRef, required this.myVocabdata,
   }) : super(key: key);
 
   @override
@@ -17,7 +18,7 @@ class QuizGame extends StatefulWidget {
 }
 
 class _QuizGameState extends State<QuizGame> {
-  Color colortoshow = Colors.indigoAccent;
+  Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
   bool disableAnswer = false;
@@ -26,23 +27,23 @@ class _QuizGameState extends State<QuizGame> {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 10.0,
-        horizontal: 20.0,
+        horizontal: 18.0,
       ),
       child: MaterialButton(
         onPressed: () {},
         color: Colors.white,
-        splashColor: Colors.indigo[700],
-        highlightColor: Colors.indigo[700],
-        minWidth: 30.0, // Adjust to fit within background dimensions
-        height: 40.0, // Adjust to fit within background dimensions
+        splashColor: Colors.white,
+        highlightColor: const Color.fromARGB(255, 134, 134, 135),
+        minWidth: 150.0, // Adjust to fit within background dimensions
+        height: 100.0, // Adjust to fit within background dimensions
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: const Text(
-          'mydata[1][i.toString()][k]',
+          'mydata[1]',
           style: TextStyle(
             color: Colors.black,
             fontFamily: "Alike",
-            fontSize: 16.0,
+            fontSize: 15.0,
           ),
           maxLines: 1,
         ),
@@ -97,42 +98,56 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
             bottom: 0,
-            left: -10,
+            left: 10,
             right: 0,
             child: SizedBox(
-              height: 80,
-              width: 1,
+              height: 100,
+              width: 50,
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       choicebutton('a'),
-                    ],
-                  )
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 160,
-            right: 0,
-            child: SizedBox(
-              height: 80,
-              width: 1,
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
                       choicebutton('b'),
                     ],
-                  )
-              ),
+                  )),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class GetJson extends StatelessWidget {
+  
+  String langname;
+  GetJson({
+    super.key,
+    required this.langname, 
+  });
+  String assettoload;
+  setasset() {
+    if (langname == "Python") {
+      assettoload = "assets/python.json";
+    } else if (langname == "Java") {
+      assettoload = "assets/java.json";
+    } else if (langname == "Javascript") {
+      assettoload = "assets/js.json";
+    } else if (langname == "C++") {
+      assettoload = "assets/cpp.json";
+    } else {
+      assettoload = "assets/linux.json";
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    setasset();
+    return FutureBuilder(builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {  },
+
     );
   }
 }

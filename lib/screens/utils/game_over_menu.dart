@@ -7,6 +7,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vocab_eng_app/games/QuizGame.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/model/player_data.dart';
 
@@ -66,7 +67,7 @@ class GameOverMenu extends StatelessWidget {
                         gameRef.overlays.add(Hud.id);
                         gameRef.resumeEngine();
                         //gameRef.reset();
-                        gameRef.startGamePlay();
+                        gameRef.overlays.add(QuizGame.id);
                       },
                     ),
                     ElevatedButton(
