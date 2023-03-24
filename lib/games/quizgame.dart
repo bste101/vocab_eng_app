@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
@@ -6,10 +8,11 @@ class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
 
   final MyGame gameRef;
-
+  final List myVocabData;
   const QuizGame({
     Key? key,
     required this.gameRef,
+    required this.myVocabData,
   }) : super(key: key);
 
   @override
@@ -120,30 +123,49 @@ class _QuizGameState extends State<QuizGame> {
   }
 }
 
-class getjson extends StatelessWidget {
-  
+class GetJson extends StatelessWidget {
   String langname;
-  getjson(this.langname, {super.key});
+  MyGame gameRef;
+  GetJson({
+    super.key,
+    required this.langname,
+    required this.assettoload,
+    required this.gameRef,
+  });
   String assettoload;
+
   setasset() {
     if (langname == "Python") {
-      assettoload = "assets/python.json";
+      assettoload = "assets/json/${Globals.onewordjson}";
     } else if (langname == "Java") {
-      assettoload = "assets/java.json";
+      assettoload = "assets/json/${Globals.twowordjson}";
     } else if (langname == "Javascript") {
-      assettoload = "assets/js.json";
-    } else if (langname == "C++") {
-      assettoload = "assets/cpp.json";
-    } else {
-      assettoload = "assets/linux.json";
+      assettoload = "assets/json/${Globals.threewordjson}";
     }
   }
 
   @override
   Widget build(BuildContext context) {
     setasset();
-    return FutureBuilder(builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {  },
-
-    );
+    return FutureBuilder(
+        future: DefaultAssetBundle.of(context)
+            .loadString(assettoload, cache: false),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          List myVocabData = json.decode(snapshot.data.toString());
+          if (myVocabData == []) {
+            return const Scaffold(
+              body: Center(
+                child: Text(
+                  "Loading",
+                ),
+              ),
+            );
+          } else {
+            return QuizGame(
+              gameRef: gameRef,
+              myVocabData: myVocabData,
+            );
+          }
+        });
   }
 }

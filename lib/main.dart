@@ -65,7 +65,7 @@ class GameRunApp extends StatelessWidget {
             Hud.id: (_, MyGame gameRef) => Hud(gameRef),
             GameOverMenu.id: (_, MyGame gameRef) => GameOverMenu(gameRef: gameRef,),
             SettingsMenu.id: (_, MyGame gameRef) => SettingsMenu(gameRef),
-            QuizGame.id: (_, MyGame gameRef) => QuizGame(gameRef: gameRef, myVocabdata: const [],),
+            QuizGame.id: (_, MyGame gameRef) => QuizGame(gameRef: gameRef, myVocabData: [],),
           },
           // By default MainMenu overlay will be active.
           initialActiveOverlays: const [MainMenu.id],

@@ -22,4 +22,6 @@ class Globals {
   static const String lifeSprite = 'icon/iconGameLife.png';
   static const String lifeLoseSprite = 'icon/iconLoseGameLife.png';
   static const String onewordjson = 'json/oneword.json';
+  static const String twowordjson = 'json/twoword.json';
+  static const String threewordjson = 'json/threeword.json';
 }
