@@ -37,7 +37,7 @@ class MainMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 260,
+                  width: 210,
                   height: 230,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
