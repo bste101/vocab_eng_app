@@ -126,20 +126,20 @@ class _QuizGameState extends State<QuizGame> {
 class GetJson extends StatelessWidget {
   String langname;
   MyGame gameRef;
+  String assettoload;
   GetJson({
     super.key,
     required this.langname,
     required this.assettoload,
     required this.gameRef,
   });
-  String assettoload;
 
   setasset() {
-    if (langname == "Python") {
+    if (langname == "One") {
       assettoload = "assets/json/${Globals.onewordjson}";
-    } else if (langname == "Java") {
+    } else if (langname == "Two") {
       assettoload = "assets/json/${Globals.twowordjson}";
-    } else if (langname == "Javascript") {
+    } else if (langname == "Three") {
       assettoload = "assets/json/${Globals.threewordjson}";
     }
   }

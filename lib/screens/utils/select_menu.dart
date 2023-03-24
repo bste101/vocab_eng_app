@@ -23,6 +23,7 @@ class SelectMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String langname;
     return Scaffold(
       body: Center(
         child: Stack(
@@ -59,6 +60,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 400,
               child: IconButton(
                 onPressed: () {
+                  langname = "one";
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);   
@@ -73,6 +75,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 300,
               child: IconButton(
                 onPressed: () {
+                  langname = "two";
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
@@ -88,6 +91,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 200,
               child: IconButton(
                 onPressed: () {
+                  langname = "three";
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
