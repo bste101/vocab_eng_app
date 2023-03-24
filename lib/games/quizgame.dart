@@ -99,7 +99,7 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: 40,
             left: 10,
             right: 0,
             child: SizedBox(
