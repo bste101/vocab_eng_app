@@ -73,7 +73,7 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
             top: 200,
-            left: 60,
+            left: 70,
             child: Container(
               width: 250,
               height: 250,
