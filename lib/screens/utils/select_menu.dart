@@ -60,7 +60,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 400,
               child: IconButton(
                 onPressed: () {
-                  langname = "one";
+                  langname = "One";
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);   
@@ -75,7 +75,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 300,
               child: IconButton(
                 onPressed: () {
-                  langname = "two";
+                  langname = "Two";
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
@@ -91,7 +91,7 @@ class SelectMenu extends StatelessWidget {
               bottom: 200,
               child: IconButton(
                 onPressed: () {
-                  langname = "three";
+                  langname = "Three";
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
