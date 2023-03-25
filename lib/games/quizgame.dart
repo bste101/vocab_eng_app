@@ -136,22 +136,27 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
               // box word
-              top: 250,
-              left: 100,
+              top: 280,
+              left: 65,
               child: Container(
-                  padding: const EdgeInsets.all(25),
+                  padding: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
-                  height: 150,
+                  height: 120,
+                  width: 270,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Text("Hello", // text
-                          style: TextStyle(
-                              color: Colors.black38,
-                              fontFamily: "SecularOne-Regular",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25.0))
+                      Text(
+                        "Hello this is mi", // text
+                        style: TextStyle(
+                            color: Colors.black38,
+                            fontFamily: "SecularOne-Regular",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30.0),
+                        //textAlign: TextAlign.center,
+                      )
                     ],
                   )))
         ],
