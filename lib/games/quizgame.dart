@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flame/components.dart';
+import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
@@ -52,6 +53,22 @@ class _QuizGameState extends State<QuizGame> {
       ),
     );
   }
+
+  // Widget mainWord() {
+  //   return Scaffold(
+  //     body: Column(children: [
+  //       Container(
+  //           decoration: BoxDecoration(
+  //               color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+  //           height: 120,
+  //           child: const Text(
+  //             "Hello Space",
+  //             style: TextStyle(
+  //                 color: Colors.black, fontFamily: "Alike", fontSize: 22.0),
+  //           ))
+  //     ]),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +134,26 @@ class _QuizGameState extends State<QuizGame> {
                   )),
             ),
           ),
+          Positioned(
+              // box word
+              top: 250,
+              left: 100,
+              child: Container(
+                  padding: const EdgeInsets.all(25),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 150,
+                  child: Row(
+                    children: const [
+                      Text("Hello", // text
+                          style: TextStyle(
+                              color: Colors.black38,
+                              fontFamily: "SecularOne-Regular",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.0))
+                    ],
+                  )))
         ],
       ),
     );
