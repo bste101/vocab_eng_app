@@ -21,6 +21,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 
+
 flutter_icons:
   android: true
   ios: true
@@ -38,3 +39,11 @@ flutter:
     - assets/audio/
     - assets/json/
     - assets/
+
+  fonts:
+    - family: NotoSerifBold
+      fonts:
+        - asset: assets/font/NotoSerif-Bold.ttf
+    - family: SecularOne-Regular
+      fonts:
+        - asset: assets/font/SecularOne-Regular.ttf
