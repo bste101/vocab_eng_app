@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'package:flame/components.dart';
-import 'package:flame/text.dart';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
@@ -17,14 +14,17 @@ class QuizGame extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<QuizGame> createState() => _QuizGameState();
+  _QuizGameState createState() => _QuizGameState(myVocabData);
 }
 
 class _QuizGameState extends State<QuizGame> {
+  List myVocabData;
+  _QuizGameState(this.myVocabData);
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
   bool disableAnswer = false;
+  int i = 1;
 
   Widget choicebutton(String k) {
     return Padding(
@@ -147,14 +147,14 @@ class _QuizGameState extends State<QuizGame> {
                   width: 270,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        "Hello this is mi", // text
-                        style: TextStyle(
+                        myVocabData[0][i.toString()], // text
+                        style: const TextStyle(
                             color: Colors.black38,
                             fontFamily: "SecularOne-Regular",
                             fontWeight: FontWeight.bold,
-                            fontSize: 30.0),
+                            fontSize: 28.0),
                         //textAlign: TextAlign.center,
                       )
                     ],
@@ -162,52 +162,5 @@ class _QuizGameState extends State<QuizGame> {
         ],
       ),
     );
-  }
-}
-
-class GetJson extends StatelessWidget {
-  String langname;
-  MyGame gameRef;
-  String assettoload;
-  GetJson({
-    super.key,
-    required this.langname,
-    required this.assettoload,
-    required this.gameRef,
-  });
-
-  setasset() {
-    if (langname == "One") {
-      assettoload = "assets/json/${Globals.onewordjson}";
-    } else if (langname == "Two") {
-      assettoload = "assets/json/${Globals.twowordjson}";
-    } else if (langname == "Three") {
-      assettoload = "assets/json/${Globals.threewordjson}";
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    setasset();
-    return FutureBuilder(
-        future: DefaultAssetBundle.of(context)
-            .loadString(assettoload, cache: false),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          List myVocabData = json.decode(snapshot.data.toString());
-          if (myVocabData == []) {
-            return const Scaffold(
-              body: Center(
-                child: Text(
-                  "Loading",
-                ),
-              ),
-            );
-          } else {
-            return QuizGame(
-              gameRef: gameRef,
-              myVocabData: myVocabData,
-            );
-          }
-        });
   }
 }

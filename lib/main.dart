@@ -24,7 +24,7 @@ Future<void> main() async {
   Flame.device.fullScreen();
   await initHive();
   runApp(
-    const GameRunApp(
+    const GameRunApp(myVocabData: [], langname: '',
     ),
   );
 }
@@ -41,7 +41,9 @@ Future<void> initHive() async {
 
 
 class GameRunApp extends StatelessWidget {
-  const GameRunApp({Key? key}) : super(key: key);
+  const GameRunApp({Key? key, required this.myVocabData, required this.langname}) : super(key: key);
+  final List myVocabData;
+  final String langname;
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +62,12 @@ class GameRunApp extends StatelessWidget {
           // Register all the overlays that will be used by this game.
           overlayBuilderMap: {
             MainMenu.id: (_, MyGame gameRef) => MainMenu(gameRef: gameRef),
-            SelectMenu.id: (_, MyGame gameRef) => SelectMenu(gameRef: gameRef),
+            SelectMenu.id: (_, MyGame gameRef) => SelectMenu(gameRef: gameRef, langname: langname,),
             PauseMenu.id: (_, MyGame gameRef) => PauseMenu(gameRef),
             Hud.id: (_, MyGame gameRef) => Hud(gameRef),
             GameOverMenu.id: (_, MyGame gameRef) => GameOverMenu(gameRef: gameRef,),
             SettingsMenu.id: (_, MyGame gameRef) => SettingsMenu(gameRef),
-            QuizGame.id: (_, MyGame gameRef) => QuizGame(gameRef: gameRef, myVocabData: [],),
+            QuizGame.id: (_, MyGame gameRef) => QuizGame(gameRef: gameRef, myVocabData: myVocabData,),
           },
           // By default MainMenu overlay will be active.
           initialActiveOverlays: const [MainMenu.id],
