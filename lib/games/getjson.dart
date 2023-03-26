@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/games/QuizGame.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
@@ -29,7 +30,7 @@ class GetJson extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List mydata = json.decode(snapshot.data.toString());
-          return QuizGame(gameRef: gameRef, myVocabData: mydata);
+          return QuizGame(gameRef: gameRef);
         } else {
           return const Scaffold(
             body: Center(

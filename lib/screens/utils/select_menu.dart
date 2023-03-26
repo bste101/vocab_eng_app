@@ -6,9 +6,10 @@ didn't finished Normal and Hard Mode
 
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
-import 'package:vocab_eng_app/games/getjson.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/games/quizgame.dart';
+import 'package:vocab_eng_app/games/quizgamethree.dart';
+import 'package:vocab_eng_app/games/quizgametwo.dart';
 
 import 'hud.dart';
 
@@ -60,11 +61,9 @@ class SelectMenu extends StatelessWidget {
               left: 100,
               bottom: 400,
               child: IconButton(
-                onPressed: () async {
+                onPressed: () {
+                  gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => GetJson(langname: 'Two', gameRef: gameRef,),
-                  ));
                   gameRef.overlays.add(Hud.id);
                 },
                 icon: Image.asset("assets/images/${Globals.buttonEasySprite}"),
@@ -77,10 +76,8 @@ class SelectMenu extends StatelessWidget {
               bottom: 300,
               child: IconButton(
                 onPressed: () {
+                  gameRef.overlays.add(QuizGameTwo.id);
                   gameRef.overlays.remove(SelectMenu.id);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => GetJson(langname: 'Two', gameRef: gameRef,),
-                  ));
                   gameRef.overlays.add(Hud.id);
                 },
                 icon:
@@ -94,11 +91,9 @@ class SelectMenu extends StatelessWidget {
               bottom: 200,
               child: IconButton(
                 onPressed: () {
+                  gameRef.overlays.add(QuizGameThree.id);
                   gameRef.overlays.remove(SelectMenu.id);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => GetJson(langname: 'Three', gameRef: gameRef,),
-                  ));
-
+                  gameRef.overlays.add(Hud.id);
                 },
                 icon: Image.asset("assets/images/${Globals.buttonHardSprite}"),
                 iconSize: 180,
