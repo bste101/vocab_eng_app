@@ -15,8 +15,8 @@ class QuizGame extends StatefulWidget {
 }
 
 class _QuizGameState extends State<QuizGame> {
-  late List myVocabData;
-  late final String assettoload = 'assets/json/onewword.json';
+  late List myVocabData = [];
+  late final String assettoload = 'assets/json/oneword.json';
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
@@ -55,22 +55,6 @@ class _QuizGameState extends State<QuizGame> {
       ),
     );
   }
-
-  // Widget mainWord() {
-  //   return Scaffold(
-  //     body: Column(children: [
-  //       Container(
-  //           decoration: BoxDecoration(
-  //               color: Colors.grey, borderRadius: BorderRadius.circular(10)),
-  //           height: 120,
-  //           child: const Text(
-  //             "Hello Space",
-  //             style: TextStyle(
-  //                 color: Colors.black, fontFamily: "Alike", fontSize: 22.0),
-  //           ))
-  //     ]),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
