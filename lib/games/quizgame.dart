@@ -14,7 +14,7 @@ class QuizGame extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _QuizGameState createState() => _QuizGameState(myVocabData);
+  State<QuizGame> createState() => _QuizGameState(myVocabData);
 }
 
 class _QuizGameState extends State<QuizGame> {

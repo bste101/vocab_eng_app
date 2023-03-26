@@ -20,11 +20,12 @@ MyGame _myGame = MyGame();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final List myVocabData;
 
   Flame.device.fullScreen();
   await initHive();
   runApp(
-    const GameRunApp(myVocabData: [], langname: '',
+    const GameRunApp(
     ),
   );
 }
@@ -41,9 +42,9 @@ Future<void> initHive() async {
 
 
 class GameRunApp extends StatelessWidget {
-  const GameRunApp({Key? key, required this.myVocabData, required this.langname}) : super(key: key);
-  final List myVocabData;
-  final String langname;
+  const GameRunApp({Key? key}) : super(key: key);
+  
+  get myVocabData => myVocabData;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class GameRunApp extends StatelessWidget {
           // Register all the overlays that will be used by this game.
           overlayBuilderMap: {
             MainMenu.id: (_, MyGame gameRef) => MainMenu(gameRef: gameRef),
-            SelectMenu.id: (_, MyGame gameRef) => SelectMenu(gameRef: gameRef, langname: langname,),
+            SelectMenu.id: (_, MyGame gameRef) => SelectMenu(gameRef: gameRef),
             PauseMenu.id: (_, MyGame gameRef) => PauseMenu(gameRef),
             Hud.id: (_, MyGame gameRef) => Hud(gameRef),
             GameOverMenu.id: (_, MyGame gameRef) => GameOverMenu(gameRef: gameRef,),

@@ -16,12 +16,11 @@ class SelectMenu extends StatelessWidget {
   static const id = 'SelectMenu';
 
   final MyGame gameRef;
-  String langname;
+  late String langname;
 
   SelectMenu({
     Key? key,
     required this.gameRef,
-    required this.langname,
   }) : super(key: key);
 
   @override
@@ -61,12 +60,11 @@ class SelectMenu extends StatelessWidget {
               left: 100,
               bottom: 400,
               child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => GetJson(langname: 'One', assettoload: '', gameRef: gameRef,),
-                  ));
-                  gameRef.overlays.add(QuizGame.id);
+                onPressed: () async {
                   gameRef.overlays.remove(SelectMenu.id);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => GetJson(langname: 'Two', gameRef: gameRef,),
+                  ));
                   gameRef.overlays.add(Hud.id);
                 },
                 icon: Image.asset("assets/images/${Globals.buttonEasySprite}"),
@@ -79,11 +77,10 @@ class SelectMenu extends StatelessWidget {
               bottom: 300,
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => GetJson(langname: 'Two', assettoload: '', gameRef: gameRef,),
-                  ));
-                  gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => GetJson(langname: 'Two', gameRef: gameRef,),
+                  ));
                   gameRef.overlays.add(Hud.id);
                 },
                 icon:
@@ -97,12 +94,11 @@ class SelectMenu extends StatelessWidget {
               bottom: 200,
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => GetJson(langname: 'Three', assettoload: '', gameRef: gameRef,),
-                  ));
-                  gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
-                  gameRef.overlays.add(Hud.id);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => GetJson(langname: 'Three', gameRef: gameRef,),
+                  ));
+
                 },
                 icon: Image.asset("assets/images/${Globals.buttonHardSprite}"),
                 iconSize: 180,
