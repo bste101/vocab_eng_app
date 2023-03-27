@@ -26,14 +26,13 @@ class _QuizGameState extends State<QuizGame> {
   int i = 1;
   int j = 1;
   int timer = 5;
+  String showtimer = "5";
   int score = 0;
   int life = 3;
-  String showtimer = "5";
   Map<String, Color> btncolor = {
     "a": Colors.white,
     "b": Colors.white,
   };
-  
 
   @override
   void initState() {
@@ -49,18 +48,18 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  genrandomarray(){
+  genrandomarray() {
     var distinctIds = [];
     var rand = new Random();
-      for (int i = 0; ;) {
+    for (int i = 0;;) {
       distinctIds.add(rand.nextInt(9));
-        random_array = distinctIds.toSet().toList();
-        if(random_array.length < 9){
-          continue;
-        }else{
-          break;
-        }
+      random_array = distinctIds.toSet().toList();
+      if (random_array.length < 9) {
+        continue;
+      } else {
+        break;
       }
+    }
   }
 
   void starttimer() async {
@@ -69,6 +68,7 @@ class _QuizGameState extends State<QuizGame> {
       setState(() {
         if (timer < 1) {
           t.cancel();
+          checkanswer("");
         } else if (canceltimer == true) {
           t.cancel();
           nextquestion();
@@ -88,7 +88,7 @@ class _QuizGameState extends State<QuizGame> {
         i = random_array[j];
         j++;
       } else {
-
+        // End of game
       }
       btncolor["a"] = Colors.white;
       btncolor["b"] = Colors.white;
@@ -97,22 +97,27 @@ class _QuizGameState extends State<QuizGame> {
     starttimer();
   }
 
-void checkanswer(String k) {
+  void checkanswer(String k) {
     if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
-      score = score + 5;
       colortoshow = right;
     } else {
       colortoshow = wrong;
-      life -= 1;
+      setState(() {
+        life--;
+        if (life == 0) {
+          // End of game
+        }
+      });
     }
     setState(() {
-
-      btncolor[k] = colortoshow;
+      if (k.isNotEmpty) {
+        btncolor[k] = colortoshow;
+      }
       canceltimer = true;
       disableAnswer = true;
     });
     Timer(Duration(seconds: 1), nextquestion);
-}
+  }
 
   Widget hud() {
   return Padding(
@@ -180,7 +185,7 @@ void checkanswer(String k) {
     );
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -244,33 +249,77 @@ void checkanswer(String k) {
                   )),
             ),
           ),
-           Positioned(
-                    // box word
-                    top: 280,
-                    left: 65,
-                    child: Container(
-                        padding: const EdgeInsets.all(0),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 120,
-                        width: 270,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              mydata[0][i.toString()], // text
-                              style: const TextStyle(
-                                  color: Colors.black38,
-                                  fontFamily: "SecularOne-Regular",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 28.0),
-                              //textAlign: TextAlign.center,
-                            )
-                          ],
-                        ))),
+          Positioned(
+            // box word
+            top: 280,
+            left: 65,
+            child: Container(
+                padding: const EdgeInsets.all(0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                height: 120,
+                width: 270,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      mydata[0][i.toString()], // text
+                      style: const TextStyle(
+                          color: Colors.black38,
+                          fontFamily: "SecularOne-Regular",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28.0),
+                      //textAlign: TextAlign.center,
+                    )
+                  ],
+                ))),
+          // HUD widget
+          Positioned(
+            top: 10,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Score : $score',
+                    style: const TextStyle(
+                        fontSize: 25, color: Colors.white),
+                  ),
+                  Text(
+                    'Timer : $showtimer',
+                    style: const TextStyle(
+                        fontSize: 25, color: Colors.white),
+                  ),
+                  Row(
+                    children: List.generate(3, (index) {
+                      if (index < life) {
+                        return SizedBox(
+                          width: 30,
+                          height: 40,
+                          child: Image.asset(
+                              'assets/images/${Globals.lifeSprite}'),
+                        );
+                      } else {
+                        return SizedBox(
+                          width: 30,
+                          height: 40,
+                          child: Image.asset(
+                              'assets/images/${Globals.lifeLoseSprite}'),
+                        );
+                      }
+                    }),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
+
 }
