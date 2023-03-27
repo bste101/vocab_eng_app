@@ -60,43 +60,84 @@ class SelectMenu extends StatelessWidget {
             Positioned(
               left: 100,
               bottom: 400,
-              child: IconButton(
+              child: MaterialButton(
                 onPressed: () {
                   gameRef.overlays.add(QuizGame.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
                 },
-                icon: Image.asset("assets/images/${Globals.buttonEasySprite}"),
-                iconSize: 180,
+                color: Colors.white,
+                splashColor: Colors.white,
+                highlightColor: const Color.fromARGB(255, 134, 134, 135),
+                minWidth: 150.0, // Adjust to fit within background dimensions
+                height: 100.0, // Adjust to fit within background dimensions
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: const Text(
+                  "One Word",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "Alike",
+                    fontSize: 15.0,
+                  ),
+                  maxLines: 1,
+                ),
               ),
             ),
             // Normal button
             Positioned(
               left: 100,
               bottom: 300,
-              child: IconButton(
+              child: MaterialButton(
                 onPressed: () {
                   gameRef.overlays.add(QuizGameTwo.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
                 },
-                icon:
-                    Image.asset("assets/images/${Globals.buttonNormalSprite}"),
-                iconSize: 180,
+                color: Colors.white,
+                splashColor: Colors.white,
+                highlightColor: const Color.fromARGB(255, 134, 134, 135),
+                minWidth: 150.0, // Adjust to fit within background dimensions
+                height: 100.0, // Adjust to fit within background dimensions
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: const Text(
+                  "Two Word",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "Alike",
+                    fontSize: 15.0,
+                  ),
+                  maxLines: 1,
+                ),
               ),
             ),
             // Hard button
-            Positioned(
+           Positioned(
               left: 100,
               bottom: 200,
-              child: IconButton(
+              child: MaterialButton(
                 onPressed: () {
                   gameRef.overlays.add(QuizGameThree.id);
                   gameRef.overlays.remove(SelectMenu.id);
                   gameRef.overlays.add(Hud.id);
                 },
-                icon: Image.asset("assets/images/${Globals.buttonHardSprite}"),
-                iconSize: 180,
+                color: Colors.white,
+                splashColor: Colors.white,
+                highlightColor: const Color.fromARGB(255, 134, 134, 135),
+                minWidth: 150.0, // Adjust to fit within background dimensions
+                height: 100.0, // Adjust to fit within background dimensions
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: const Text(
+                  "Three Word",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "Alike",
+                    fontSize: 15.0,
+                  ),
+                  maxLines: 1,
+                ),
               ),
             ),
           ],

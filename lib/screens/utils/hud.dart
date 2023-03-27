@@ -17,7 +17,7 @@ class Hud extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: gameRef.playerData,
       child: Padding(
-        padding: const EdgeInsets.only(top: 10,left: 0),
+        padding: const EdgeInsets.only(top: 10, left: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,10 +37,10 @@ class Hud extends StatelessWidget {
                  Testtttttttttttttttttt
                 */
                 Selector<PlayerData, int>(
-                  selector: (_, playerData) => playerData.highScore,
-                  builder: (_, highScore, __) {
+                  selector: (_, playerData) => playerData.timer,
+                  builder: (_, timer, __) {
                     return Text(
-                      ' High  : $highScore',
+                      'Timer : $timer',
                       style: const TextStyle(fontSize: 25, color: Colors.white),
                     );
                   },
@@ -56,8 +56,8 @@ class Hud extends StatelessWidget {
                       return SizedBox(
                         width: 30,
                         height: 40,
-                        child: Image.asset(
-                            'assets/images/${Globals.lifeSprite}'),
+                        child:
+                            Image.asset('assets/images/${Globals.lifeSprite}'),
                       );
                     } else {
                       return SizedBox(

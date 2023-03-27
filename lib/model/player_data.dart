@@ -32,4 +32,14 @@ class PlayerData extends ChangeNotifier with HiveObjectMixin {
     notifyListeners();
     save();
   }
+
+  int _timer = 5;
+
+  int get timer => _timer;
+  set timer(int value) {
+    if (value >= 0) {
+      _timer = value;
+      notifyListeners();
+    }
+  }
 }

@@ -15,8 +15,8 @@ class QuizGameThree extends StatefulWidget {
 }
 
 class _QuizGameThreeState extends State<QuizGameThree> {
-  late List myVocabData = [];
-  late final String assettoload = 'assets/json/threeword.json';
+  late List myVocabThreeData = [];
+  late final String assettoloadtwo = 'assets/json/threeword.json';
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
@@ -24,11 +24,13 @@ class _QuizGameThreeState extends State<QuizGameThree> {
   int i = 1;
 
   Future<List<dynamic>> loadJsonData() async {
-    String jsonData = await rootBundle.loadString(assettoload);
-    return myVocabData = json.decode(jsonData);
-  }
+  String jsonData =
+      await DefaultAssetBundle.of(context).loadString(assettoloadtwo, 
+      cache: false);
+  return myVocabThreeData = json.decode(jsonData);
+}
 
-  Widget choicebutton(String k) {
+  Widget choicetwobutton(String k) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 10.0,
@@ -42,9 +44,9 @@ class _QuizGameThreeState extends State<QuizGameThree> {
         minWidth: 150.0, // Adjust to fit within background dimensions
         height: 100.0, // Adjust to fit within background dimensions
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
         child: Text(
-          myVocabData[1][i.toString()][k],
+          myVocabThreeData[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
             fontFamily: "Alike",
@@ -121,8 +123,8 @@ class _QuizGameThreeState extends State<QuizGameThree> {
                               MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            choicebutton('a'),
-                            choicebutton('b'),
+                            choicetwobutton('a'),
+                            choicetwobutton('b'),
                           ],
                         )),
                   ),

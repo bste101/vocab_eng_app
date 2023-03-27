@@ -1,3 +1,5 @@
+
+
 part of 'player_data.dart';
 
 class PlayerDataAdapter extends TypeAdapter<PlayerData> {
@@ -14,12 +16,16 @@ class PlayerDataAdapter extends TypeAdapter<PlayerData> {
   }
 
   @override
-  void write(BinaryWriter writer, PlayerData obj) {
-    writer
-      ..writeByte(1)
-      ..writeByte(1)
-      ..write(obj.highScore);
-  }
+void write(BinaryWriter writer, PlayerData obj) {
+writer
+..writeByte(3)
+..writeByte(0)
+..write(obj.lives)
+..writeByte(1)
+..write(obj.timer)
+..writeByte(2)
+..write(obj.currentScore);
+}
 
   @override
   int get hashCode => typeId.hashCode;

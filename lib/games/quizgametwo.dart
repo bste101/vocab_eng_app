@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
 
@@ -15,8 +14,8 @@ class QuizGameTwo extends StatefulWidget {
 }
 
 class _QuizGameTwoState extends State<QuizGameTwo> {
-  late List myVocabData = [];
-  late final String assettoload = 'assets/json/twoword.json';
+  late List myVocabTwoData = [];
+  late final String assettoload = 'assets/json/vocabtwoword.json';
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
@@ -24,11 +23,13 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
   int i = 1;
 
   Future<List<dynamic>> loadJsonData() async {
-    String jsonData = await rootBundle.loadString(assettoload);
-    return myVocabData = json.decode(jsonData);
-  }
+  String jsonData =
+      await DefaultAssetBundle.of(context).loadString(assettoload, 
+      cache: false);
+  return myVocabTwoData = json.decode(jsonData);
+}
 
-  Widget choicebutton(String k) {
+  Widget choicethreebutton(String k) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 10.0,
@@ -44,7 +45,7 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
-          myVocabData[1][i.toString()][k],
+          myVocabTwoData[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
             fontFamily: "Alike",
@@ -121,8 +122,8 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
                               MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            choicebutton('a'),
-                            choicebutton('b'),
+                            choicethreebutton('a'),
+                            choicethreebutton('b'),
                           ],
                         )),
                   ),
@@ -142,7 +143,7 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              myVocabData[0][i.toString()], // text
+                              myVocabTwoData[0][i.toString()], // text
                               style: const TextStyle(
                                   color: Colors.black38,
                                   fontFamily: "SecularOne-Regular",

@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
+import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
 
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
@@ -15,18 +18,109 @@ class QuizGame extends StatefulWidget {
 }
 
 class _QuizGameState extends State<QuizGame> {
+  late final MyGame gameRef;
   late List myVocabData = [];
   late final String assettoload = 'assets/json/oneword.json';
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
   bool disableAnswer = false;
+  bool canceltimer = false;
+  var random_array;
   int i = 1;
+  int j = 1;
+  int timer = 5;
+  String showtimer = "5";
+  Map<String, Color> btncolor = {
+    "a": Colors.white,
+    "b": Colors.white,
+  };
+
+  @override
+  void initState() {
+    starttimer();
+    genrandomarray();
+    super.initState();
+  }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  genrandomarray(){
+    var distinctIds = [];
+    var rand = new Random();
+      for (int i = 0; ;) {
+      distinctIds.add(rand.nextInt(9));
+        random_array = distinctIds.toSet().toList();
+        if(random_array.length < 9){
+          continue;
+        }else{
+          break;
+        }
+      }
+  }
+
+  void starttimer() async {
+    const onesec = Duration(seconds: 1);
+    Timer.periodic(onesec, (Timer t) {
+      setState(() {
+        if (timer < 1) {
+          t.cancel();
+        } else if (canceltimer == true) {
+          t.cancel();
+          nextquestion();
+        } else {
+          timer = timer - 1;
+        }
+        showtimer = timer.toString();
+      });
+    });
+  }
+
+  void nextquestion() {
+    canceltimer = false;
+    timer = 5;
+    setState(() {
+      if (j < 10) {
+        i = random_array[j];
+        j++;
+      } else {
+        gameRef.overlays.add(GameOverMenu.id);
+        gameRef.overlays.remove(QuizGame.id);
+      }
+      btncolor["a"] = Colors.white;
+      btncolor["b"] = Colors.white;
+      disableAnswer = false;
+    });
+    starttimer();
+  }
 
   Future<List<dynamic>> loadJsonData() async {
-    String jsonData = await rootBundle.loadString(assettoload);
-    return myVocabData = json.decode(jsonData);
-  }
+  String jsonData =
+      await DefaultAssetBundle.of(context).loadString(assettoload, 
+      cache: false);
+  return myVocabData = json.decode(jsonData);
+}
+void checkanswer(String k) {
+    if (myVocabData[2][i.toString()] == myVocabData[1][i.toString()][k]) {
+
+      colortoshow = right;
+    } else {
+      colortoshow = wrong;
+      
+    }
+    setState(() {
+
+      btncolor[k] = colortoshow;
+      canceltimer = true;
+      disableAnswer = true;
+    });
+    Timer(Duration(seconds: 1), nextquestion);
+}
 
   Widget choicebutton(String k) {
     return Padding(
@@ -35,8 +129,8 @@ class _QuizGameState extends State<QuizGame> {
         horizontal: 18.0,
       ),
       child: MaterialButton(
-        onPressed: () {},
-        color: Colors.white,
+        onPressed: () => checkanswer(k),
+        color: btncolor[k],
         splashColor: Colors.white,
         highlightColor: const Color.fromARGB(255, 134, 134, 135),
         minWidth: 150.0, // Adjust to fit within background dimensions
@@ -44,11 +138,11 @@ class _QuizGameState extends State<QuizGame> {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
-          myVocabData[1][i.toString()][k],
+          myVocabData[1][i.toString()]                [k],
           style: const TextStyle(
             color: Colors.black,
             fontFamily: "Alike",
-            fontSize: 15.0,
+            fontSize: 16.0,
           ),
           maxLines: 1,
         ),
