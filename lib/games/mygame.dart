@@ -1,6 +1,5 @@
 import 'package:flame/game.dart';
 import 'package:hive/hive.dart';
-import 'package:vocab_eng_app/components/background_component.dart';
 import 'package:vocab_eng_app/model/player_data.dart';
 import 'package:vocab_eng_app/model/settings.dart';
 
@@ -17,7 +16,6 @@ class MyGame extends FlameGame{
     playerData = await _readPlayerData();
     settings = await _readSetting();
 
-    add(BackgroundComponent());
   }
 
   Future<Settings> _readSetting() async {

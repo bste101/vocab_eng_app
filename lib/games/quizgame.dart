@@ -1,26 +1,22 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
-import 'package:vocab_eng_app/games/mygame.dart';
-import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
+
 
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
 
-  final MyGame gameRef;
-  const QuizGame({Key? key, required this.gameRef}) : super(key: key);
+  final List mydata;
+  const QuizGame({Key? key, required this.mydata}) : super(key: key);
 
   @override
-  State<QuizGame> createState() => _QuizGameState();
+  State<QuizGame> createState() => _QuizGameState(mydata);
 }
 
 class _QuizGameState extends State<QuizGame> {
-  late final MyGame gameRef;
-  late List myVocabData = [];
-  late final String assettoload = 'assets/json/oneword.json';
+  final List mydata;
+  _QuizGameState(this.mydata);
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
   Color wrong = Colors.red;
@@ -30,11 +26,14 @@ class _QuizGameState extends State<QuizGame> {
   int i = 1;
   int j = 1;
   int timer = 5;
+  int score = 0;
+  int life = 3;
   String showtimer = "5";
   Map<String, Color> btncolor = {
     "a": Colors.white,
     "b": Colors.white,
   };
+  
 
   @override
   void initState() {
@@ -89,8 +88,7 @@ class _QuizGameState extends State<QuizGame> {
         i = random_array[j];
         j++;
       } else {
-        gameRef.overlays.add(GameOverMenu.id);
-        gameRef.overlays.remove(QuizGame.id);
+
       }
       btncolor["a"] = Colors.white;
       btncolor["b"] = Colors.white;
@@ -99,19 +97,13 @@ class _QuizGameState extends State<QuizGame> {
     starttimer();
   }
 
-  Future<List<dynamic>> loadJsonData() async {
-  String jsonData =
-      await DefaultAssetBundle.of(context).loadString(assettoload, 
-      cache: false);
-  return myVocabData = json.decode(jsonData);
-}
 void checkanswer(String k) {
-    if (myVocabData[2][i.toString()] == myVocabData[1][i.toString()][k]) {
-
+    if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
+      score = score + 5;
       colortoshow = right;
     } else {
       colortoshow = wrong;
-      
+      life -= 1;
     }
     setState(() {
 
@@ -120,6 +112,44 @@ void checkanswer(String k) {
       disableAnswer = true;
     });
     Timer(Duration(seconds: 1), nextquestion);
+}
+
+  Widget hud() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 10, left: 0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Score : $score',
+          style: const TextStyle(fontSize: 25, color: Colors.white),
+        ),
+        Text(
+          'Timer : $showtimer',
+          style: const TextStyle(fontSize: 25, color: Colors.white),
+        ),
+        Row(
+          children: List.generate(3, (index) {
+            if (index < life) {
+              return SizedBox(
+                width: 30,
+                height: 40,
+                child: Image.asset('assets/images/${Globals.lifeSprite}'),
+              );
+            } else {
+              return SizedBox(
+                width: 30,
+                height: 40,
+                child: Image.asset(
+                    'assets/images/${Globals.lifeLoseSprite}'),
+              );
+            }
+          }),
+        ),
+      ],
+    ),
+  );
 }
 
   Widget choicebutton(String k) {
@@ -138,7 +168,7 @@ void checkanswer(String k) {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
-          myVocabData[1][i.toString()]                [k],
+          mydata[1][i.toString()]                [k],
           style: const TextStyle(
             color: Colors.black,
             fontFamily: "Alike",
@@ -153,105 +183,136 @@ void checkanswer(String k) {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<dynamic>>(
-        future: loadJsonData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final myVocabData = snapshot.data!;
-            return Stack(
-              children: [
-                // Background image container
-                Positioned.fill(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "assets/images/${Globals.backgroundSprite}",
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+      body: Stack(
+        children: [
+          // Background image container
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/${Globals.backgroundSprite}",
                   ),
+                  fit: BoxFit.fill,
                 ),
-                Positioned(
-                  top: 200,
-                  left: 70,
-                  child: Container(
-                    width: 250,
-                    height: 250,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage(
-                          "assets/images/${Globals.iconukkabartSprite}"),
-                      fit: BoxFit.contain,
-                    )),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 200,
+            left: 60,
+            child: Container(
+              width: 250,
+              height: 250,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image:
+                    AssetImage("assets/images/${Globals.iconukkabartSprite}"),
+                fit: BoxFit.contain,
+              )),
+            ),
+          ),
+          Positioned(
+            bottom: 120,
+            left: 95,
+            child: Container(
+              width: 200,
+              height: 200,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage("assets/images/${Globals.iconrocketSprite}"),
+                fit: BoxFit.contain,
+              )),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 10,
+            right: 0,
+            child: SizedBox(
+              height: 100,
+              width: 50,
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      choicebutton('a'),
+                      choicebutton('b'),
+                    ],
+                  )),
+            ),
+          ),
+          Positioned(
+            // box word
+            top: 280,
+            left: 65,
+            child: Container(
+                padding: const EdgeInsets.all(0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                height: 120,
+                width: 270,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      mydata[0][i.toString()], // text
+                      style: const TextStyle(
+                          color: Colors.black38,
+                          fontFamily: "SecularOne-Regular",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28.0),
+                      //textAlign: TextAlign.center,
+                    )
+                  ],
+                ))),
+          // HUD widget
+          Positioned(
+            top: 10,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Score : $score',
+                    style: const TextStyle(
+                        fontSize: 25, color: Colors.white),
                   ),
-                ),
-                Positioned(
-                  bottom: 120,
-                  left: 95,
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage(
-                          "assets/images/${Globals.iconrocketSprite}"),
-                      fit: BoxFit.contain,
-                    )),
+                  Text(
+                    'Timer : $showtimer',
+                    style: const TextStyle(
+                        fontSize: 25, color: Colors.white),
                   ),
-                ),
-                Positioned(
-                  bottom: 40,
-                  left: 10,
-                  right: 0,
-                  child: SizedBox(
-                    height: 100,
-                    width: 50,
-                    child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            choicebutton('a'),
-                            choicebutton('b'),
-                          ],
-                        )),
+                  Row(
+                    children: List.generate(3, (index) {
+                      if (index < life) {
+                        return SizedBox(
+                          width: 30,
+                          height: 40,
+                          child: Image.asset(
+                              'assets/images/${Globals.lifeSprite}'),
+                        );
+                      } else {
+                        return SizedBox(
+                          width: 30,
+                          height: 40,
+                          child: Image.asset(
+                              'assets/images/${Globals.lifeLoseSprite}'),
+                        );
+                      }
+                    }),
                   ),
-                ),
-                Positioned(
-                    // box word
-                    top: 280,
-                    left: 65,
-                    child: Container(
-                        padding: const EdgeInsets.all(0),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 120,
-                        width: 270,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              myVocabData[0][i.toString()], // text
-                              style: const TextStyle(
-                                  color: Colors.black38,
-                                  fontFamily: "SecularOne-Regular",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 28.0),
-                              //textAlign: TextAlign.center,
-                            )
-                          ],
-                        ))),
-              ],
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -6,22 +6,17 @@ didn't finished Normal and Hard Mode
 
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
+import 'package:vocab_eng_app/games/getjson.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
-import 'package:vocab_eng_app/games/quizgame.dart';
-import 'package:vocab_eng_app/games/quizgamethree.dart';
-import 'package:vocab_eng_app/games/quizgametwo.dart';
 
-import 'hud.dart';
+
 
 class SelectMenu extends StatelessWidget {
   static const id = 'SelectMenu';
 
-  final MyGame gameRef;
-  late String langname;
 
   SelectMenu({
     Key? key,
-    required this.gameRef,
   }) : super(key: key);
 
   @override
@@ -62,9 +57,12 @@ class SelectMenu extends StatelessWidget {
               bottom: 400,
               child: MaterialButton(
                 onPressed: () {
-                  gameRef.overlays.add(QuizGame.id);
-                  gameRef.overlays.remove(SelectMenu.id);
-                  gameRef.overlays.add(Hud.id);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  // in changelog 1 we will pass the langname name to ther other widget class
+                  // this name will be used to open a particular JSON file
+                  // for a particular language
+                  builder: (context) => GetJson(langname: 'One'),
+                ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
@@ -90,9 +88,12 @@ class SelectMenu extends StatelessWidget {
               bottom: 300,
               child: MaterialButton(
                 onPressed: () {
-                  gameRef.overlays.add(QuizGameTwo.id);
-                  gameRef.overlays.remove(SelectMenu.id);
-                  gameRef.overlays.add(Hud.id);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  // in changelog 1 we will pass the langname name to ther other widget class
+                  // this name will be used to open a particular JSON file
+                  // for a particular language
+                  builder: (context) => GetJson(langname: 'Two'),
+                ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
@@ -118,9 +119,12 @@ class SelectMenu extends StatelessWidget {
               bottom: 200,
               child: MaterialButton(
                 onPressed: () {
-                  gameRef.overlays.add(QuizGameThree.id);
-                  gameRef.overlays.remove(SelectMenu.id);
-                  gameRef.overlays.add(Hud.id);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  // in changelog 1 we will pass the langname name to ther other widget class
+                  // this name will be used to open a particular JSON file
+                  // for a particular language
+                  builder: (context) => GetJson(langname: 'Three'),
+                ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,

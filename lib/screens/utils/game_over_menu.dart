@@ -7,89 +7,84 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/QuizGame.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/model/player_data.dart';
-
-import 'hud.dart';
 import 'main_menu.dart';
 
-class GameOverMenu extends StatelessWidget {
+class GameOverMenu extends StatefulWidget {
+  int score;
+  GameOverMenu({super.key , required this.score});
 
-  static const String id = 'GameOverMenu';
-  final MyGame gameRef;
-  const GameOverMenu({super.key, required this.gameRef});
+  @override
+  State<GameOverMenu> createState() => _GameOverMenuState(score);
+}
 
-   @override
-     Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: gameRef.playerData,
-      child: Center(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.black.withAlpha(100),
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 100),
-                child: Wrap(
-                  direction: Axis.vertical,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 10,
-                  children: [
-                    const Text(
-                      'Game Over',
-                      style: TextStyle(fontSize: 40, color: Colors.white),
-                    ),
-                    Selector<PlayerData, int>(
-                      selector: (_, playerData) => playerData.currentScore,
-                      builder: (_, score, __) {
-                        return Text(
-                          'You Score: $score',
-                          style: const TextStyle(
-                              fontSize: 40, color: Colors.white),
-                        );
-                      },
-                    ),
-                    ElevatedButton(
-                      child: const Text(
-                        'Restart',
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),
-                      ),
-                      onPressed: () {
-                        gameRef.overlays.remove(GameOverMenu.id);
-                        gameRef.overlays.add(Hud.id);
-                        gameRef.resumeEngine();
-                        //gameRef.reset();
-                        gameRef.overlays.add(QuizGame.id);
-                      },
-                    ),
-                    ElevatedButton(
-                      child: const Text(
-                        'Exit',
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),
-                      ),
-                      onPressed: () {
-                        gameRef.overlays.remove(GameOverMenu.id);
-                        gameRef.overlays.add(MainMenu.id);
-                        gameRef.resumeEngine();
-                        //gameRef.reset();
-                      },
-                    ),
-                  ],
+class _GameOverMenuState extends State<GameOverMenu> {
+  _GameOverMenuState(int score);
+
+  @override
+  Widget build(BuildContext context) {
+   return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      "assets/images/${Globals.backgroundStartSprite}"),
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
           ),
-        ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 210,
+                  height: 230,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/${Globals.labelNameSprite}",
+                      ),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 50),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => SelectMenu(),
+                    ));
+                  },
+                  icon: Image.asset(
+                    "assets/images/${Globals.buttonstartSprite}",
+                  ),
+                  iconSize: 200,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 10,
+            right: 20,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {},
+              icon: Image.asset(
+                "assets/images/${Globals.iconsettingSprite}",
+              ),
+              iconSize: 30,
+            ),
+          ),
+        ],
       ),
     );
   }

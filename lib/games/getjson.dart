@@ -1,22 +1,21 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:vocab_eng_app/games/QuizGame.dart';
 import 'package:vocab_eng_app/games/mygame.dart';
+import 'package:vocab_eng_app/games/quizgame.dart';
 import 'package:vocab_eng_app/screens/utils/hud.dart';
 
 class GetJson extends StatelessWidget {
   final String langname;
-  final MyGame gameRef;
   String assettoload = '';
 
-  GetJson({required this.langname, required this.gameRef});
+  GetJson({required this.langname});
 
   void setAsset() {
     if (langname == 'One') {
       assettoload = 'assets/json/oneword.json';
     } else if (langname == 'Two') {
-      assettoload = 'assets/json/twoword.json';
+      assettoload = 'assets/json/vocabtwoword.json';
     } else if (langname == 'Three') {
       assettoload = 'assets/json/threeword.json';
     }
@@ -30,7 +29,7 @@ class GetJson extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List mydata = json.decode(snapshot.data.toString());
-          return QuizGame(gameRef: gameRef);
+          return QuizGame(mydata: mydata,);
         } else {
           return const Scaffold(
             body: Center(

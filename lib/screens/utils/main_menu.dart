@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
-import 'package:vocab_eng_app/games/mygame.dart';
 import 'package:vocab_eng_app/screens/utils/select_menu.dart';
 import 'package:vocab_eng_app/screens/utils/setting_menu.dart';
 
 class MainMenu extends StatelessWidget {
   static const id = 'MainMenu';
 
-  final MyGame gameRef;
-
   const MainMenu({
     Key? key,
-    required this.gameRef,
   }) : super(key: key);
 
   @override
@@ -19,14 +15,12 @@ class MainMenu extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image container
           Positioned.fill(
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    "assets/images/${Globals.backgroundStartSprite}",
-                  ),
+                      "assets/images/${Globals.backgroundStartSprite}"),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -52,8 +46,9 @@ class MainMenu extends StatelessWidget {
                 IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {
-                    gameRef.overlays.remove(MainMenu.id);
-                    gameRef.overlays.add(SelectMenu.id);
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => SelectMenu(),
+                    ));
                   },
                   icon: Image.asset(
                     "assets/images/${Globals.buttonstartSprite}",
@@ -68,10 +63,7 @@ class MainMenu extends StatelessWidget {
             right: 20,
             child: IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () {
-                gameRef.overlays.remove(MainMenu.id);
-                gameRef.overlays.add(SettingsMenu.id);
-              },
+              onPressed: () {},
               icon: Image.asset(
                 "assets/images/${Globals.iconsettingSprite}",
               ),
