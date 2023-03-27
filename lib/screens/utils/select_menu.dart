@@ -53,8 +53,8 @@ class SelectMenu extends StatelessWidget {
             ),
             // Easy button
             Positioned(
-              left: 100,
-              bottom: 400,
+              left: 110,
+              bottom: 450,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -67,16 +67,16 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
-                minWidth: 150.0, // Adjust to fit within background dimensions
-                height: 100.0, // Adjust to fit within background dimensions
+                minWidth: 180.0, // Adjust to fit within background dimensions
+                height: 75.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
                   "One Word",
                   style: TextStyle(
                     color: Colors.black,
-                    fontFamily: "Alike",
-                    fontSize: 15.0,
+                    fontFamily: "SecularOne-Regular",
+                    fontSize: 18.0,
                   ),
                   maxLines: 1,
                 ),
@@ -84,8 +84,8 @@ class SelectMenu extends StatelessWidget {
             ),
             // Normal button
             Positioned(
-              left: 100,
-              bottom: 300,
+              left: 110,
+              bottom: 350,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -98,25 +98,25 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
-                minWidth: 150.0, // Adjust to fit within background dimensions
-                height: 100.0, // Adjust to fit within background dimensions
+                minWidth: 180.0, // Adjust to fit within background dimensions
+                height: 75.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
                   "Two Word",
                   style: TextStyle(
                     color: Colors.black,
-                    fontFamily: "Alike",
-                    fontSize: 15.0,
+                    fontFamily: "SecularOne-Regular",
+                    fontSize: 18.0,
                   ),
                   maxLines: 1,
                 ),
               ),
             ),
             // Hard button
-           Positioned(
-              left: 100,
-              bottom: 200,
+            Positioned(
+              left: 110,
+              bottom: 250,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -129,16 +129,16 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
-                minWidth: 150.0, // Adjust to fit within background dimensions
-                height: 100.0, // Adjust to fit within background dimensions
+                minWidth: 180.0, // Adjust to fit within background dimensions
+                height: 75.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
                   "Three Word",
                   style: TextStyle(
                     color: Colors.black,
-                    fontFamily: "Alike",
-                    fontSize: 15.0,
+                    fontFamily: "SecularOne-Regular",
+                    fontSize: 18.0,
                   ),
                   maxLines: 1,
                 ),

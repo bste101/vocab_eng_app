@@ -49,18 +49,18 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  genrandomarray(){
+  genrandomarray() {
     var distinctIds = [];
-    var rand = new Random();
-      for (int i = 0; ;) {
+    var rand = Random();
+    for (int i = 0;;) {
       distinctIds.add(rand.nextInt(9));
-        random_array = distinctIds.toSet().toList();
-        if(random_array.length < 9){
-          continue;
-        }else{
-          break;
-        }
+      random_array = distinctIds.toSet().toList();
+      if (random_array.length < 9) {
+        continue;
+      } else {
+        break;
       }
+    }
   }
 
   void starttimer() async {
@@ -97,6 +97,7 @@ class _QuizGameState extends State<QuizGame> {
     starttimer();
   }
 
+<<<<<<< HEAD
 void checkanswer(String k) {
     if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
       score = score + 5;
@@ -104,15 +105,27 @@ void checkanswer(String k) {
     } else {
       colortoshow = wrong;
       life -= 1;
+=======
+  Future<List<dynamic>> loadJsonData() async {
+    String jsonData = await DefaultAssetBundle.of(context)
+        .loadString(assettoload, cache: false);
+    return myVocabData = json.decode(jsonData);
+  }
+
+  void checkanswer(String k) {
+    if (myVocabData[2][i.toString()] == myVocabData[1][i.toString()][k]) {
+      colortoshow = right;
+    } else {
+      colortoshow = wrong;
+>>>>>>> d1706b5670ca7ec6067e33835717d867afa292dc
     }
     setState(() {
-
       btncolor[k] = colortoshow;
       canceltimer = true;
       disableAnswer = true;
     });
-    Timer(Duration(seconds: 1), nextquestion);
-}
+    Timer(const Duration(seconds: 1), nextquestion);
+  }
 
   Widget hud() {
   return Padding(
@@ -168,11 +181,15 @@ void checkanswer(String k) {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
+<<<<<<< HEAD
           mydata[1][i.toString()]                [k],
+=======
+          myVocabData[1][i.toString()][k],
+>>>>>>> d1706b5670ca7ec6067e33835717d867afa292dc
           style: const TextStyle(
             color: Colors.black,
-            fontFamily: "Alike",
-            fontSize: 16.0,
+            fontFamily: "SecularOne-Regular",
+            fontSize: 18.0,
           ),
           maxLines: 1,
         ),
@@ -289,6 +306,7 @@ void checkanswer(String k) {
                     style: const TextStyle(
                         fontSize: 25, color: Colors.white),
                   ),
+<<<<<<< HEAD
                   Row(
                     children: List.generate(3, (index) {
                       if (index < life) {
@@ -307,6 +325,26 @@ void checkanswer(String k) {
                         );
                       }
                     }),
+=======
+                ),
+                Positioned(
+                  bottom: 40,
+                  left: 10,
+                  right: 0,
+                  child: SizedBox(
+                    height: 100,
+                    width: 50,
+                    child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            choicebutton('a'),
+                            choicebutton('b'),
+                          ],
+                        )),
+>>>>>>> d1706b5670ca7ec6067e33835717d867afa292dc
                   ),
                 ],
               ),
