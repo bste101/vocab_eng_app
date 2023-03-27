@@ -47,21 +47,11 @@ class _QuizGameState extends State<QuizGame> {
       super.setState(fn);
     }
   }
-
+  //////พังแรนด้อมไม่ได้
   genrandomarray() {
-    var distinctIds = [];
-    var rand = Random();
-    for (int i = 0;;) {
-      distinctIds.add(rand.nextInt(10));
-      random_array = distinctIds.toSet().toList();
-      if (random_array.length < 10) {
-        continue;
-      } else {
-        break;
-      }
-    }
+    random_array = List.generate(mydata.length, (index) => index);
+     random_array.shuffle(); // Shuffle the list of indices
   }
-
   void starttimer() async {
     const onesec = Duration(seconds: 2);
     Timer.periodic(onesec, (Timer t) {
@@ -85,7 +75,7 @@ class _QuizGameState extends State<QuizGame> {
     timer = 5;
     setState(() {
       if (j < 10) {
-        i = random_array[j];
+        i == random_array[j]; //พังแรนด้อมไม่ได้
         j++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -133,43 +123,6 @@ class _QuizGameState extends State<QuizGame> {
       }
     });
     Timer(Duration(seconds: 2), nextquestion);
-  }
-
-  Widget hud() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Score : $score',
-            style: const TextStyle(fontSize: 25, color: Colors.white),
-          ),
-          Text(
-            'Timer : $showtimer',
-            style: const TextStyle(fontSize: 25, color: Colors.white),
-          ),
-          Row(
-            children: List.generate(3, (index) {
-              if (index < life) {
-                return SizedBox(
-                  width: 30,
-                  height: 40,
-                  child: Image.asset('assets/images/${Globals.lifeSprite}'),
-                );
-              } else {
-                return SizedBox(
-                  width: 30,
-                  height: 40,
-                  child: Image.asset('assets/images/${Globals.lifeLoseSprite}'),
-                );
-              }
-            }),
-          ),
-        ],
-      ),
-    );
   }
 
   Widget choicebutton(String k) {
