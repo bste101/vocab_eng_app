@@ -68,7 +68,7 @@ class SelectMenu extends StatelessWidget {
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
                 minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 75.0, // Adjust to fit within background dimensions
+                height: 60.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -76,7 +76,7 @@ class SelectMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
-                    fontSize: 18.0,
+                    fontSize: 22.0,
                   ),
                   maxLines: 1,
                 ),
@@ -99,7 +99,7 @@ class SelectMenu extends StatelessWidget {
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
                 minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 75.0, // Adjust to fit within background dimensions
+                height: 60.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -107,7 +107,7 @@ class SelectMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
-                    fontSize: 18.0,
+                    fontSize: 22.0,
                   ),
                   maxLines: 1,
                 ),
@@ -130,7 +130,7 @@ class SelectMenu extends StatelessWidget {
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
                 minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 75.0, // Adjust to fit within background dimensions
+                height: 60.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -138,7 +138,7 @@ class SelectMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
-                    fontSize: 18.0,
+                    fontSize: 22.0,
                   ),
                   maxLines: 1,
                 ),

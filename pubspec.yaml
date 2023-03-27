@@ -37,9 +37,6 @@ flutter:
     - assets/images/button/
     - assets/images/label/
     - assets/audio/
-    - assets/json/oneword.json
-    - assets/json/vocabtwoword.json
-    - assets/json/threeword.json
     - assets/json/
     - assets/
 

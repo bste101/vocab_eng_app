@@ -1,39 +1,59 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:vocab_eng_app/games/mygame.dart';
-import 'package:vocab_eng_app/games/quizgame.dart';
-import 'package:vocab_eng_app/screens/utils/hud.dart';
+import 'package:vocab_eng_app/games/quiz_game.dart';
 
-class GetJson extends StatelessWidget {
+
+class GetJson extends StatefulWidget {
   final String langname;
-  String assettoload = '';
+  const GetJson({super.key, required this.langname});
 
-  GetJson({required this.langname});
+  @override
+  State<GetJson> createState() => _GetJsonState();
+}
 
-  void setAsset() {
-    if (langname == 'One') {
+class _GetJsonState extends State<GetJson> {
+  late String assettoload;
+
+  @override
+  void initState() {
+    super.initState();
+    setAsset();
+  }
+    void setAsset() {
+    if (widget.langname == 'One') {
       assettoload = 'assets/json/oneword.json';
-    } else if (langname == 'Two') {
-      assettoload = 'assets/json/vocabtwoword.json';
-    } else if (langname == 'Three') {
+    } else if (widget.langname == 'Two') {
+      assettoload = 'assets/json/twoword.json';
+    } else if (widget.langname == 'Three') {
       assettoload = 'assets/json/threeword.json';
     }
   }
 
-  @override
+  Future<List<dynamic>> _loadJson() async {
+    final jsonString =
+        await rootBundle.loadString(assettoload, cache: false);
+    final jsonResponse = json.decode(jsonString);
+    return jsonResponse;
+  }
+
+   @override
   Widget build(BuildContext context) {
-    setAsset();
-    return FutureBuilder(
-      future: DefaultAssetBundle.of(context).loadString(assettoload, cache: false),
+    return FutureBuilder<List<dynamic>>(
+      future: _loadJson(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List mydata = json.decode(snapshot.data.toString());
-          return QuizGame(mydata: mydata,);
+          return QuizGame(mydata: snapshot.data!);
+        } else if (snapshot.hasError) {
+          return const Scaffold(
+            body: Center(
+              child: Text('Error loading JSON'),
+            ),
+          );
         } else {
           return const Scaffold(
             body: Center(
-              child: Text('Loading'),
+              child: CircularProgressIndicator(),
             ),
           );
         }
@@ -41,3 +61,4 @@ class GetJson extends StatelessWidget {
     );
   }
 }
+

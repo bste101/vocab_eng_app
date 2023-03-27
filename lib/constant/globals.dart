@@ -25,4 +25,6 @@ class Globals {
   static const String onewordjson = 'json/oneword.json';
   static const String twowordjson = 'json/twoword.json';
   static const String threewordjson = 'json/threeword.json';
+  static const String boxgameOver = 'background/boxgameover.png';
+  static const String iconback = 'button';
 }

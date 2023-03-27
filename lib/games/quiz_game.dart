@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
-
+import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
 
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
@@ -50,11 +50,11 @@ class _QuizGameState extends State<QuizGame> {
 
   genrandomarray() {
     var distinctIds = [];
-    var rand = new Random();
+    var rand = Random();
     for (int i = 0;;) {
-      distinctIds.add(rand.nextInt(9));
+      distinctIds.add(rand.nextInt(10));
       random_array = distinctIds.toSet().toList();
-      if (random_array.length < 9) {
+      if (random_array.length < 10) {
         continue;
       } else {
         break;
@@ -63,7 +63,7 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   void starttimer() async {
-    const onesec = Duration(seconds: 1);
+    const onesec = Duration(seconds: 2);
     Timer.periodic(onesec, (Timer t) {
       setState(() {
         if (timer < 1) {
@@ -88,7 +88,11 @@ class _QuizGameState extends State<QuizGame> {
         i = random_array[j];
         j++;
       } else {
-        // End of game
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => GameOverMenu(
+            score: score,
+          ),
+        ));
       }
       btncolor["a"] = Colors.white;
       btncolor["b"] = Colors.white;
@@ -99,13 +103,18 @@ class _QuizGameState extends State<QuizGame> {
 
   void checkanswer(String k) {
     if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
+      score += 5;
       colortoshow = right;
     } else {
       colortoshow = wrong;
       setState(() {
         life--;
         if (life == 0) {
-          // End of game
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => GameOverMenu(
+              score: score,
+            ),
+          ));
         }
       });
     }
@@ -115,47 +124,53 @@ class _QuizGameState extends State<QuizGame> {
       }
       canceltimer = true;
       disableAnswer = true;
+      if( k.isEmpty) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => GameOverMenu(
+              score: score,
+            ),
+          ));
+      }
     });
-    Timer(Duration(seconds: 1), nextquestion);
+    Timer(Duration(seconds: 2), nextquestion);
   }
 
   Widget hud() {
-  return Padding(
-    padding: const EdgeInsets.only(top: 10, left: 0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Score : $score',
-          style: const TextStyle(fontSize: 25, color: Colors.white),
-        ),
-        Text(
-          'Timer : $showtimer',
-          style: const TextStyle(fontSize: 25, color: Colors.white),
-        ),
-        Row(
-          children: List.generate(3, (index) {
-            if (index < life) {
-              return SizedBox(
-                width: 30,
-                height: 40,
-                child: Image.asset('assets/images/${Globals.lifeSprite}'),
-              );
-            } else {
-              return SizedBox(
-                width: 30,
-                height: 40,
-                child: Image.asset(
-                    'assets/images/${Globals.lifeLoseSprite}'),
-              );
-            }
-          }),
-        ),
-      ],
-    ),
-  );
-}
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, left: 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Score : $score',
+            style: const TextStyle(fontSize: 25, color: Colors.white),
+          ),
+          Text(
+            'Timer : $showtimer',
+            style: const TextStyle(fontSize: 25, color: Colors.white),
+          ),
+          Row(
+            children: List.generate(3, (index) {
+              if (index < life) {
+                return SizedBox(
+                  width: 30,
+                  height: 40,
+                  child: Image.asset('assets/images/${Globals.lifeSprite}'),
+                );
+              } else {
+                return SizedBox(
+                  width: 30,
+                  height: 40,
+                  child: Image.asset('assets/images/${Globals.lifeLoseSprite}'),
+                );
+              }
+            }),
+          ),
+        ],
+      ),
+    );
+  }
 
   Widget choicebutton(String k) {
     return Padding(
@@ -173,7 +188,8 @@ class _QuizGameState extends State<QuizGame> {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
-          mydata[1][i.toString()]                [k],
+          //$_threadException.stackTrace
+          mydata[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
             fontFamily: "Alike",
@@ -185,7 +201,7 @@ class _QuizGameState extends State<QuizGame> {
     );
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -250,30 +266,30 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            // box word
-            top: 280,
-            left: 65,
-            child: Container(
-                padding: const EdgeInsets.all(0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                height: 120,
-                width: 270,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      mydata[0][i.toString()], // text
-                      style: const TextStyle(
-                          color: Colors.black38,
-                          fontFamily: "SecularOne-Regular",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28.0),
-                      //textAlign: TextAlign.center,
-                    )
-                  ],
-                ))),
+              // box word
+              top: 280,
+              left: 65,
+              child: Container(
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 120,
+                  width: 270,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        mydata[0][i.toString()], // text
+                        style: const TextStyle(
+                            color: Colors.black38,
+                            fontFamily: "SecularOne-Regular",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28.0),
+                        //textAlign: TextAlign.center,
+                      )
+                    ],
+                  ))),
           // HUD widget
           Positioned(
             top: 10,
@@ -286,13 +302,11 @@ class _QuizGameState extends State<QuizGame> {
                 children: [
                   Text(
                     'Score : $score',
-                    style: const TextStyle(
-                        fontSize: 25, color: Colors.white),
+                    style: const TextStyle(fontSize: 25, color: Colors.white),
                   ),
                   Text(
                     'Timer : $showtimer',
-                    style: const TextStyle(
-                        fontSize: 25, color: Colors.white),
+                    style: const TextStyle(fontSize: 25, color: Colors.white),
                   ),
                   Row(
                     children: List.generate(3, (index) {
@@ -321,5 +335,4 @@ class _QuizGameState extends State<QuizGame> {
       ),
     );
   }
-
 }

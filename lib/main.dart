@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:vocab_eng_app/constant/globals.dart';
+import 'package:flame/flame.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
-void main() => runApp(const MyApp());
+
+void main() {
+  // Make the app full screen
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.fullScreen();
+  runApp(
+    const MyApp(
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
 
