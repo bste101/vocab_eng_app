@@ -23,11 +23,10 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
   int i = 1;
 
   Future<List<dynamic>> loadJsonData() async {
-  String jsonData =
-      await DefaultAssetBundle.of(context).loadString(assettoload, 
-      cache: false);
-  return myVocabTwoData = json.decode(jsonData);
-}
+    String jsonData = await DefaultAssetBundle.of(context)
+        .loadString(assettoload, cache: false);
+    return myVocabTwoData = json.decode(jsonData);
+  }
 
   Widget choicethreebutton(String k) {
     return Padding(
@@ -48,7 +47,7 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
           myVocabTwoData[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
-            fontFamily: "Alike",
+            fontFamily: "SecularOne-Regular",
             fontSize: 15.0,
           ),
           maxLines: 1,
@@ -118,8 +117,7 @@ class _QuizGameTwoState extends State<QuizGameTwo> {
                     child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             choicethreebutton('a'),

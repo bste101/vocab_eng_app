@@ -50,18 +50,18 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  genrandomarray(){
+  genrandomarray() {
     var distinctIds = [];
-    var rand = new Random();
-      for (int i = 0; ;) {
+    var rand = Random();
+    for (int i = 0;;) {
       distinctIds.add(rand.nextInt(9));
-        random_array = distinctIds.toSet().toList();
-        if(random_array.length < 9){
-          continue;
-        }else{
-          break;
-        }
+      random_array = distinctIds.toSet().toList();
+      if (random_array.length < 9) {
+        continue;
+      } else {
+        break;
       }
+    }
   }
 
   void starttimer() async {
@@ -100,27 +100,24 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   Future<List<dynamic>> loadJsonData() async {
-  String jsonData =
-      await DefaultAssetBundle.of(context).loadString(assettoload, 
-      cache: false);
-  return myVocabData = json.decode(jsonData);
-}
-void checkanswer(String k) {
-    if (myVocabData[2][i.toString()] == myVocabData[1][i.toString()][k]) {
+    String jsonData = await DefaultAssetBundle.of(context)
+        .loadString(assettoload, cache: false);
+    return myVocabData = json.decode(jsonData);
+  }
 
+  void checkanswer(String k) {
+    if (myVocabData[2][i.toString()] == myVocabData[1][i.toString()][k]) {
       colortoshow = right;
     } else {
       colortoshow = wrong;
-      
     }
     setState(() {
-
       btncolor[k] = colortoshow;
       canceltimer = true;
       disableAnswer = true;
     });
-    Timer(Duration(seconds: 1), nextquestion);
-}
+    Timer(const Duration(seconds: 1), nextquestion);
+  }
 
   Widget choicebutton(String k) {
     return Padding(
@@ -138,11 +135,11 @@ void checkanswer(String k) {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
-          myVocabData[1][i.toString()]                [k],
+          myVocabData[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
-            fontFamily: "Alike",
-            fontSize: 16.0,
+            fontFamily: "SecularOne-Regular",
+            fontSize: 18.0,
           ),
           maxLines: 1,
         ),
@@ -211,8 +208,7 @@ void checkanswer(String k) {
                     child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             choicebutton('a'),
