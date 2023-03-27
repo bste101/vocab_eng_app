@@ -49,18 +49,18 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  genrandomarray() {
+  genrandomarray(){
     var distinctIds = [];
-    var rand = Random();
-    for (int i = 0;;) {
+    var rand = new Random();
+      for (int i = 0; ;) {
       distinctIds.add(rand.nextInt(9));
-      random_array = distinctIds.toSet().toList();
-      if (random_array.length < 9) {
-        continue;
-      } else {
-        break;
+        random_array = distinctIds.toSet().toList();
+        if(random_array.length < 9){
+          continue;
+        }else{
+          break;
+        }
       }
-    }
   }
 
   void starttimer() async {
@@ -97,7 +97,6 @@ class _QuizGameState extends State<QuizGame> {
     starttimer();
   }
 
-<<<<<<< HEAD
 void checkanswer(String k) {
     if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
       score = score + 5;
@@ -105,27 +104,15 @@ void checkanswer(String k) {
     } else {
       colortoshow = wrong;
       life -= 1;
-=======
-  Future<List<dynamic>> loadJsonData() async {
-    String jsonData = await DefaultAssetBundle.of(context)
-        .loadString(assettoload, cache: false);
-    return myVocabData = json.decode(jsonData);
-  }
-
-  void checkanswer(String k) {
-    if (myVocabData[2][i.toString()] == myVocabData[1][i.toString()][k]) {
-      colortoshow = right;
-    } else {
-      colortoshow = wrong;
->>>>>>> d1706b5670ca7ec6067e33835717d867afa292dc
     }
     setState(() {
+
       btncolor[k] = colortoshow;
       canceltimer = true;
       disableAnswer = true;
     });
-    Timer(const Duration(seconds: 1), nextquestion);
-  }
+    Timer(Duration(seconds: 1), nextquestion);
+}
 
   Widget hud() {
   return Padding(
@@ -181,15 +168,11 @@ void checkanswer(String k) {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Text(
-<<<<<<< HEAD
           mydata[1][i.toString()]                [k],
-=======
-          myVocabData[1][i.toString()][k],
->>>>>>> d1706b5670ca7ec6067e33835717d867afa292dc
           style: const TextStyle(
             color: Colors.black,
-            fontFamily: "SecularOne-Regular",
-            fontSize: 18.0,
+            fontFamily: "Alike",
+            fontSize: 16.0,
           ),
           maxLines: 1,
         ),
@@ -261,95 +244,31 @@ void checkanswer(String k) {
                   )),
             ),
           ),
-          Positioned(
-            // box word
-            top: 280,
-            left: 65,
-            child: Container(
-                padding: const EdgeInsets.all(0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                height: 120,
-                width: 270,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      mydata[0][i.toString()], // text
-                      style: const TextStyle(
-                          color: Colors.black38,
-                          fontFamily: "SecularOne-Regular",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28.0),
-                      //textAlign: TextAlign.center,
-                    )
-                  ],
-                ))),
-          // HUD widget
-          Positioned(
-            top: 10,
-            left: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Score : $score',
-                    style: const TextStyle(
-                        fontSize: 25, color: Colors.white),
-                  ),
-                  Text(
-                    'Timer : $showtimer',
-                    style: const TextStyle(
-                        fontSize: 25, color: Colors.white),
-                  ),
-<<<<<<< HEAD
-                  Row(
-                    children: List.generate(3, (index) {
-                      if (index < life) {
-                        return SizedBox(
-                          width: 30,
-                          height: 40,
-                          child: Image.asset(
-                              'assets/images/${Globals.lifeSprite}'),
-                        );
-                      } else {
-                        return SizedBox(
-                          width: 30,
-                          height: 40,
-                          child: Image.asset(
-                              'assets/images/${Globals.lifeLoseSprite}'),
-                        );
-                      }
-                    }),
-=======
-                ),
-                Positioned(
-                  bottom: 40,
-                  left: 10,
-                  right: 0,
-                  child: SizedBox(
-                    height: 100,
-                    width: 50,
-                    child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
+           Positioned(
+                    // box word
+                    top: 280,
+                    left: 65,
+                    child: Container(
+                        padding: const EdgeInsets.all(0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        height: 120,
+                        width: 270,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            choicebutton('a'),
-                            choicebutton('b'),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              mydata[0][i.toString()], // text
+                              style: const TextStyle(
+                                  color: Colors.black38,
+                                  fontFamily: "SecularOne-Regular",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 28.0),
+                              //textAlign: TextAlign.center,
+                            )
                           ],
-                        )),
->>>>>>> d1706b5670ca7ec6067e33835717d867afa292dc
-                  ),
-                ],
-              ),
-            ),
-          ),
+                        ))),
         ],
       ),
     );
