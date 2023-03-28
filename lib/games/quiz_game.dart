@@ -134,7 +134,7 @@ class _QuizGameState extends State<QuizGame> {
         ));
       }
     });
-    Timer(Duration(seconds: 2), nextquestion);
+    Timer(const Duration(seconds: 2), nextquestion);
   }
 
   Widget choicebutton(String k) {

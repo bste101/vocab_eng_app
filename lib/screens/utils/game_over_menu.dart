@@ -105,9 +105,9 @@ class _GameOverMenuState extends State<GameOverMenu> {
               child: const Text(
                 "Play Again",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 0, 0, 0),
                   fontFamily: "SecularOne-Regular",
-                  fontSize: 18.0,
+                  fontSize: 22.0,
                 ),
                 maxLines: 1,
               ),
@@ -137,7 +137,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: "SecularOne-Regular",
-                  fontSize: 18.0,
+                  fontSize: 22.0,
                 ),
                 maxLines: 1,
               ),
