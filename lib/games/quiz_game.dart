@@ -28,6 +28,7 @@ class _QuizGameState extends State<QuizGame> {
   int i = 1;
   int j = 1;
   int timer = 10;
+  int pausedTimer = 10;
   String showtimer = "10";
   int score = 0;
   int life = 3;
