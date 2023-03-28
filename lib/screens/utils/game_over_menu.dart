@@ -5,11 +5,12 @@ didn't finished
 */
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
+import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 import 'package:vocab_eng_app/screens/utils/select_menu.dart';
 
 class GameOverMenu extends StatefulWidget {
   final int score;
-  GameOverMenu({super.key, required this.score});
+  const GameOverMenu({super.key, required this.score});
 
   @override
   State<GameOverMenu> createState() => _GameOverMenuState(score);
@@ -116,7 +117,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
                   // in changelog 1 we will pass the langname name to ther other widget class
                   // this name will be used to open a particular JSON file
                   // for a particular language
-                  builder: (context) => SelectMenu(),
+                  builder: (context) => const MainMenu(),
                 ));
                 },
                 color: Colors.white,

@@ -61,4 +61,3 @@ class _GetJsonState extends State<GetJson> {
     );
   }
 }
-

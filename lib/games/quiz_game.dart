@@ -25,8 +25,8 @@ class _QuizGameState extends State<QuizGame> {
   var random_array;
   int i = 1;
   int j = 1;
-  int timer = 5;
-  String showtimer = "5";
+  int timer = 10;
+  String showtimer = "10";
   int score = 0;
   int life = 3;
   Map<String, Color> btncolor = {
@@ -47,21 +47,31 @@ class _QuizGameState extends State<QuizGame> {
       super.setState(fn);
     }
   }
+
   //////พังแรนด้อมไม่ได้
   genrandomarray() {
-    random_array = List.generate(mydata.length, (index) => index);
-     random_array.shuffle(); // Shuffle the list of indices
+    List<int> indices = List.generate(mydata.length, (index) => index);
+    indices.shuffle(); // Shuffle the list of indices
+    List<dynamic> randomArray = indices.map((i) => mydata[i]).toList();
+    return randomArray;
   }
+
   void starttimer() async {
-    const onesec = Duration(seconds: 2);
+    const onesec = Duration(seconds: 1);
     Timer.periodic(onesec, (Timer t) {
       setState(() {
         if (timer < 1) {
           t.cancel();
-          checkanswer("");
+          life--;
+          setState(() {if (life == 0) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => GameOverMenu(
+            score: score,
+          ),
+        ));
+      }});
         } else if (canceltimer == true) {
           t.cancel();
-          nextquestion();
         } else {
           timer = timer - 1;
         }
@@ -72,10 +82,10 @@ class _QuizGameState extends State<QuizGame> {
 
   void nextquestion() {
     canceltimer = false;
-    timer = 5;
+    timer = 10;
     setState(() {
       if (j < 10) {
-        i == random_array[j]; //พังแรนด้อมไม่ได้
+        i++; //พังแรนด้อมไม่ได้
         j++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -97,16 +107,14 @@ class _QuizGameState extends State<QuizGame> {
       colortoshow = right;
     } else {
       colortoshow = wrong;
-      setState(() {
-        life--;
-        if (life == 0) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => GameOverMenu(
-              score: score,
-            ),
-          ));
-        }
-      });
+      life--;
+      setState(() {if (life == 0) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => GameOverMenu(
+            score: score,
+          ),
+        ));
+      } });
     }
     setState(() {
       if (k.isNotEmpty) {
@@ -114,15 +122,8 @@ class _QuizGameState extends State<QuizGame> {
       }
       canceltimer = true;
       disableAnswer = true;
-      if( k.isEmpty) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => GameOverMenu(
-              score: score,
-            ),
-          ));
-      }
     });
-    Timer(Duration(seconds: 2), nextquestion);
+    Timer(Duration(seconds: 1), nextquestion);
   }
 
   Widget choicebutton(String k) {
