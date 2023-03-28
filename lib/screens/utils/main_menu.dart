@@ -47,7 +47,7 @@ class MainMenu extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => SelectMenu(),
+                      builder: (context) => const SelectMenu(),
                     ));
                   },
                   icon: Image.asset(

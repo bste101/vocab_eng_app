@@ -7,14 +7,12 @@ didn't finished Normal and Hard Mode
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/getjson.dart';
-
-
+import 'package:vocab_eng_app/games/mygame.dart';
 
 class SelectMenu extends StatelessWidget {
   static const id = 'SelectMenu';
 
-
-  SelectMenu({
+  const SelectMenu({
     Key? key,
   }) : super(key: key);
 
@@ -57,11 +55,11 @@ class SelectMenu extends StatelessWidget {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
-                  builder: (context) => GetJson(langname: 'One'),
-                ));
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const GetJson(langname: 'One'),
+                  ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
@@ -88,11 +86,11 @@ class SelectMenu extends StatelessWidget {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
-                  builder: (context) => GetJson(langname: 'Two'),
-                ));
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const GetJson(langname: 'Two'),
+                  ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
@@ -119,11 +117,11 @@ class SelectMenu extends StatelessWidget {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
-                  builder: (context) => GetJson(langname: 'Three'),
-                ));
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const GetJson(langname: 'Three'),
+                  ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,

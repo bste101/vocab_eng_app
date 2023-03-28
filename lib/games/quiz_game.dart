@@ -11,6 +11,7 @@ class QuizGame extends StatefulWidget {
   const QuizGame({Key? key, required this.mydata}) : super(key: key);
 
   @override
+  // ignore: no_logic_in_create_state
   State<QuizGame> createState() => _QuizGameState(mydata);
 }
 
@@ -22,6 +23,7 @@ class _QuizGameState extends State<QuizGame> {
   Color wrong = Colors.red;
   bool disableAnswer = false;
   bool canceltimer = false;
+  // ignore: non_constant_identifier_names, prefer_typing_uninitialized_variables
   var random_array;
   int i = 1;
   int j = 1;
@@ -50,10 +52,8 @@ class _QuizGameState extends State<QuizGame> {
 
   //////พังแรนด้อมไม่ได้
   genrandomarray() {
-    List<int> indices = List.generate(mydata.length, (index) => index);
-    indices.shuffle(); // Shuffle the list of indices
-    List<dynamic> randomArray = indices.map((i) => mydata[i]).toList();
-    return randomArray;
+    random_array = List.generate(mydata.length, (index) => index);
+    random_array.shuffle(); // Shuffle the list of indices
   }
 
   void starttimer() async {
@@ -63,13 +63,15 @@ class _QuizGameState extends State<QuizGame> {
         if (timer < 1) {
           t.cancel();
           life--;
-          setState(() {if (life == 0) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => GameOverMenu(
-            score: score,
-          ),
-        ));
-      }});
+          setState(() {
+            if (life == 0) {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => GameOverMenu(
+                  score: score,
+                ),
+              ));
+            }
+          });
         } else if (canceltimer == true) {
           t.cancel();
         } else {
@@ -108,13 +110,15 @@ class _QuizGameState extends State<QuizGame> {
     } else {
       colortoshow = wrong;
       life--;
-      setState(() {if (life == 0) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => GameOverMenu(
-            score: score,
-          ),
-        ));
-      } });
+      setState(() {
+        if (life == 0) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => GameOverMenu(
+              score: score,
+            ),
+          ));
+        }
+      });
     }
     setState(() {
       if (k.isNotEmpty) {
@@ -122,8 +126,15 @@ class _QuizGameState extends State<QuizGame> {
       }
       canceltimer = true;
       disableAnswer = true;
+      if (k.isEmpty) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => GameOverMenu(
+            score: score,
+          ),
+        ));
+      }
     });
-    Timer(Duration(seconds: 1), nextquestion);
+    Timer(Duration(seconds: 2), nextquestion);
   }
 
   Widget choicebutton(String k) {
@@ -146,8 +157,8 @@ class _QuizGameState extends State<QuizGame> {
           mydata[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
-            fontFamily: "Alike",
-            fontSize: 16.0,
+            fontFamily: "SecularOne-Regular",
+            fontSize: 18.0,
           ),
           maxLines: 1,
         ),
@@ -201,7 +212,8 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            bottom: 0,
+            //choice button
+            bottom: 40,
             left: 10,
             right: 0,
             child: SizedBox(
@@ -256,11 +268,19 @@ class _QuizGameState extends State<QuizGame> {
                 children: [
                   Text(
                     'Score : $score',
-                    style: const TextStyle(fontSize: 25, color: Colors.white),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontFamily: "SecularOne-Regular",
+                    ),
                   ),
                   Text(
                     'Timer : $showtimer',
-                    style: const TextStyle(fontSize: 25, color: Colors.white),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontFamily: "SecularOne-Regular",
+                    ),
                   ),
                   Row(
                     children: List.generate(3, (index) {
