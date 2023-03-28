@@ -28,7 +28,6 @@ class _QuizGameState extends State<QuizGame> {
   int i = 1;
   int j = 1;
   int timer = 10;
-  int pausedTimer = 10;
   String showtimer = "10";
   int score = 0;
   int life = 3;
@@ -96,7 +95,7 @@ class _QuizGameState extends State<QuizGame> {
 
   void nextquestion() {
     canceltimer = false;
-    timer = 10;
+    timer = 5;
     setState(() {
       if (j < mydata[0].length) {
         i++;
@@ -169,8 +168,9 @@ class _QuizGameState extends State<QuizGame> {
           mydata[1][i.toString()][k],
           style: const TextStyle(
             color: Colors.black,
-            fontFamily: "SecularOne-Regular",
-            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: "NotoThai",
+            fontSize: 24.0,
           ),
           maxLines: 1,
         ),
@@ -198,7 +198,7 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
             top: 200,
-            left: 60,
+            left: 70,
             child: Container(
               width: 250,
               height: 250,
@@ -251,6 +251,12 @@ class _QuizGameState extends State<QuizGame> {
                   padding: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
                       color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(blurRadius: 5.0, offset: Offset(0, 5))
+                      ],
+                      border: Border.all(
+                          color: const Color.fromARGB(255, 236, 235, 235),
+                          width: 5),
                       borderRadius: BorderRadius.circular(10)),
                   height: 120,
                   width: 270,
@@ -263,7 +269,7 @@ class _QuizGameState extends State<QuizGame> {
                             color: Colors.black38,
                             fontFamily: "SecularOne-Regular",
                             fontWeight: FontWeight.bold,
-                            fontSize: 30.0),
+                            fontSize: 34.0),
                         //textAlign: TextAlign.center,
                       )
                     ],

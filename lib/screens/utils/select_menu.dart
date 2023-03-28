@@ -70,6 +70,11 @@ class SelectMenu extends StatelessWidget {
                 child: const Text(
                   "One Word",
                   style: TextStyle(
+                    shadows: [
+                      Shadow(
+                          color: Color.fromARGB(255, 221, 221, 221),
+                          offset: Offset(2, 3))
+                    ],
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
                     fontSize: 24.0,
@@ -101,6 +106,11 @@ class SelectMenu extends StatelessWidget {
                 child: const Text(
                   "Two Word",
                   style: TextStyle(
+                    shadows: [
+                      Shadow(
+                          color: Color.fromARGB(255, 221, 221, 221),
+                          offset: Offset(2, 3))
+                    ],
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
                     fontSize: 24.0,
@@ -132,6 +142,11 @@ class SelectMenu extends StatelessWidget {
                 child: const Text(
                   "Three Word",
                   style: TextStyle(
+                    shadows: [
+                      Shadow(
+                          color: Color.fromARGB(255, 221, 221, 221),
+                          offset: Offset(2, 3))
+                    ],
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
                     fontSize: 24.0,
@@ -162,6 +177,11 @@ class SelectMenu extends StatelessWidget {
                 child: const Text(
                   "Back",
                   style: TextStyle(
+                    shadows: [
+                      Shadow(
+                          color: Color.fromARGB(255, 221, 221, 221),
+                          offset: Offset(2, 3))
+                    ],
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
                     fontSize: 20.0,
