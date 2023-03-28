@@ -31,20 +31,19 @@ class MainMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 210,
-                  height: 230,
+                  width: 330,
+                  height: 330,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
                         "assets/images/${Globals.labelNameSprite}",
                       ),
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 const SizedBox(height: 50),
                 IconButton(
-                  padding: EdgeInsets.zero,
+                  padding: const EdgeInsets.all(0),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const SelectMenu(),

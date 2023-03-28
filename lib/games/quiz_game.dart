@@ -251,7 +251,7 @@ class _QuizGameState extends State<QuizGame> {
                             color: Colors.black38,
                             fontFamily: "SecularOne-Regular",
                             fontWeight: FontWeight.bold,
-                            fontSize: 28.0),
+                            fontSize: 30.0),
                         //textAlign: TextAlign.center,
                       )
                     ],

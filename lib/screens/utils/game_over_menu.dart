@@ -107,14 +107,14 @@ class _GameOverMenuState extends State<GameOverMenu> {
                 style: TextStyle(
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontFamily: "SecularOne-Regular",
-                  fontSize: 22.0,
+                  fontSize: 24.0,
                 ),
                 maxLines: 1,
               ),
             ),
           ),
           Positioned(
-            left: 110,
+            left: 125,
             bottom: 110,
             child: MaterialButton(
               onPressed: () {
@@ -128,8 +128,8 @@ class _GameOverMenuState extends State<GameOverMenu> {
               color: Colors.white,
               splashColor: Colors.white,
               highlightColor: const Color.fromARGB(255, 91, 91, 91),
-              minWidth: 180.0, // Adjust to fit within background dimensions
-              height: 75.0, // Adjust to fit within background dimensions
+              minWidth: 150.0, // Adjust to fit within background dimensions
+              height: 60.0, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               child: const Text(
