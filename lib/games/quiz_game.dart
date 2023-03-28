@@ -27,8 +27,8 @@ class _QuizGameState extends State<QuizGame> {
   var random_array;
   int i = 1;
   int j = 1;
-  int timer = 10;
-  String showtimer = "10";
+  int timer = 5;
+  String showtimer = "5";
   int score = 0;
   int life = 3;
   Map<String, Color> btncolor = {
@@ -96,7 +96,7 @@ class _QuizGameState extends State<QuizGame> {
 
   void nextquestion() {
     canceltimer = false;
-    timer = 10;
+    timer = 5;
     setState(() {
       if (j < mydata[0].length) {
         i++;
