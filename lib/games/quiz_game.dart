@@ -16,7 +16,7 @@ class QuizGame extends StatefulWidget {
 }
 
 class _QuizGameState extends State<QuizGame> {
-  final List mydata;
+  List mydata;
   _QuizGameState(this.mydata);
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
   Color right = Colors.green;
@@ -38,8 +38,8 @@ class _QuizGameState extends State<QuizGame> {
 
   @override
   void initState() {
+    // genRandomArray();
     starttimer();
-    // genrandomarray();
     super.initState();
   }
 
@@ -50,22 +50,20 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  //////พังแรนด้อมไม่ได้
-  // genrandomarray() {
-  //   if (mydata.isNotEmpty) {
-  //   var distinctIds = [];
-  //   var rand = Random();
-  //     for (i = 0; ;) {
-  //     distinctIds.add(rand.nextInt(mydata[0].length));
-  //       random_array = distinctIds.toSet().toList();
-  //       if(random_array.length < mydata[0].length){
-  //         continue;
-  //       }else{
-  //         break;
-  //       }
-  //     }
-  //   }
-  // }
+  ////พังแรนด้อมไม่ได้
+//   List<dynamic> genRandomArray() {
+//   var distinctIds = [];
+//   var rand = Random();
+
+//   if (mydata.isNotEmpty) {
+//     for (var i = 0; i < mydata[0].length; i++) {
+//       distinctIds.add(rand.nextInt(mydata[0].length));
+//     }
+//     mydata = distinctIds.toSet().toList();
+//   }
+  
+//   return mydata;
+// }
 
   void starttimer() async {
     const onesec = Duration(seconds: 1);
