@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
+import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
@@ -23,11 +24,11 @@ class _QuizGameState extends State<QuizGame> {
   Color wrong = Colors.red;
   bool disableAnswer = false;
   bool canceltimer = false;
-  // ignore: non_constant_identifier_names, prefer_typing_uninitialized_variables
   var random_array;
   int i = 1;
   int j = 1;
   int timer = 10;
+  int pausedTimer = 10;
   String showtimer = "10";
   int score = 0;
   int life = 3;
@@ -38,7 +39,6 @@ class _QuizGameState extends State<QuizGame> {
 
   @override
   void initState() {
-    // genRandomArray();
     starttimer();
     super.initState();
   }
@@ -50,22 +50,20 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  // void genRandomArray() {
-  //   if (mydata.isNotEmpty) {
-  //     var distinctIds = [];
-  //   var rand = new Random();
-  //     for (int i = 0; ;) {
-  //     distinctIds.add(rand.nextInt(10));
-  //       random_array = distinctIds.toSet().toList();
-  //       if(random_array.length < 10){
-  //         continue;
-  //       }else{
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   return random_array;
-  // }
+  bool _paused = false;
+
+  void _togglePause() {
+    setState(() {
+      _paused = !_paused;
+      if (_paused) {
+        canceltimer = true;
+      } else {
+        timer = pausedTimer; // Start the timer from the paused value
+        canceltimer = false;
+        starttimer(); // Set canceltimer to false to resume the timer
+      }
+    });
+  }
 
   void starttimer() async {
     const onesec = Duration(seconds: 1);
@@ -86,8 +84,10 @@ class _QuizGameState extends State<QuizGame> {
           nextquestion();
         } else if (canceltimer == true) {
           t.cancel();
+          pausedTimer = timer; // Save the current timer value
         } else {
           timer = timer - 1;
+          pausedTimer = timer; // Update the pausedTimer value
         }
         showtimer = timer.toString();
       });
@@ -270,42 +270,28 @@ class _QuizGameState extends State<QuizGame> {
                   ))),
           // HUD widget
           Positioned(
-            top: 10,
-            left: 0,
+            top: 0,
+            left: -5,
             right: 0,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Score : $score',
-                    style: const TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontFamily: "SecularOne-Regular",
-                    ),
-                  ),
-                  Text(
-                    'Timer : $showtimer',
-                    style: const TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontFamily: "SecularOne-Regular",
-                    ),
-                  ),
-                  Row(
+                  Column(
+                    children: [
+                      Row(
                     children: List.generate(3, (index) {
                       if (index < life) {
                         return SizedBox(
-                          width: 30,
+                          width: 35,
                           height: 40,
                           child: Image.asset(
                               'assets/images/${Globals.lifeSprite}'),
                         );
                       } else {
                         return SizedBox(
-                          width: 30,
+                          width: 35,
                           height: 40,
                           child: Image.asset(
                               'assets/images/${Globals.lifeLoseSprite}'),
@@ -313,10 +299,95 @@ class _QuizGameState extends State<QuizGame> {
                       }
                     }),
                   ),
+                      Text(
+                        'Score : $score',
+                        style: const TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontFamily: "SecularOne-Regular",
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                        '$showtimer',
+                        style: const TextStyle(
+                          fontSize: 50,
+                          color: Colors.white,
+                          fontFamily: "SecularOne-Regular",
+                        ),
+                      ),
+                  FloatingActionButton(
+                    onPressed: _togglePause,
+                    child: Icon(_paused ? Icons.play_arrow : Icons.pause),
+                  ),
+                  // Pause menu
                 ],
               ),
             ),
           ),
+          if (_paused)
+            Container(
+              color: Colors.black.withOpacity(0.5),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'PAUSED',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    SizedBox(
+                      height: 60,
+                      width: 140,
+                      child: ElevatedButton(
+                        onPressed: _togglePause,
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.yellow),
+                        ),
+                        child: const Text(
+                          'RESUME',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    SizedBox(
+                      height: 60,
+                      width: 140,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => const MainMenu(),
+                          ));
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.red),
+                        ),
+                        child: const Text(
+                          'QUIT',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
     );

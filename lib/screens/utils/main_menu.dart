@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/select_menu.dart';
+import 'package:vocab_eng_app/screens/utils/setting_menu.dart';
 
 class MainMenu extends StatelessWidget {
   static const id = 'MainMenu';
@@ -61,7 +62,11 @@ class MainMenu extends StatelessWidget {
             right: 20,
             child: IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () {},
+              onPressed: () {
+          //        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          //   builder: (context) => SettingMenu(),
+          // ));
+              },
               icon: Image.asset(
                 "assets/images/${Globals.iconsettingSprite}",
               ),
