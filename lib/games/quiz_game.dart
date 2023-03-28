@@ -50,10 +50,17 @@ class _QuizGameState extends State<QuizGame> {
 
   //////พังแรนด้อมไม่ได้
   genrandomarray() {
-    List<int> indices = List.generate(mydata.length, (index) => index);
-    indices.shuffle(); // Shuffle the list of indices
-    List<dynamic> randomArray = indices.map((i) => mydata[i]).toList();
-    return randomArray;
+    var distinctIds = [];
+    var rand = Random();
+      for (i = 0; ;) {
+      distinctIds.add(rand.nextInt(10));
+        random_array = distinctIds.toSet().toList();
+        if(random_array.length < 10){
+          continue;
+        }else{
+          break;
+        }
+      }
   }
 
   void starttimer() async {
@@ -69,6 +76,7 @@ class _QuizGameState extends State<QuizGame> {
             score: score,
           ),
         ));
+        nextquestion();
       }});
         } else if (canceltimer == true) {
           t.cancel();
@@ -123,7 +131,7 @@ class _QuizGameState extends State<QuizGame> {
       canceltimer = true;
       disableAnswer = true;
     });
-    Timer(Duration(seconds: 1), nextquestion);
+    Timer(const Duration(seconds: 1), nextquestion);
   }
 
   Widget choicebutton(String k) {
