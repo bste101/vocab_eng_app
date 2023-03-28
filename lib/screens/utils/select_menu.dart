@@ -7,14 +7,13 @@ didn't finished Normal and Hard Mode
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/getjson.dart';
-
-
+import 'package:vocab_eng_app/games/mygame.dart';
+import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
 class SelectMenu extends StatelessWidget {
   static const id = 'SelectMenu';
 
-
-  SelectMenu({
+  const SelectMenu({
     Key? key,
   }) : super(key: key);
 
@@ -37,16 +36,15 @@ class SelectMenu extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 600,
-              left: 100,
+              bottom: 570,
+              left: 40,
               child: Container(
-                width: 200,
-                height: 50,
+                width: 320,
+                height: 100,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                   image:
                       AssetImage("assets/images/${Globals.buttonLevelSprite}"),
-                  fit: BoxFit.fill,
                 )),
               ),
             ),
@@ -57,17 +55,17 @@ class SelectMenu extends StatelessWidget {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
-                  builder: (context) => GetJson(langname: 'One'),
-                ));
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const GetJson(langname: 'One'),
+                  ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
                 minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 60.0, // Adjust to fit within background dimensions
+                height: 75.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -75,7 +73,7 @@ class SelectMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
-                    fontSize: 22.0,
+                    fontSize: 24.0,
                   ),
                   maxLines: 1,
                 ),
@@ -88,17 +86,17 @@ class SelectMenu extends StatelessWidget {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
-                  builder: (context) => GetJson(langname: 'Two'),
-                ));
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const GetJson(langname: 'Two'),
+                  ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
                 minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 60.0, // Adjust to fit within background dimensions
+                height: 75.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -106,7 +104,7 @@ class SelectMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
-                    fontSize: 22.0,
+                    fontSize: 24.0,
                   ),
                   maxLines: 1,
                 ),
@@ -119,17 +117,17 @@ class SelectMenu extends StatelessWidget {
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
-                  builder: (context) => GetJson(langname: 'Three'),
-                ));
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const GetJson(langname: 'Three'),
+                  ));
                 },
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
                 minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 60.0, // Adjust to fit within background dimensions
+                height: 75.0, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -137,12 +135,42 @@ class SelectMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontFamily: "SecularOne-Regular",
-                    fontSize: 22.0,
+                    fontSize: 24.0,
                   ),
                   maxLines: 1,
                 ),
               ),
             ),
+            Positioned(
+              left: 125,
+              bottom: 90,
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    // in changelog 1 we will pass the langname name to ther other widget class
+                    // this name will be used to open a particular JSON file
+                    // for a particular language
+                    builder: (context) => const MainMenu(),
+                  ));
+                },
+                color: Colors.white,
+                splashColor: Colors.white,
+                highlightColor: const Color.fromARGB(255, 91, 91, 91),
+                minWidth: 150.0, // Adjust to fit within background dimensions
+                height: 60.0, // Adjust to fit within background dimensions
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: const Text(
+                  "Back",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "SecularOne-Regular",
+                    fontSize: 20.0,
+                  ),
+                  maxLines: 1,
+                ),
+              ),
+            )
           ],
         ),
       ),
