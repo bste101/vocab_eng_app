@@ -47,3 +47,6 @@ flutter:
     - family: SecularOne-Regular
       fonts:
         - asset: assets/font/SecularOne-Regular.ttf
+    - family: NotoThai
+      fonts:
+        - asset: assets/font/NotoSansThai-VariableFont_wdth,wght.ttf

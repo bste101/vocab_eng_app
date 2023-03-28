@@ -74,6 +74,11 @@ class _GameOverMenuState extends State<GameOverMenu> {
                   Text(
                     'Your score is : $score',
                     style: const TextStyle(
+                      shadows: [
+                        Shadow(
+                            color: Color.fromARGB(255, 232, 230, 230),
+                            offset: Offset(2, 3))
+                      ],
                       fontSize: 30,
                       color: Colors.black,
                       fontFamily: "SecularOne-Regular",
@@ -105,6 +110,11 @@ class _GameOverMenuState extends State<GameOverMenu> {
               child: const Text(
                 "Play Again",
                 style: TextStyle(
+                  shadows: [
+                    Shadow(
+                        color: Color.fromARGB(255, 246, 209, 24),
+                        offset: Offset(2, 3))
+                  ],
                   color: Color.fromARGB(255, 0, 0, 0),
                   fontFamily: "SecularOne-Regular",
                   fontSize: 24.0,
@@ -135,6 +145,11 @@ class _GameOverMenuState extends State<GameOverMenu> {
               child: const Text(
                 "Back",
                 style: TextStyle(
+                  shadows: [
+                    Shadow(
+                        color: Color.fromARGB(255, 221, 221, 221),
+                        offset: Offset(2, 3))
+                  ],
                   color: Colors.black,
                   fontFamily: "SecularOne-Regular",
                   fontSize: 22.0,
