@@ -39,7 +39,7 @@ class _QuizGameState extends State<QuizGame> {
   @override
   void initState() {
     starttimer();
-    genrandomarray();
+    // genrandomarray();
     super.initState();
   }
 
@@ -51,19 +51,21 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   //////พังแรนด้อมไม่ได้
-  genrandomarray() {
-    var distinctIds = [];
-    var rand = Random();
-      for (i = 0; ;) {
-      distinctIds.add(rand.nextInt(10));
-        random_array = distinctIds.toSet().toList();
-        if(random_array.length < 10){
-          continue;
-        }else{
-          break;
-        }
-      }
-  }
+  // genrandomarray() {
+  //   if (mydata.isNotEmpty) {
+  //   var distinctIds = [];
+  //   var rand = Random();
+  //     for (i = 0; ;) {
+  //     distinctIds.add(rand.nextInt(mydata[0].length));
+  //       random_array = distinctIds.toSet().toList();
+  //       if(random_array.length < mydata[0].length){
+  //         continue;
+  //       }else{
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
 
   void starttimer() async {
     const onesec = Duration(seconds: 1);
@@ -94,8 +96,8 @@ class _QuizGameState extends State<QuizGame> {
     canceltimer = false;
     timer = 10;
     setState(() {
-      if (j < 10) {
-        i++; //พังแรนด้อมไม่ได้
+      if (j < mydata[0].length) {
+        i++;
         j++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
