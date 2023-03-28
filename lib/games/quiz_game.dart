@@ -50,20 +50,22 @@ class _QuizGameState extends State<QuizGame> {
     }
   }
 
-  ////พังแรนด้อมไม่ได้
-//   List<dynamic> genRandomArray() {
-//   var distinctIds = [];
-//   var rand = Random();
-
-//   if (mydata.isNotEmpty) {
-//     for (var i = 0; i < mydata[0].length; i++) {
-//       distinctIds.add(rand.nextInt(mydata[0].length));
-//     }
-//     mydata = distinctIds.toSet().toList();
-//   }
-  
-//   return mydata;
-// }
+  // void genRandomArray() {
+  //   if (mydata.isNotEmpty) {
+  //     var distinctIds = [];
+  //   var rand = new Random();
+  //     for (int i = 0; ;) {
+  //     distinctIds.add(rand.nextInt(10));
+  //       random_array = distinctIds.toSet().toList();
+  //       if(random_array.length < 10){
+  //         continue;
+  //       }else{
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   return random_array;
+  // }
 
   void starttimer() async {
     const onesec = Duration(seconds: 1);
@@ -72,14 +74,16 @@ class _QuizGameState extends State<QuizGame> {
         if (timer < 1) {
           t.cancel();
           life--;
-          setState(() {if (life == 0) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => GameOverMenu(
-            score: score,
-          ),
-        ));
-        nextquestion();
-      }});
+          setState(() {
+            if (life == 0) {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => GameOverMenu(
+                  score: score,
+                ),
+              ));
+            }
+          });
+          nextquestion();
         } else if (canceltimer == true) {
           t.cancel();
         } else {
@@ -142,7 +146,7 @@ class _QuizGameState extends State<QuizGame> {
         ));
       }
     });
-    Timer(Duration(seconds: 1), nextquestion);
+    Timer(const Duration(seconds: 1), nextquestion);
   }
 
   Widget choicebutton(String k) {
