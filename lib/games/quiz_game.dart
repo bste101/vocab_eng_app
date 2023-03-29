@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
-import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
@@ -24,12 +23,13 @@ class _QuizGameState extends State<QuizGame> {
   Color wrong = Colors.red;
   bool disableAnswer = false;
   bool canceltimer = false;
+  // ignore: non_constant_identifier_names, prefer_typing_uninitialized_variables
   var random_array;
   int i = 1;
   int j = 1;
-  int timer = 10;
+  int timer = 5;
   int pausedTimer = 10;
-  String showtimer = "10";
+  String showtimer = "5";
   int score = 0;
   int life = 3;
   Map<String, Color> btncolor = {
@@ -288,24 +288,24 @@ class _QuizGameState extends State<QuizGame> {
                   Column(
                     children: [
                       Row(
-                    children: List.generate(3, (index) {
-                      if (index < life) {
-                        return SizedBox(
-                          width: 35,
-                          height: 40,
-                          child: Image.asset(
-                              'assets/images/${Globals.lifeSprite}'),
-                        );
-                      } else {
-                        return SizedBox(
-                          width: 35,
-                          height: 40,
-                          child: Image.asset(
-                              'assets/images/${Globals.lifeLoseSprite}'),
-                        );
-                      }
-                    }),
-                  ),
+                        children: List.generate(3, (index) {
+                          if (index < life) {
+                            return SizedBox(
+                              width: 35,
+                              height: 40,
+                              child: Image.asset(
+                                  'assets/images/${Globals.lifeSprite}'),
+                            );
+                          } else {
+                            return SizedBox(
+                              width: 35,
+                              height: 40,
+                              child: Image.asset(
+                                  'assets/images/${Globals.lifeLoseSprite}'),
+                            );
+                          }
+                        }),
+                      ),
                       Text(
                         'Score : $score',
                         style: const TextStyle(
@@ -317,13 +317,13 @@ class _QuizGameState extends State<QuizGame> {
                     ],
                   ),
                   Text(
-                        '$showtimer',
-                        style: const TextStyle(
-                          fontSize: 50,
-                          color: Colors.white,
-                          fontFamily: "SecularOne-Regular",
-                        ),
-                      ),
+                    '$showtimer',
+                    style: const TextStyle(
+                      fontSize: 50,
+                      color: Colors.white,
+                      fontFamily: "SecularOne-Regular",
+                    ),
+                  ),
                   FloatingActionButton(
                     onPressed: _togglePause,
                     child: Icon(_paused ? Icons.play_arrow : Icons.pause),
@@ -334,64 +334,86 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           if (_paused)
-            Container(
-              color: Colors.black.withOpacity(0.5),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text(
-                      'PAUSED',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 50),
-                    SizedBox(
-                      height: 60,
-                      width: 140,
-                      child: ElevatedButton(
-                        onPressed: _togglePause,
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.yellow),
+            Padding(
+              padding: const EdgeInsets.all(0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: const Color.fromARGB(210, 16, 16, 16),
+                    borderRadius: BorderRadius.circular(15.0)),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'PAUSED !',
+                        style: TextStyle(
+                          shadows: [
+                            Shadow(
+                                color: Color.fromARGB(255, 136, 136, 136),
+                                offset: Offset(4, 4))
+                          ],
+                          color: Colors.white,
+                          fontSize: 70,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "SecularOne-Regular",
                         ),
-                        child: const Text(
-                          'RESUME',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(height: 50),
+                      SizedBox(
+                        height: 60,
+                        width: 140,
+                        child: ElevatedButton(
+                          onPressed: _togglePause,
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.yellow),
+                          ),
+                          child: const Text(
+                            'RESUME',
+                            style: TextStyle(
+                              shadows: [
+                                Shadow(
+                                    color: Color.fromARGB(255, 252, 226, 76),
+                                    offset: Offset(2, 3))
+                              ],
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "SecularOne-Regular",
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      height: 60,
-                      width: 140,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (context) => const MainMenu(),
-                          ));
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.red),
-                        ),
-                        child: const Text(
-                          'QUIT',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                      const SizedBox(height: 40),
+                      SizedBox(
+                        height: 60,
+                        width: 140,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (context) => GameOverMenu(
+                                score: score,
+                              ),
+                            ));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.red),
+                          ),
+                          child: const Text(
+                            'QUIT',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "SecularOne-Regular",
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
