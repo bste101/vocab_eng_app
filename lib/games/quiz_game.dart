@@ -116,7 +116,8 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   void checkanswer(String k) {
-    if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
+    if (disableAnswer == false) {
+      if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
       score += 5;
       colortoshow = right;
     } else {
@@ -147,6 +148,9 @@ class _QuizGameState extends State<QuizGame> {
       }
     });
     Timer(const Duration(seconds: 1), nextquestion);
+    } else {
+      return;
+    }
   }
 
   Widget choicebutton(String k) {
