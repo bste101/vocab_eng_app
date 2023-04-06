@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
@@ -16,9 +17,13 @@ class GameOverMenu extends StatefulWidget {
 class _GameOverMenuState extends State<GameOverMenu> {
   int score;
   _GameOverMenuState(this.score);
+  
+  AudioPlayer player = AudioPlayer();
+
 
   @override
   Widget build(BuildContext context) {
+    player.play(AssetSource('audio/failure-1-89170.mp3'));
     return Scaffold(
       body: Stack(
         children: [

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
@@ -20,6 +21,7 @@ class _QuizGameState extends State<QuizGame> {
   List mydata;
   _QuizGameState(this.mydata);
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
+  AudioPlayer player = AudioPlayer();
   Color right = Colors.green;
   Color wrong = Colors.red;
   bool disableAnswer = false;
@@ -88,6 +90,7 @@ class _QuizGameState extends State<QuizGame> {
       setState(() {
         if (timer < 1) {
           t.cancel();
+          player.play(AssetSource('audio/explosion-6055.mp3'));
           life--;
           setState(() {
             if (life == 0) {
@@ -112,6 +115,7 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   void nextquestion() {
+    player.stop();
     canceltimer = false;
     timer = 5;
     setState(() {
@@ -137,8 +141,10 @@ class _QuizGameState extends State<QuizGame> {
       if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
         score += 5;
         colortoshow = right;
+        player.play(AssetSource('audio/interface-1-126517.mp3'));
       } else {
         colortoshow = wrong;
+        player.play(AssetSource('audio/explosion-6055.mp3'));
         life--;
         setState(() {
           if (life == 0) {
@@ -237,7 +243,7 @@ class _QuizGameState extends State<QuizGame> {
               left: 50,
               child: SizedBox(
                   width: 300,
-                  height: 400,
+                  height: 380,
                   child: Lottie.asset("assets/json/rocket-launch.json"))),
           Positioned(
             //choice button
