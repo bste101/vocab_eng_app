@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vocab_eng_app">
    <application
-        android:label="vocab_eng_app"
+        android:label="vocab for the world"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
