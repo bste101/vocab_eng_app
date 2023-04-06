@@ -187,9 +187,9 @@ class _SettingMenuState extends State<SettingMenu> {
                   builder: (context) => const MainMenu(),
                 ));
               },
-              color: Color.fromARGB(255, 255, 252, 252),
-              splashColor: Color.fromARGB(255, 255, 254, 254),
-              highlightColor: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 252, 252),
+              splashColor: const Color.fromARGB(255, 255, 254, 254),
+              highlightColor: const Color.fromARGB(255, 255, 255, 255),
               minWidth: width *0.25, // Adjust to fit within background dimensions
               height: height *0.08, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
