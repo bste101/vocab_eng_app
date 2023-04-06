@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 import 'package:vocab_eng_app/screens/utils/select_menu.dart';
+import 'package:vocab_eng_app/main.dart';
 
 class GameOverMenu extends StatefulWidget {
   final int score;
@@ -17,11 +18,13 @@ class GameOverMenu extends StatefulWidget {
 class _GameOverMenuState extends State<GameOverMenu> {
   int score;
   _GameOverMenuState(this.score);
-
+  bool _isPlaying = AudioManagerSingleton().audioManager.isPlaying;
   AudioPlayer player = AudioPlayer();
 
   Future<void> playOver() async {
-    await player.play(AssetSource('audio/failure-1-89170.mp3'));
+    if (_isPlaying == true) {
+      await player.play(AssetSource('audio/failure-1-89170.mp3'));
+    }
   }
 
   @override

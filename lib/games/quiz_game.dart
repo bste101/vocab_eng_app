@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
+import 'package:vocab_eng_app/main.dart';
 
 class QuizGame extends StatefulWidget {
   static const id = 'QuizGame';
@@ -21,6 +22,7 @@ class _QuizGameState extends State<QuizGame> {
   List mydata;
   _QuizGameState(this.mydata);
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
+  bool _isPlaying = AudioManagerSingleton().audioManager.isPlaying;
   AudioPlayer player = AudioPlayer();
   Color right = Colors.green;
   Color wrong = Colors.red;
@@ -89,7 +91,9 @@ class _QuizGameState extends State<QuizGame> {
       setState(() {
         if (timer < 1) {
           t.cancel();
-          player.play(AssetSource('audio/explosion-6055.mp3'));
+          if (_isPlaying == true) {
+            player.play(AssetSource('audio/explosion-6055.mp3'));
+          }
           life--;
           setState(() {
             if (life == 0) {
@@ -140,10 +144,14 @@ class _QuizGameState extends State<QuizGame> {
       if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
         score += 5;
         colortoshow = right;
+        if (_isPlaying == true) {
         await player.play(AssetSource('audio/interface-1-126517.mp3'));
+        }
       } else {
         colortoshow = wrong;
+        if (_isPlaying == true) {
         await player.play(AssetSource('audio/explosion-6055.mp3'));
+        }
         life--;
         setState(() {
           if (life == 0) {
