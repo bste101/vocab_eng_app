@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
 
@@ -201,7 +202,7 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            top: 200,
+            top: 150,
             left: 70,
             child: Container(
               width: 250,
@@ -215,18 +216,12 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            bottom: 120,
-            left: 95,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("assets/images/${Globals.iconrocketSprite}"),
-                fit: BoxFit.contain,
-              )),
-            ),
-          ),
+              bottom: 100,
+              left: 50,
+              child: SizedBox(
+                  width: 300,
+                  height: 400,
+                  child: Lottie.asset("assets/json/rocket-launch.json"))),
           Positioned(
             //choice button
             bottom: 40,
@@ -249,7 +244,7 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
               // box word
-              top: 280,
+              top: 230,
               left: 65,
               child: Container(
                   padding: const EdgeInsets.all(0),

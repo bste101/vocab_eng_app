@@ -56,6 +56,7 @@ class MainMenu extends StatelessWidget {
               ],
             ),
           ),
+          // setting
           Positioned(
             top: 10,
             right: 20,
