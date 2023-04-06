@@ -90,7 +90,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            left: 20,
+            left: 215,
             bottom: 220,
             child: MaterialButton(
               onPressed: () {
@@ -125,7 +125,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            left: 220,
+            left: 20,
             bottom: 220,
             child: MaterialButton(
               onPressed: () {

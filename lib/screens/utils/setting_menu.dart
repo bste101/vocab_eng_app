@@ -27,11 +27,18 @@ class SettingMenu extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 50,
-            left: -100,
+              top: 50,
+              left: 40,
+              child: SizedBox(
+                  width: 350,
+                  height: 250,
+                  child: Lottie.asset("assets/json/shining2-stars.json"))),
+          Positioned(
+            top: 80,
+            left: 90,
             child: Container(
-              width: 600,
-              height: 600,
+              width: 220,
+              height: 220,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
@@ -42,13 +49,6 @@ class SettingMenu extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-              top: 50,
-              left: 40,
-              child: SizedBox(
-                  width: 350,
-                  height: 250,
-                  child: Lottie.asset("assets/json/shining2-stars.json"))),
           Positioned(
             left: 125,
             bottom: 90,
