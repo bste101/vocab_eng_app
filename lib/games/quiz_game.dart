@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
@@ -98,9 +99,11 @@ class _QuizGameState extends State<QuizGame> {
     canceltimer = false;
     timer = 5;
     setState(() {
+      var random = Random();
+      int index = random.nextInt(mydata[0].length);
       if (j < mydata[0].length) {
-        i++;
         j++;
+        i = index;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => GameOverMenu(
