@@ -57,19 +57,19 @@ class _QuizGameState extends State<QuizGame> {
   bool _paused = false;
 
   genrandomarray() {
-    var distinctIds = [];
-    var rand = Random();
-    // ignore: unused_local_variable
-    for (int i = 0;;) {
-      distinctIds.add(rand.nextInt(100));
-      random_array = distinctIds.toSet().toList();
-      if (random_array.length < 100) {
-        continue;
-      } else {
-        break;
-      }
+  var distinctIds = [];
+  var rand = Random();
+  for (int i = 0;;) {
+    distinctIds.add(rand.nextInt(100) + 1);
+    random_array = distinctIds.toSet().toList();
+    if (random_array.length < 100) {
+      continue;
+    } else {
+      break;
     }
   }
+  print(random_array);
+}
 
   void _togglePause() {
     setState(() {
@@ -136,15 +136,15 @@ class _QuizGameState extends State<QuizGame> {
     starttimer();
   }
 
-  void checkanswer(String k) {
+  Future<void> checkanswer(String k) async {
     if (disableAnswer == false) {
       if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
         score += 5;
         colortoshow = right;
-        player.play(AssetSource('audio/interface-1-126517.mp3'));
+        await player.play(AssetSource('audio/interface-1-126517.mp3'));
       } else {
         colortoshow = wrong;
-        player.play(AssetSource('audio/explosion-6055.mp3'));
+        await player.play(AssetSource('audio/explosion-6055.mp3'));
         life--;
         setState(() {
           if (life == 0) {
@@ -214,9 +214,6 @@ class _QuizGameState extends State<QuizGame> {
 
     final boxWidth = width * 0.75;
     final boxHeight = height * 0.2;
-
-    final lottieWidth = width * 0.8;
-    final lottieHeight = height * 0.4;
 
     final buttonWidth = width * 0.4;
     final buttonHeight = height * 0.1;

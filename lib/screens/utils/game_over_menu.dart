@@ -20,9 +20,13 @@ class _GameOverMenuState extends State<GameOverMenu> {
 
   AudioPlayer player = AudioPlayer();
 
+  Future<void> playOver() async {
+    await player.play(AssetSource('audio/failure-1-89170.mp3'));
+  }
+
   @override
   Widget build(BuildContext context) {
-    player.play(AssetSource('audio/failure-1-89170.mp3'));
+    playOver();
 
     final screenSize = MediaQuery.of(context).size;
     final width = screenSize.width;
