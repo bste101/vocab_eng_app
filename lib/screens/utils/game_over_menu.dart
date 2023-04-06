@@ -90,7 +90,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            left: 110,
+            left: 20,
             bottom: 220,
             child: MaterialButton(
               onPressed: () {
@@ -104,7 +104,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
               color: Colors.yellow,
               splashColor: Colors.yellow,
               highlightColor: const Color.fromARGB(255, 233, 202, 0),
-              minWidth: 180.0, // Adjust to fit within background dimensions
+              minWidth: 160.0, // Adjust to fit within background dimensions
               height: 75.0, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
@@ -125,8 +125,8 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            left: 125,
-            bottom: 110,
+            left: 220,
+            bottom: 220,
             child: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -139,18 +139,13 @@ class _GameOverMenuState extends State<GameOverMenu> {
               color: Colors.white,
               splashColor: Colors.white,
               highlightColor: const Color.fromARGB(255, 91, 91, 91),
-              minWidth: 150.0, // Adjust to fit within background dimensions
-              height: 60.0, // Adjust to fit within background dimensions
+              minWidth: 160.0, // Adjust to fit within background dimensions
+              height: 75.0, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               child: const Text(
-                "Back",
+                "HOME",
                 style: TextStyle(
-                  shadows: [
-                    Shadow(
-                        color: Color.fromARGB(255, 221, 221, 221),
-                        offset: Offset(2, 3))
-                  ],
                   color: Colors.black,
                   fontFamily: "SecularOne-Regular",
                   fontSize: 22.0,
@@ -160,11 +155,11 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-              top: 10,
-              left: 50,
+              top: 150,
+              left: 30,
               child: SizedBox(
-                  width: 350,
-                  height: 250,
+                  width: 400,
+                  height: 300,
                   child: Lottie.asset("assets/json/shining2-stars.json"))),
         ],
       ),

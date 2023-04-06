@@ -275,8 +275,8 @@ class _QuizGameState extends State<QuizGame> {
                   ))),
           // HUD widget
           Positioned(
-            top: 20,
-            left: -5,
+            top: 0,
+            left: -10,
             right: 0,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -304,14 +304,6 @@ class _QuizGameState extends State<QuizGame> {
                           }
                         }),
                       ),
-                      Text(
-                        'Score : $score',
-                        style: const TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-                          fontFamily: "SecularOne-Regular",
-                        ),
-                      ),
                     ],
                   ),
                   Text(
@@ -332,6 +324,18 @@ class _QuizGameState extends State<QuizGame> {
                   ),
                   // Pause menu
                 ],
+              ),
+            ),
+          ),
+          Positioned(
+            top: 55,
+            left: 10,
+            child: Text(
+              'Score : $score',
+              style: const TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                fontFamily: "SecularOne-Regular",
               ),
             ),
           ),
