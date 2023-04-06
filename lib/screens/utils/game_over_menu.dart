@@ -90,9 +90,6 @@ class _GameOverMenuState extends State<GameOverMenu> {
             child: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
                   builder: (context) => const SelectMenu(),
                 ));
               },
@@ -125,9 +122,6 @@ class _GameOverMenuState extends State<GameOverMenu> {
             child: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  // in changelog 1 we will pass the langname name to ther other widget class
-                  // this name will be used to open a particular JSON file
-                  // for a particular language
                   builder: (context) => const MainMenu(),
                 ));
               },
@@ -150,7 +144,7 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-              top: 150,
+              top: 100,
               left: 30,
               child: SizedBox(
                   width: 400,

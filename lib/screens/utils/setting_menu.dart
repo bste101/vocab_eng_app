@@ -29,7 +29,7 @@ class _SettingMenuState extends State<SettingMenu> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     AudioManager audioManager = AudioManagerSingleton().audioManager;
-    if(!audioManager.isPlaying) {
+    if (!audioManager.isPlaying) {
       _isPlaying = false;
     }
   }
@@ -41,19 +41,20 @@ class _SettingMenuState extends State<SettingMenu> {
   }
 
   void _toggleMusic() {
-  AudioManager audioManager = AudioManagerSingleton().audioManager;
-  if (_isPlaying) {
-    audioManager.stop();
-    setState(() {
-      _isPlaying = false;
-    });
-  } else {
-    audioManager.play();
-    setState(() {
-      _isPlaying = true;
-    });
+    AudioManager audioManager = AudioManagerSingleton().audioManager;
+    if (_isPlaying) {
+      audioManager.stop();
+      setState(() {
+        _isPlaying = false;
+      });
+    } else {
+      audioManager.play();
+      setState(() {
+        _isPlaying = true;
+      });
+    }
   }
-}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,25 +95,85 @@ class _SettingMenuState extends State<SettingMenu> {
             ),
           ),
           Positioned(
-            left: 125,
-            bottom: 150,
-            child: Row(
-              children: [
-                const Text(
-                  'Music',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'SecularOne-Regular',
-                    fontSize: 20.0,
+            left: 50,
+            top: 300,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(blurRadius: 5.0, offset: Offset(0, 5))
+                  ],
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 236, 235, 235),
+                      width: 5),
+                  borderRadius: BorderRadius.circular(10)),
+              height: 80,
+              width: 300,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text(
+                    'Music',
+                    style: TextStyle(
+                      shadows: [
+                        Shadow(
+                            color: Color.fromARGB(255, 221, 221, 221),
+                            offset: Offset(2, 3))
+                      ],
+                      color: Color.fromARGB(255, 65, 64, 64),
+                      fontFamily: 'SecularOne-Regular',
+                      fontSize: 37.0,
+                    ),
                   ),
-                ),
-                Switch(
-                  value: _isPlaying,
-                  onChanged: (value) {
-                    _toggleMusic();
-                  },
-                ),
-              ],
+                  Switch(
+                    value: _isPlaying,
+                    onChanged: (value) {
+                      _toggleMusic();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 50,
+            top: 420,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(blurRadius: 5.0, offset: Offset(0, 5))
+                  ],
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 236, 235, 235),
+                      width: 5),
+                  borderRadius: BorderRadius.circular(10)),
+              height: 80,
+              width: 300,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text(
+                    'Effect',
+                    style: TextStyle(
+                      shadows: [
+                        Shadow(
+                            color: Color.fromARGB(255, 221, 221, 221),
+                            offset: Offset(2, 3))
+                      ],
+                      color: Color.fromARGB(255, 65, 64, 64),
+                      fontFamily: 'SecularOne-Regular',
+                      fontSize: 37.0,
+                    ),
+                  ),
+                  Switch(
+                    value: _isPlaying,
+                    onChanged: (value) {
+                      _toggleMusic();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Positioned(
@@ -152,4 +213,3 @@ class _SettingMenuState extends State<SettingMenu> {
     );
   }
 }
-

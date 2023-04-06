@@ -27,9 +27,18 @@ class MainMenu extends StatelessWidget {
               ),
             ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          Positioned(
+              bottom: 190,
+              left: 20,
+              child: SizedBox(
+                  width: 350,
+                  height: 250,
+                  child:
+                      Lottie.asset("assets/json/astronaut-illustration.json"))),
+          Positioned(
+            top: 150,
+            left: 35,
+            child: Stack(
               children: [
                 Container(
                   width: 330,
@@ -42,20 +51,39 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 50),
-                IconButton(
-                  padding: const EdgeInsets.all(0),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const SelectMenu(),
-                    ));
-                  },
-                  icon: Image.asset(
-                    "assets/images/${Globals.buttonstartSprite}",
-                  ),
-                  iconSize: 200,
-                ),
               ],
+            ),
+          ),
+          Positioned(
+            left: 120,
+            bottom: 160,
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const SelectMenu(),
+                ));
+              },
+              color: Colors.yellow,
+              splashColor: Colors.yellow,
+              highlightColor: const Color.fromARGB(255, 233, 202, 0),
+              minWidth: 160.0, // Adjust to fit within background dimensions
+              height: 75.0, // Adjust to fit within background dimensions
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: const Text(
+                "S T A R T",
+                style: TextStyle(
+                  shadows: [
+                    Shadow(
+                        color: Color.fromARGB(255, 246, 209, 24),
+                        offset: Offset(2, 3))
+                  ],
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  fontFamily: "SecularOne-Regular",
+                  fontSize: 24.0,
+                ),
+                maxLines: 1,
+              ),
             ),
           ),
           // setting
@@ -75,7 +103,7 @@ class MainMenu extends StatelessWidget {
                 )),
           ),
           Positioned(
-              top: 50,
+              top: 100,
               left: 40,
               child: SizedBox(
                   width: 350,

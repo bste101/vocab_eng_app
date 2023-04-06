@@ -4,7 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
 class AudioManager {
-  AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _player = AudioPlayer();
   late bool _isPlaying;
 
   void play() async {
@@ -27,6 +27,7 @@ class AudioManager {
       _isPlaying = true;
     }
   }
+
   bool get isPlaying => _isPlaying;
 }
 
