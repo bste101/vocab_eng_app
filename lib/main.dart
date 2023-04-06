@@ -3,20 +3,35 @@ import 'package:flame/flame.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
+class AudioManager {
+  AudioPlayer _player = AudioPlayer();
+
+  void play() async {
+    await _player.play(AssetSource('audio/Space-Jazz.mp3'));
+    _player.setReleaseMode(ReleaseMode.loop);
+  }
+
+  void stop() async {
+    await _player.stop();
+  }
+}
+
+class AudioManagerSingleton {
+  static final AudioManagerSingleton _instance = AudioManagerSingleton._internal();
+  final AudioManager audioManager = AudioManager();
+
+  factory AudioManagerSingleton() {
+    return _instance;
+  }
+
+  AudioManagerSingleton._internal();
+}
+
 void main() {
   // Make the app full screen
   WidgetsFlutterBinding.ensureInitialized();
   Flame.device.fullScreen();
-  final player = AudioPlayer();
-  void playSound() async {
-    await player.play(AssetSource('audio/Space-Jazz.mp3'));
-  }
-
-  void loop() {
-    player.setReleaseMode(ReleaseMode.loop);
-  }
-  playSound();
-  loop();
+  AudioManagerSingleton().audioManager.play();
 
   runApp(
     const MyApp(),
@@ -24,7 +39,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+  const MyApp({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,44 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
+import 'package:vocab_eng_app/main.dart';
 import 'main_menu.dart';
 
-class SettingMenu extends StatelessWidget {
+class SettingMenu extends StatefulWidget {
   static const id = 'SettingMenu';
-
   const SettingMenu({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<SettingMenu> createState() => _SettingMenuState();
+}
+
+class _SettingMenuState extends State<SettingMenu> {
+  bool _isPlaying = true;
+  AudioPlayer player = AudioPlayer();
+
+  @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+
+  void _toggleMusic() {
+  AudioManager audioManager = AudioManagerSingleton().audioManager;
+  if (_isPlaying) {
+    audioManager.stop();
+    setState(() {
+      _isPlaying = false;
+    });
+  } else {
+    audioManager.play();
+    setState(() {
+      _isPlaying = true;
+    });
+  }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +80,28 @@ class SettingMenu extends StatelessWidget {
           ),
           Positioned(
             left: 125,
+            bottom: 150,
+            child: Row(
+              children: [
+                const Text(
+                  'Music',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'SecularOne-Regular',
+                    fontSize: 20.0,
+                  ),
+                ),
+                Switch(
+                  value: _isPlaying,
+                  onChanged: (value) {
+                    _toggleMusic();
+                  },
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 125,
             bottom: 90,
             child: MaterialButton(
               onPressed: () {
@@ -86,3 +137,4 @@ class SettingMenu extends StatelessWidget {
     );
   }
 }
+

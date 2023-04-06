@@ -41,6 +41,7 @@ class _QuizGameState extends State<QuizGame> {
   @override
   void initState() {
     starttimer();
+    genrandomarray();
     super.initState();
   }
 
@@ -52,6 +53,21 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   bool _paused = false;
+
+  genrandomarray(){
+    var distinctIds = [];
+    var rand = new Random();
+      for (int i = 0; ;) {
+      distinctIds.add(rand.nextInt(100));
+        random_array = distinctIds.toSet().toList();
+        if(random_array.length < 100){
+          continue;
+        }else{
+          break;
+        }
+      }
+      print(random_array);
+  }
 
   void _togglePause() {
     setState(() {
@@ -99,11 +115,9 @@ class _QuizGameState extends State<QuizGame> {
     canceltimer = false;
     timer = 5;
     setState(() {
-      var random = Random();
-      int index = random.nextInt(mydata[0].length);
-      if (j < mydata[0].length) {
+      if (j < 100) {
+        i = random_array[j];
         j++;
-        i = index;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => GameOverMenu(
