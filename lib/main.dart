@@ -12,7 +12,7 @@ class AudioManager {
   }
 
   void stop() async {
-    await _player.stop();
+    await _player.pause();
   }
 }
 
