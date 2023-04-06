@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/game_over_menu.dart';
@@ -118,13 +117,28 @@ class _QuizGameState extends State<QuizGame> {
   void checkanswer(String k) {
     if (disableAnswer == false) {
       if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
-      score += 5;
-      colortoshow = right;
-    } else {
-      colortoshow = wrong;
-      life--;
+        score += 5;
+        colortoshow = right;
+      } else {
+        colortoshow = wrong;
+        life--;
+        setState(() {
+          if (life == 0) {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => GameOverMenu(
+                score: score,
+              ),
+            ));
+          }
+        });
+      }
       setState(() {
-        if (life == 0) {
+        if (k.isNotEmpty) {
+          btncolor[k] = colortoshow;
+        }
+        canceltimer = true;
+        disableAnswer = true;
+        if (k.isEmpty) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => GameOverMenu(
               score: score,
@@ -132,22 +146,7 @@ class _QuizGameState extends State<QuizGame> {
           ));
         }
       });
-    }
-    setState(() {
-      if (k.isNotEmpty) {
-        btncolor[k] = colortoshow;
-      }
-      canceltimer = true;
-      disableAnswer = true;
-      if (k.isEmpty) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => GameOverMenu(
-            score: score,
-          ),
-        ));
-      }
-    });
-    Timer(const Duration(seconds: 1), nextquestion);
+      Timer(const Duration(seconds: 1), nextquestion);
     } else {
       return;
     }
@@ -281,7 +280,7 @@ class _QuizGameState extends State<QuizGame> {
                   ))),
           // HUD widget
           Positioned(
-            top: 0,
+            top: 20,
             left: -5,
             right: 0,
             child: Padding(
@@ -321,7 +320,7 @@ class _QuizGameState extends State<QuizGame> {
                     ],
                   ),
                   Text(
-                    '$showtimer',
+                    showtimer,
                     style: const TextStyle(
                       fontSize: 50,
                       color: Colors.white,
@@ -329,8 +328,12 @@ class _QuizGameState extends State<QuizGame> {
                     ),
                   ),
                   FloatingActionButton(
+                    backgroundColor: Colors.black26,
                     onPressed: _togglePause,
-                    child: Icon(_paused ? Icons.play_arrow : Icons.pause),
+                    child: Icon(
+                      _paused ? Icons.play_arrow : Icons.pause,
+                      size: 40,
+                    ),
                   ),
                   // Pause menu
                 ],

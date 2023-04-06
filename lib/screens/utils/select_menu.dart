@@ -1,9 +1,3 @@
-/* 
-====================================================================================================================
-didn't finished Normal and Hard Mode
-====================================================================================================================
-*/
-
 import 'package:flutter/material.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/getjson.dart';
