@@ -175,7 +175,7 @@ class _QuizGameState extends State<QuizGame> {
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontFamily: "NotoThai",
-            fontSize: 24.0,
+            fontSize: 22.0,
           ),
           maxLines: 1,
         ),
@@ -327,7 +327,7 @@ class _QuizGameState extends State<QuizGame> {
                     onPressed: _togglePause,
                     child: Icon(
                       _paused ? Icons.play_arrow : Icons.pause,
-                      size: 40,
+                      size: 50,
                     ),
                   ),
                   // Pause menu
