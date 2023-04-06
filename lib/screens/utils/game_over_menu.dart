@@ -18,11 +18,11 @@ class GameOverMenu extends StatefulWidget {
 class _GameOverMenuState extends State<GameOverMenu> {
   int score;
   _GameOverMenuState(this.score);
-  bool _isPlaying = AudioManagerSingleton().audioManager.isPlaying;
+  bool _isEffect = AudioManagerSingleton().audioManager.isEffect;
   AudioPlayer player = AudioPlayer();
 
   Future<void> playOver() async {
-    if (_isPlaying == true) {
+    if (_isEffect == true) {
       await player.play(AssetSource('audio/failure-1-89170.mp3'));
     }
   }

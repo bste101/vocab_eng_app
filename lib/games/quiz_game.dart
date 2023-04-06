@@ -22,7 +22,7 @@ class _QuizGameState extends State<QuizGame> {
   List mydata;
   _QuizGameState(this.mydata);
   Color colortoshow = const Color.fromARGB(255, 243, 243, 243);
-  bool _isPlaying = AudioManagerSingleton().audioManager.isPlaying;
+  bool _isEffect = AudioManagerSingleton().audioManager.isEffect;
   AudioPlayer player = AudioPlayer();
   Color right = Colors.green;
   Color wrong = Colors.red;
@@ -91,7 +91,7 @@ class _QuizGameState extends State<QuizGame> {
       setState(() {
         if (timer < 1) {
           t.cancel();
-          if (_isPlaying == true) {
+          if (_isEffect == true) {
             player.play(AssetSource('audio/explosion-6055.mp3'));
           }
           life--;
@@ -144,12 +144,12 @@ class _QuizGameState extends State<QuizGame> {
       if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
         score += 5;
         colortoshow = right;
-        if (_isPlaying == true) {
+        if (_isEffect == true) {
         await player.play(AssetSource('audio/interface-1-126517.mp3'));
         }
       } else {
         colortoshow = wrong;
-        if (_isPlaying == true) {
+        if (_isEffect == true) {
         await player.play(AssetSource('audio/explosion-6055.mp3'));
         }
         life--;

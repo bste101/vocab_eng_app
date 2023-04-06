@@ -17,12 +17,14 @@ class SettingMenu extends StatefulWidget {
 
 class _SettingMenuState extends State<SettingMenu> {
   bool _isPlaying = AudioManagerSingleton().audioManager.isPlaying;
+  bool _isEffect = AudioManagerSingleton().audioManager.isEffect;
   AudioPlayer player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
     _isPlaying = true;
+    _isEffect = true;
   }
 
   @override
@@ -31,6 +33,9 @@ class _SettingMenuState extends State<SettingMenu> {
     AudioManager audioManager = AudioManagerSingleton().audioManager;
     if (!audioManager.isPlaying) {
       _isPlaying = false;
+    }
+    if (!audioManager.isEffect) {
+      _isEffect = false;
     }
   }
 
@@ -51,6 +56,21 @@ class _SettingMenuState extends State<SettingMenu> {
       audioManager.play();
       setState(() {
         _isPlaying = true;
+      });
+    }
+  }
+
+  void _toggleEffect() {
+    AudioManager audioManager = AudioManagerSingleton().audioManager;
+    if (_isEffect) {
+      audioManager.stopEffect();
+      setState(() {
+        _isEffect = false;
+      });
+    } else {
+      audioManager.playEffect();
+      setState(() {
+        _isEffect = true;
       });
     }
   }
@@ -170,8 +190,9 @@ class _SettingMenuState extends State<SettingMenu> {
                     ),
                   ),
                   Switch(
-                    value: true,
+                    value: _isEffect,
                     onChanged: (value) {
+                      _toggleEffect();
                     },
                   ),
                 ],
