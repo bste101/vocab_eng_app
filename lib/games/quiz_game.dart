@@ -68,7 +68,6 @@ class _QuizGameState extends State<QuizGame> {
       break;
     }
   }
-  print(random_array);
 }
 
   void _togglePause() {
