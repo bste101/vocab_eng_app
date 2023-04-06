@@ -60,6 +60,13 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
+              top: 280,
+              left: 10,
+              child: SizedBox(
+                  width: 400,
+                  height: 300,
+                  child: Lottie.asset("assets/json/shining2-stars.json"))),
+          Positioned(
             bottom: 400,
             left: 60,
             child: Padding(
@@ -143,13 +150,6 @@ class _GameOverMenuState extends State<GameOverMenu> {
               ),
             ),
           ),
-          Positioned(
-              top: 100,
-              left: 30,
-              child: SizedBox(
-                  width: 400,
-                  height: 300,
-                  child: Lottie.asset("assets/json/shining2-stars.json"))),
         ],
       ),
     );
