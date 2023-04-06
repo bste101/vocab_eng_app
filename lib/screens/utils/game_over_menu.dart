@@ -17,13 +17,25 @@ class GameOverMenu extends StatefulWidget {
 class _GameOverMenuState extends State<GameOverMenu> {
   int score;
   _GameOverMenuState(this.score);
-  
-  AudioPlayer player = AudioPlayer();
 
+  AudioPlayer player = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
     player.play(AssetSource('audio/failure-1-89170.mp3'));
+
+    final screenSize = MediaQuery.of(context).size;
+    final width = screenSize.width;
+    final height = screenSize.height;
+
+    final boxWidth = width * 1;
+    final boxHeight = height * 0.8;
+
+    final lottieWidth = width * 0.8;
+    final lottieHeight = height * 0.4;
+
+    final buttonWidth = width * 0.4;
+    final buttonHeight = height * 0.1;
     return Scaffold(
       body: Stack(
         children: [
@@ -39,11 +51,11 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            bottom: 100,
-            left: 0,
+            top: height * 0.08,
+            left: width * 0.008,
             child: Container(
-              width: 400,
-              height: 700,
+              width: boxWidth,
+              height: boxHeight,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                 image: AssetImage("assets/images/${Globals.boxgameOver}"),
@@ -51,29 +63,17 @@ class _GameOverMenuState extends State<GameOverMenu> {
               )),
             ),
           ),
+
           Positioned(
-            bottom: 100,
-            left: 0,
-            child: Container(
-              width: 400,
-              height: 700,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("assets/images/${Globals.boxgameOver}"),
-                fit: BoxFit.fill,
-              )),
-            ),
-          ),
-          Positioned(
-              top: 280,
-              left: 10,
+              top: height * 0.08,
+              left: width * 0.01,
               child: SizedBox(
-                  width: 400,
-                  height: 300,
+                  width: lottieWidth,
+                  height: lottieHeight,
                   child: Lottie.asset("assets/json/shining2-stars.json"))),
           Positioned(
-            bottom: 400,
-            left: 60,
+            top: height * 0.5,
+            left: width * 0.16,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -97,8 +97,8 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            left: 215,
-            bottom: 220,
+            left: width * 0.55,
+            bottom: height * 0.25,
             child: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -108,8 +108,8 @@ class _GameOverMenuState extends State<GameOverMenu> {
               color: Colors.yellow,
               splashColor: Colors.yellow,
               highlightColor: const Color.fromARGB(255, 233, 202, 0),
-              minWidth: 160.0, // Adjust to fit within background dimensions
-              height: 75.0, // Adjust to fit within background dimensions
+              minWidth: buttonWidth, // Adjust to fit within background dimensions
+              height: buttonHeight, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               child: const Text(
@@ -129,8 +129,8 @@ class _GameOverMenuState extends State<GameOverMenu> {
             ),
           ),
           Positioned(
-            left: 20,
-            bottom: 220,
+            left: width * 0.07,
+            bottom: height * 0.25,
             child: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -140,8 +140,8 @@ class _GameOverMenuState extends State<GameOverMenu> {
               color: Colors.white,
               splashColor: Colors.white,
               highlightColor: const Color.fromARGB(255, 91, 91, 91),
-              minWidth: 160.0, // Adjust to fit within background dimensions
-              height: 75.0, // Adjust to fit within background dimensions
+              minWidth: buttonWidth, // Adjust to fit within background dimensions
+              height: buttonHeight, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               child: const Text(

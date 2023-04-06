@@ -13,6 +13,9 @@ class SelectMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final double width = screenSize.width;
+    final double height = screenSize.height;
     return Scaffold(
       body: Center(
         child: Stack(
@@ -30,18 +33,18 @@ class SelectMenu extends StatelessWidget {
               ),
             ),
             Positioned(
-                top: 60,
-                left: 40,
+                top: height * 0.1,
+                left: width * 0.1,
                 child: SizedBox(
-                    width: 350,
-                    height: 250,
+                    width: width * 0.8,
+                    height: height * 0.3,
                     child: Lottie.asset("assets/json/shining2-stars.json"))),
             Positioned(
-              bottom: 570,
-              left: 40,
+              top: height * 0.16,
+              left: width * 0.1,
               child: Container(
-                width: 320,
-                height: 100,
+                width: width * 0.8,
+                height: height * 0.15,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                   image:
@@ -51,8 +54,8 @@ class SelectMenu extends StatelessWidget {
             ),
             // Easy button
             Positioned(
-              left: 110,
-              bottom: 450,
+              left: width * 0.25,
+              bottom: height * 0.55,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -65,8 +68,8 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
-                minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 75.0, // Adjust to fit within background dimensions
+                minWidth: width * 0.5, // Adjust to fit within background dimensions
+                height: height * 0.1, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -87,8 +90,8 @@ class SelectMenu extends StatelessWidget {
             ),
             // Normal button
             Positioned(
-              left: 110,
-              bottom: 350,
+              left: width * 0.25,
+              bottom: height * 0.42,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -101,8 +104,8 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
-                minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 75.0, // Adjust to fit within background dimensions
+                minWidth: width * 0.5, // Adjust to fit within background dimensions
+                height: height * 0.1, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -123,8 +126,8 @@ class SelectMenu extends StatelessWidget {
             ),
             // Hard button
             Positioned(
-              left: 110,
-              bottom: 250,
+              left: width * 0.25,
+              bottom: height * 0.29,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -137,8 +140,8 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 134, 134, 135),
-                minWidth: 180.0, // Adjust to fit within background dimensions
-                height: 75.0, // Adjust to fit within background dimensions
+                minWidth: width * 0.5, // Adjust to fit within background dimensions
+                height: height * 0.1, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(
@@ -158,8 +161,8 @@ class SelectMenu extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 125,
-              bottom: 90,
+              left: width * 0.31,
+              bottom: height * 0.1,
               child: MaterialButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(

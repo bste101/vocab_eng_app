@@ -208,6 +208,18 @@ class _QuizGameState extends State<QuizGame> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final width = screenSize.width;
+    final height = screenSize.height;
+
+    final boxWidth = width * 0.75;
+    final boxHeight = height * 0.2;
+
+    final lottieWidth = width * 0.8;
+    final lottieHeight = height * 0.4;
+
+    final buttonWidth = width * 0.4;
+    final buttonHeight = height * 0.1;
     return Scaffold(
       body: Stack(
         children: [
@@ -225,11 +237,11 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            top: 150,
-            left: 70,
+            top: height * 0.2,
+            left: width * 0.01,
             child: Container(
-              width: 250,
-              height: 250,
+              width: width ,
+              height: height * 0.3,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                 image:
@@ -239,20 +251,20 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-              bottom: 100,
-              left: 50,
+              bottom: height * 0.08,
+              left: width * 0.008,
               child: SizedBox(
-                  width: 300,
-                  height: 380,
+                  width: width ,
+                  height: height * 0.45,
                   child: Lottie.asset("assets/json/rocket-launch.json"))),
           Positioned(
             //choice button
-            bottom: 40,
-            left: 10,
-            right: 0,
+            bottom: height * 0.001,
+            left: width * 0.035,
+            right: width * 0,
             child: SizedBox(
-              height: 100,
-              width: 50,
+              height: buttonHeight  ,
+              width: buttonWidth,
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -267,8 +279,8 @@ class _QuizGameState extends State<QuizGame> {
           ),
           Positioned(
               // box word
-              top: 230,
-              left: 65,
+              top: height * 0.26,
+              left: width *0.12,
               child: Container(
                   padding: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
@@ -280,8 +292,8 @@ class _QuizGameState extends State<QuizGame> {
                           color: const Color.fromARGB(255, 236, 235, 235),
                           width: 5),
                       borderRadius: BorderRadius.circular(10)),
-                  height: 120,
-                  width: 270,
+                  height: boxHeight,
+                  width: boxWidth,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -298,9 +310,9 @@ class _QuizGameState extends State<QuizGame> {
                   ))),
           // HUD widget
           Positioned(
-            top: 0,
-            left: -10,
-            right: 0,
+            top: height *0,
+            left: width * (- 0.02),
+            right: width*0,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -351,8 +363,8 @@ class _QuizGameState extends State<QuizGame> {
             ),
           ),
           Positioned(
-            top: 55,
-            left: 10,
+            top: height * 0.07,
+            left: width * 0.04,
             child: Text(
               'Score : $score',
               style: const TextStyle(
