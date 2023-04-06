@@ -57,6 +57,9 @@ class _SettingMenuState extends State<SettingMenu> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final double width = screenSize.width;
+    final double height = screenSize.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -72,18 +75,18 @@ class _SettingMenuState extends State<SettingMenu> {
             ),
           ),
           Positioned(
-              top: 50,
-              left: 40,
+              top: height * (-0.08),
+              left: width * 0.2,
               child: SizedBox(
-                  width: 350,
-                  height: 250,
+                  width: width * 0.6,
+                  height: height* 0.6,
                   child: Lottie.asset("assets/json/shining2-stars.json"))),
           Positioned(
-            top: 80,
-            left: 90,
+            top: height * (-0.25),
+            left: width * 0.25,
             child: Container(
-              width: 220,
-              height: 220,
+              width: width * 0.5,
+              height: height,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
@@ -95,8 +98,8 @@ class _SettingMenuState extends State<SettingMenu> {
             ),
           ),
           Positioned(
-            left: 50,
-            top: 300,
+            left: width * 0.15,
+            top: height * 0.35,
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -107,8 +110,8 @@ class _SettingMenuState extends State<SettingMenu> {
                       color: const Color.fromARGB(255, 236, 235, 235),
                       width: 5),
                   borderRadius: BorderRadius.circular(10)),
-              height: 80,
-              width: 300,
+              height: height * 0.1,
+              width: width *0.7,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -136,8 +139,8 @@ class _SettingMenuState extends State<SettingMenu> {
             ),
           ),
           Positioned(
-            left: 50,
-            top: 420,
+            left: width * 0.15,
+            top: height * 0.5,
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -148,8 +151,8 @@ class _SettingMenuState extends State<SettingMenu> {
                       color: const Color.fromARGB(255, 236, 235, 235),
                       width: 5),
                   borderRadius: BorderRadius.circular(10)),
-              height: 80,
-              width: 300,
+              height: height * 0.1,
+              width: width *0.7,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -176,19 +179,19 @@ class _SettingMenuState extends State<SettingMenu> {
             ),
           ),
           Positioned(
-            left: 125,
-            bottom: 90,
+            left: width *0.35,
+            bottom: height * 0.05,
             child: MaterialButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const MainMenu(),
                 ));
               },
-              color: Colors.white,
-              splashColor: Colors.white,
-              highlightColor: const Color.fromARGB(255, 91, 91, 91),
-              minWidth: 150.0, // Adjust to fit within background dimensions
-              height: 60.0, // Adjust to fit within background dimensions
+              color: Color.fromARGB(255, 255, 252, 252),
+              splashColor: Color.fromARGB(255, 255, 254, 254),
+              highlightColor: Color.fromARGB(255, 255, 255, 255),
+              minWidth: width *0.25, // Adjust to fit within background dimensions
+              height: height *0.08, // Adjust to fit within background dimensions
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               child: const Text(
@@ -196,10 +199,10 @@ class _SettingMenuState extends State<SettingMenu> {
                 style: TextStyle(
                   shadows: [
                     Shadow(
-                        color: Color.fromARGB(255, 221, 221, 221),
+                        color: Color.fromARGB(255, 255, 255, 255),
                         offset: Offset(2, 3))
                   ],
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 4, 4, 4),
                   fontFamily: "SecularOne-Regular",
                   fontSize: 20.0,
                 ),
