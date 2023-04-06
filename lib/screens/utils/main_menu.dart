@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/screens/utils/select_menu.dart';
+import 'package:vocab_eng_app/screens/utils/setting_menu.dart';
 
 class MainMenu extends StatelessWidget {
   static const id = 'MainMenu';
@@ -63,7 +64,11 @@ class MainMenu extends StatelessWidget {
             right: 20,
             child: FloatingActionButton(
                 backgroundColor: Colors.black26,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const SettingMenu(),
+                  ));
+                },
                 child: const Icon(
                   Icons.settings_rounded,
                   size: 50,

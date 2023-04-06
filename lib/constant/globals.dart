@@ -13,6 +13,7 @@ class Globals {
   static const String icontimeSprite = 'icon/iconTime.png';
   static const String buttonstartSprite = 'button/buttonStart.png';
   static const String labelNameSprite = 'label/newNameGame.png';
+  static const String labelSetting = 'label/Setting.png';
   static const String iconsettingSprite = 'icon/iconSetting.png';
   static const String buttonLevelSprite = 'button/selectLevel.png';
   static const String buttonEasySprite = 'button/2Word.png';

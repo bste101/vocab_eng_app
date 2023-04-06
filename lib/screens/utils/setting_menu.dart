@@ -1,58 +1,88 @@
-// import 'package:flutter/material.dart';
-// import 'dart:async';
-// import 'package:volume_control/volume_control.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:vocab_eng_app/constant/globals.dart';
+import 'main_menu.dart';
 
-// void main() => runApp(const SettingMenu());
+class SettingMenu extends StatelessWidget {
+  static const id = 'SettingMenu';
 
-// class SettingMenu extends StatefulWidget {
-//   const SettingMenu({super.key});
+  const SettingMenu({
+    Key? key,
+  }) : super(key: key);
 
-//   @override
-//   // ignore: library_private_types_in_public_api
-//   _SettingMenuState createState() => _SettingMenuState();
-// }
-
-// class _SettingMenuState extends State<SettingMenu> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     initVolumeState();
-//   }
-
-//   //init volume_control plugin
-//   Future<void> initVolumeState() async {
-//     if (!mounted) return;
-
-//     //read the current volume
-//     _val = await VolumeControl.volume;
-//     setState(() {});
-//   }
-
-//   double _val = 0.5;
-//   late Timer timer;
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//           appBar: AppBar(
-//             title: const Text('Plugin example app'),
-//           ),
-//           body: Center(
-//               child: Slider(
-//                   value: _val,
-//                   min: 0,
-//                   max: 1,
-//                   divisions: 100,
-//                   onChanged: (val) {
-//                     _val = val;
-//                     setState(() {});
-//                     timer.cancel();
-
-//                     //use timer for the smoother sliding
-//                     timer = Timer(const Duration(milliseconds: 200), () {
-//                       VolumeControl.setVolume(val);
-//                     });
-//                   }))),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      "assets/images/${Globals.backgroundStartSprite}"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 50,
+            left: -100,
+            child: Container(
+              width: 600,
+              height: 600,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/${Globals.labelSetting}",
+                  ),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+              top: 50,
+              left: 40,
+              child: SizedBox(
+                  width: 350,
+                  height: 250,
+                  child: Lottie.asset("assets/json/shining2-stars.json"))),
+          Positioned(
+            left: 125,
+            bottom: 90,
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const MainMenu(),
+                ));
+              },
+              color: Colors.white,
+              splashColor: Colors.white,
+              highlightColor: const Color.fromARGB(255, 91, 91, 91),
+              minWidth: 150.0, // Adjust to fit within background dimensions
+              height: 60.0, // Adjust to fit within background dimensions
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              child: const Text(
+                "Back",
+                style: TextStyle(
+                  shadows: [
+                    Shadow(
+                        color: Color.fromARGB(255, 221, 221, 221),
+                        offset: Offset(2, 3))
+                  ],
+                  color: Colors.black,
+                  fontFamily: "SecularOne-Regular",
+                  fontSize: 20.0,
+                ),
+                maxLines: 1,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
