@@ -4,7 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
 class AudioManager {
-  AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _player = AudioPlayer();
 
   void play() async {
     await _player.play(AssetSource('audio/Space-Jazz.mp3'));
@@ -17,7 +17,8 @@ class AudioManager {
 }
 
 class AudioManagerSingleton {
-  static final AudioManagerSingleton _instance = AudioManagerSingleton._internal();
+  static final AudioManagerSingleton _instance =
+      AudioManagerSingleton._internal();
   final AudioManager audioManager = AudioManager();
 
   factory AudioManagerSingleton() {
@@ -39,8 +40,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
-  const MyApp({Key? key,}) : super(key: key);
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

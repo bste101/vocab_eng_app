@@ -54,19 +54,19 @@ class _QuizGameState extends State<QuizGame> {
 
   bool _paused = false;
 
-  genrandomarray(){
+  genrandomarray() {
     var distinctIds = [];
-    var rand = new Random();
-      for (int i = 0; ;) {
+    var rand = Random();
+    // ignore: unused_local_variable
+    for (int i = 0;;) {
       distinctIds.add(rand.nextInt(100));
-        random_array = distinctIds.toSet().toList();
-        if(random_array.length < 100){
-          continue;
-        }else{
-          break;
-        }
+      random_array = distinctIds.toSet().toList();
+      if (random_array.length < 100) {
+        continue;
+      } else {
+        break;
       }
-      print(random_array);
+    }
   }
 
   void _togglePause() {
