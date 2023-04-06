@@ -5,15 +5,29 @@ import 'package:vocab_eng_app/screens/utils/main_menu.dart';
 
 class AudioManager {
   AudioPlayer _player = AudioPlayer();
+  late bool _isPlaying;
 
   void play() async {
     await _player.play(AssetSource('audio/Space-Jazz.mp3'));
     _player.setReleaseMode(ReleaseMode.loop);
+    _isPlaying = true;
   }
 
   void stop() async {
     await _player.pause();
+    _isPlaying = false;
   }
+
+  void toggle() {
+    if (_isPlaying == false) {
+      stop();
+      _isPlaying = false;
+    } else {
+      play();
+      _isPlaying = true;
+    }
+  }
+  bool get isPlaying => _isPlaying;
 }
 
 class AudioManagerSingleton {
