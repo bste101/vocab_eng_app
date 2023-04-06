@@ -161,7 +161,7 @@ class SelectMenu extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: width * 0.31,
+              left: width * 0.338,
               bottom: height * 0.1,
               child: MaterialButton(
                 onPressed: () {
@@ -175,8 +175,8 @@ class SelectMenu extends StatelessWidget {
                 color: Colors.white,
                 splashColor: Colors.white,
                 highlightColor: const Color.fromARGB(255, 91, 91, 91),
-                minWidth: 150.0, // Adjust to fit within background dimensions
-                height: 60.0, // Adjust to fit within background dimensions
+                minWidth: width * 0.3, // Adjust to fit within background dimensions
+                height: height * 0.08, // Adjust to fit within background dimensions
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
                 child: const Text(

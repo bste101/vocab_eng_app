@@ -260,7 +260,7 @@ class _QuizGameState extends State<QuizGame> {
           Positioned(
             //choice button
             bottom: height * 0.001,
-            left: width * 0.035,
+            left: width * 0.01,
             right: width * 0,
             child: SizedBox(
               height: buttonHeight  ,
