@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vocab_eng_app/constant/globals.dart';
 import 'package:vocab_eng_app/games/getjson.dart';
 import 'package:vocab_eng_app/screens/utils/main_menu.dart';
@@ -28,6 +29,13 @@ class SelectMenu extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+                top: 60,
+                left: 40,
+                child: SizedBox(
+                    width: 350,
+                    height: 250,
+                    child: Lottie.asset("assets/json/shining2-stars.json"))),
             Positioned(
               bottom: 570,
               left: 40,
@@ -183,7 +191,7 @@ class SelectMenu extends StatelessWidget {
                   maxLines: 1,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
