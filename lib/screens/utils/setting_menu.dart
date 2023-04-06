@@ -167,7 +167,7 @@ class _SettingMenuState extends State<SettingMenu> {
                     ),
                   ),
                   Switch(
-                    value: false,
+                    value: true,
                     onChanged: (value) {
                     },
                   ),
