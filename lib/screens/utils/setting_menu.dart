@@ -167,10 +167,8 @@ class _SettingMenuState extends State<SettingMenu> {
                     ),
                   ),
                   Switch(
-                    value: _isPlaying,
-                    onChanged: (value) {
-                      _toggleMusic();
-                    },
+                    onChanged: (value) {},
+                    value: true,
                   ),
                 ],
               ),
